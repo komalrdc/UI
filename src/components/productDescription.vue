@@ -1,18 +1,19 @@
 <template>
-  <h1> Product Description page </h1>
+<div id = "productDescription">
+  <h1> Product Description View Page </h1>
+  <productDescription></productDescription>
+</div>
 </template>
 
 <script>
+import productDescription from '@/components/productDescription.vue'
 export default {
-name: 'productDescription',
-  data: function() {
-      return {
-          name: 'productDescription',
-}
-  }
+    name:'productDescription',
+    components: {
+        productDescription
+    }
 }
 </script>
 
 <style>
-
 </style>

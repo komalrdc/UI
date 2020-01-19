@@ -7,7 +7,6 @@
 
 <script>
 import productListing from '@/components/productListing.vue'
-
 export default {
     name:'productListing',
     components: {
@@ -17,5 +16,4 @@ export default {
 </script>
 
 <style>
-
 </style>

@@ -7,7 +7,6 @@
 
 <script>
 import productDescription from '@/components/productDescription.vue'
-
 export default {
     name:'productDescription',
     components: {
@@ -17,5 +16,4 @@ export default {
 </script>
 
 <style>
-
 </style>
