@@ -5,35 +5,17 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    path: '/addbook',
+    name: 'addbook',
+    component: () => import( '../components/merchant/AddProduct.vue')
   },
+  
   {
-    path: '/AddProduct',
-    name: 'AddProduct',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AddProduct.vue')
+    path: '/updatebook',
+    name: 'updatebook',
+    component: () => import('../components/merchant/UpdateProduct.vue')
   },
-  {
-    path: '/RemoveProduct',
-    name: 'RemoveProduct',
-    component: () => import(/* webpackChunkName: "about" */ '../views/RemoveProduct.vue')
-  },
-  {
-    path: '/UpdateProduct',
-    name: 'UpdateProduct',
-    component: () => import(/* webpackChunkName: "about" */ '../views/UpdateProduct.vue')
-  },
-  {
-    path: '/ViewRating',
-    name: 'ViewRating',
-    component: () => import(/* webpackChunkName: "about" */ '../views/ViewRating.vue')
-  },
-  {
-    path: '/MerchantListing',
-    name: 'MerchantListing',
-    component: () => import(/* webpackChunkName: "about" */ '../views/MerchantListing.vue')
-  }
+  
 ]
 
 const router = new VueRouter({

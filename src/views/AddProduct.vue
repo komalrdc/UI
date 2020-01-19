@@ -7,7 +7,7 @@
 
 <script>
 
-import AddProduct from '@/components/AddProduct.vue'
+import AddProduct from '@/components/merchant/AddProduct.vue'
 
 export default {
   name: 'AddProduct',
