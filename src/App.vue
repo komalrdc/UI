@@ -1,19 +1,20 @@
 <template>
   <div id="app">
+
     <div id="nav">
       <h1 style="background-color: red">Welcome!</h1>
-      <router-link to="/AddProduct">AddProduct</router-link> |
-      <router-link to="/RemoveProduct">RemoveProduct</router-link> |
-      <router-link to="/UpdateProduct">UpdateProduct</router-link> |
-      <router-link to="/MerchantListing">MerchantListing</router-link> |
-      <router-link to="/ViewRating">ViewRating</router-link> |
+      <router-link style="align:right" to="/AddProduct">AddProduct</router-link> 
+      
       <!-- <router-link to="/about">About</router-link> | -->
     </div>
-   
+    <div id="footer">  </div> 
+    
     <router-view/>
   </div>
 </template>
+<script>
 
+</script>
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
