@@ -8,6 +8,8 @@
       <router-link to="/UpdateProduct">UpdateProduct</router-link> |
       <router-link to="/MerchantListing">MerchantListing</router-link> |
       <router-link to="/ViewRating">ViewRating</router-link> |
+      <router-link to ="/productslist">Products List</router-link> |
+      <router-link to="/productdesc">Products Description</router-link>
     </div>
    
     <router-view/>

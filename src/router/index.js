@@ -33,7 +33,17 @@ const routes = [
     path: '/MerchantListing',
     name: 'MerchantListing',
     component: () => import(/* webpackChunkName: "about" */ '../views/MerchantListing.vue')
-  }
+  },
+  {
+    path: '/productslist',
+    name: 'productslist',
+    component: () => import( '../views/ProductListingView.vue'),
+  },
+  {
+    path: '/productdesc',
+    name: 'productdesc',
+    component: () => import( '../views/ProductDescriptionView.vue'),
+  },
 ]
 
 const router = new VueRouter({
