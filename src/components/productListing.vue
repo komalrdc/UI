@@ -9,7 +9,7 @@ name: 'productListing',
       return {
           name: 'productListing ',
 }
-  }
+}
 }
 </script>
 
