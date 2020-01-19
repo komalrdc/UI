@@ -2,7 +2,9 @@
   <div id="app">
     <div id="nav">
       <h1 style="background-color: green">Happy Coding Guys</h1>
-      <!-- <router-link to="/about">About</router-link> | -->
+      <router-link to= "/productListing">Product Listing</router-link> | 
+      <router-link to= "/productDescription">Product Description</router-link> | 
+      <router-link to="/about">About</router-link> 
     </div>
     <router-view/>
   </div>
