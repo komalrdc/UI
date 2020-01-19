@@ -1,14 +1,22 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <h1 style="background-color: green">Happy Coding Guys</h1>
-      <h1> Home Page </h1>
-      <!-- <router-link to="/about">About</router-link> | -->
-    </div>
+    <Navbar />
+    <Sidebar />
     <router-view/>
   </div>
 </template>
 
+<script>
+import Navbar from '@/components/App/Navbar'
+import Sidebar from '@/components/Sidebar'
+
+export default {
+  name: 'App',
+  components: {
+    Navbar,Sidebar
+  }
+}
+</script>
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
