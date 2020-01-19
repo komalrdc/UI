@@ -1,9 +1,15 @@
 <template>
   <div id="app">
     <div id="nav">
-      <h1 style="background-color: green">Happy Coding Guys</h1>
+      <h1 style="background-color: red">Welcome!</h1>
+      <router-link to="/AddProduct">AddProduct</router-link> |
+      <router-link to="/RemoveProduct">RemoveProduct</router-link> |
+      <router-link to="/UpdateProduct">UpdateProduct</router-link> |
+      <router-link to="/MerchantListing">MerchantListing</router-link> |
+      <router-link to="/ViewRating">ViewRating</router-link> |
       <!-- <router-link to="/about">About</router-link> | -->
     </div>
+   
     <router-view/>
   </div>
 </template>
