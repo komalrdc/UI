@@ -2,6 +2,7 @@
   <div id="app">
     <div id="nav">
       <h1 style="background-color: green">Happy Coding Guys</h1>
+      <h1> Home Page </h1>
       <!-- <router-link to="/about">About</router-link> | -->
     </div>
     <router-view/>
