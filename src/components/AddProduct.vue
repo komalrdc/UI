@@ -1,4 +1,13 @@
 <template>
+<<<<<<< HEAD
+    <form>
+        <label>Product Name</label>
+       <input id="ProductName" type="text"/>
+
+
+
+</template>
+=======
 
     <form> <align:left>
         <fieldset>
@@ -49,3 +58,4 @@
 
     }
 </script>
+>>>>>>> 6fec525b4360a9466cf68dfac9ac674ff98c1820
