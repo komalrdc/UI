@@ -4,23 +4,55 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-  },
-  {
-    path: '/productslist',
-    name: 'productslist',
-    component: () => import( '../views/ProductListingView.vue'),
-  },
-  {
-    path: '/productdesc',
-    name: 'productdesc',
-    component: () => import( '../views/ProductDescriptionView.vue'),
-  },
-]
-
+    {
+      path: '/product',
+      name: 'product',
+      component: () => import( '../views/ProductView.vue'),
+      children: [
+        {
+          path: '/',
+          component: () => import( '../views/ProductListingView.vue'), 
+        },
+        {
+          path: '/productlisting',
+          name: 'productlisting',
+          component: () => import( '../views/ProductListingView.vue'), 
+        },
+        {
+          path: '/productdescription',
+          name: 'productdescription',
+          component: () => import( '../views/ProductDescriptionView.vue'),
+        }
+      ]
+    },
+    {
+      path: '/cart',
+      name:'cart',
+      component: () => import('../views/CartView.vue'),
+      children:[
+        {
+          path: '/addcart',
+          name:'addcart',
+          component: () => import('../views/AddCartView.vue'),
+        },
+        {
+          path: '/removecart',
+          name:'removecart',
+          component: () => import('../views/RemoveCartView.vue'),
+        },
+        {
+          path: '/removeall',
+          name:'removeall',
+          component: () => import('../views/RemoveAllView.vue'),
+        }
+      ]
+    },
+    {
+      path: '/checkout',
+        name:'checkout',
+        component: () => import('../views/CheckoutView.vue'),
+    }
+    ]
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,

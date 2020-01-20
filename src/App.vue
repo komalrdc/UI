@@ -3,8 +3,9 @@
 
     <div id="nav">
       <h1 style="background-color: red">Welcome!</h1>
-      <router-link to ="/productslist">Products List</router-link> |
-      <router-link to="/productdesc">Products Description</router-link>
+      <router-link to="/product">Product</router-link> |
+      <router-link to="/cart">Cart</router-link> |
+      <router-link to="/checkout">Checkout</router-link> 
     </div>
    
     <router-view/>

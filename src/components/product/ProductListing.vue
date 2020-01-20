@@ -1,18 +1,12 @@
 <template>
-  <main>
-      <h1>Product Listing Page </h1>
-      <productlisting/>
-  </main>
+  <h1>
+  <router-link to="/product/productdescription" tag="button">Product Description</router-link>
+  </h1>
 </template>
 
 <script>
 export default {
-name: 'productlisting',
-  data: function() {
-      return {
-          name: 'productlisting ',
-}
-  }
+
 }
 </script>
 
