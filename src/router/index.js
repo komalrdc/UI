@@ -7,32 +7,32 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    component: () => import('../views/About.vue'),
   },
   {
-    path: '/AddProduct',
-    name: 'AddProduct',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AddProduct.vue')
+    path: '/addbook',
+    name: 'addbook',
+    component: () => import('../components/merchant/AddProduct.vue')
   },
   {
-    path: '/RemoveProduct',
-    name: 'RemoveProduct',
-    component: () => import(/* webpackChunkName: "about" */ '../views/RemoveProduct.vue')
+    path: '/removebook',
+    name: 'removebook',
+    component: () => import('../components/merchant/RemoveProduct.vue')
   },
   {
-    path: '/UpdateProduct',
-    name: 'UpdateProduct',
-    component: () => import(/* webpackChunkName: "about" */ '../views/UpdateProduct.vue')
+    path: '/updatproduct',
+    name: 'updateproduct',
+    component: () => import('../views/UpdateProduct.vue')
   },
   {
     path: '/ViewRating',
     name: 'ViewRating',
-    component: () => import(/* webpackChunkName: "about" */ '../views/ViewRating.vue')
+    component: () => import('../views/ViewRating.vue')
   },
   {
     path: '/MerchantListing',
     name: 'MerchantListing',
-    component: () => import(/* webpackChunkName: "about" */ '../views/MerchantListing.vue')
+    component: () => import('../views/MerchantListing.vue')
   }
 ]
 
@@ -40,6 +40,6 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+}) 
 
 export default router
