@@ -22,7 +22,13 @@ export default new Vuex.Store({
          context.commit('UPDATE_URL', res.avatar_url)
        })
 
+      },
+      fetchProductDetails (context, {data, success, fail}) {
+        window.console.log([data, success, fail])
+        // success && success(res)
+        // fail && fail(res)
       }
+      
   },
   getters: {
     myGetter(state) {
