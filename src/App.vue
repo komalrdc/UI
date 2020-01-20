@@ -1,19 +1,21 @@
 <template>
-  <div id="app">
+  <main class ="app">
     <Navbar />
     <Sidebar />
+    <Footer />
     <router-view/>
-  </div>
+  </main>
 </template>
 
 <script>
 import Navbar from '@/components/App/Navbar'
 import Sidebar from '@/components/Sidebar'
+import Footer from '@/components/Footer'
 
 export default {
   name: 'App',
   components: {
-    Navbar,Sidebar
+    Navbar,Sidebar,Footer
   }
 }
 </script>
@@ -22,7 +24,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 
