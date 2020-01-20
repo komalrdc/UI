@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="addbook">
     
     <AddProduct msg="Welcome to Your Vue.js App"/>
   </div>
@@ -7,7 +7,7 @@
 
 <script>
 
-import AddProduct from '@/components/AddProduct.vue'
+import AddProduct from '@/components/merchant/AddProduct.vue'
 
 export default {
   name: 'AddProduct',

@@ -10,8 +10,8 @@ const routes = [
     component: () => import('../views/About.vue'),
   },
   {
-    path: '/addbook',
-    name: 'addbook',
+    path: '/Addbook',
+    name: 'AddProduct',
     component: () => import('../components/merchant/AddProduct.vue')
   },
   {

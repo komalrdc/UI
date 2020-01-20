@@ -10,7 +10,7 @@
        <input id="Price" type="double"/>
        <br><br>
        <label> Product Logo </label>
-       <input id="logo" type="image"/>
+       <input id="logo" type="text"/> 
        <br><br>
        <label> Genre </label>
        <input id="genre" type="text"/>
@@ -27,7 +27,7 @@
        <label> ISBN </label>
        <input ID="isbn" type="number"/>
        <br><br>
-       <button id="save" @click="SaveProduct">Save</button>
+       <button id="save" @click="SaveProduct()">Save</button> 
         </fieldset>
         </align:left>
     </form>
@@ -35,10 +35,10 @@
 </template>
 <script>
     export default{
-        name: 'AddProduct',
+        name: 'Addproduct',
         methods: {
             SaveProduct(){
-                  
+                  alert('data updated successfully'); 
                 
                 
 
@@ -49,3 +49,12 @@
 
     }
 </script>
+<style>
+    form{
+        text-align: left; 
+        background-color: orange; 
+
+    }
+
+
+</style>
