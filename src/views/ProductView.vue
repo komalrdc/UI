@@ -1,8 +1,6 @@
 <template>
   <main>
-      <!-- <h1> Product View Page</h1> -->
       <router-view></router-view>
-      <!-- <Product></Product> -->
   </main>
 </template>
 

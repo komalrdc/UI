@@ -1,22 +1,14 @@
 <template>
   <main class="products">
-      <h1>Product Page</h1>
-      <h1>The Category is {{$route.params.id}}</h1>
-      <!-- <router-link tag="button" :to="{
-          name: 'productdescription',
-          params: {
-            productdescription: product.title,
-          }
-        }">
-        </router-link> -->
+      <h1>Product Description</h1>
+      <h1>{{$route.params.id}}</h1>
+      <router-link to="/cart/" tag="button">Add to Cart</router-link>
+      <!-- <button @click="routeToCart(product.id)">Add to Cart</button> -->
       <router-view></router-view>
-      <!-- <ProductDescription></ProductDescription> -->
       </main>
 </template>
 
 <script>
-//import ProductDescription from '@/components/product/ProductDescription.vue'
-// import ProductListingView from '@/views/ProductListingView.vue'
 export default {
     name: 'products',
     computed: {

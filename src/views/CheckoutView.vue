@@ -1,6 +1,6 @@
 <template>
   <main>
-      <h1>Checkout Page</h1>
+      <h1>Thanks for shopping</h1>
       <router-view></router-view>
       <Checkout/>
   </main>

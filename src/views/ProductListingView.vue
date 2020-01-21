@@ -9,7 +9,7 @@
     <p>Fictional Books</p>
     <div v-for = "product in productList" :key="'product:' + product.id" class="books">
             <div>
-                <figure @click="routeToProductDescription(product.id)"> 
+                <figure @click="routeToProductDescription(product.id +product.title + product.author + product.price)"> 
                     <img :src = "product.url" height="150px" width="100px">
                 </figure>
                 <h2>{{product.title}}</h2>
@@ -46,9 +46,27 @@ export default {
                     id
                 }
             }) 
+        },
+        click(){
+            let data = {
+                id: this.product.id,
+                url: this.product.url,
+                title: this.product.title,
+                author: this.product.author,
+                price: this.product.price
+            }
+            this.$store.dispatch('productDetails', {
+                data: data,
+                success: function () {
+                    window.console.log('Product added successful...');
+                },
+                fail: function () {
+                    window.console.log('Product added failed ...');
+                }
+            })
+        }
         }
     }
-}
 </script>
 
 <style scoped>
@@ -61,7 +79,7 @@ export default {
             display: inline-block;
             margin: 5px;
         border: 1px solid #ccc;
-        float: left;
+        /* float: left; */
         grid-template-columns: 40px 50px auto 50px 40px;
     grid-template-rows: 25% 100px auto;
     grid-column-start: 2;

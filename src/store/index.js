@@ -57,15 +57,24 @@ export default new Vuex.Store({
         window.console.log([data, success, fail])
         // success && success(res)
         // fail && fail(res)
-      }
-      
+      },
+
+      productDetails (context, payload) {
+        fetch('http://localhost:8080/product/description/:id', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload.data)
+        })
+          .then(res => res.json())
+      },
   },
+
   getters: {
     myGetter(state) {
       return state.users.avatar_url || ""
     },
     productList : state => state.product || []
-  },
-  modules: {
   }
 })
