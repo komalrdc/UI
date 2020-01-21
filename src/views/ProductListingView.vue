@@ -7,10 +7,9 @@
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTt0wRZ7qencbqGT2YvT3DiTYyGNC9-IsM9zWE0haTOPo6UFHps">
     </div>
     <p>Fictional Books</p>
-    <div v-for = "product in products" :key="'productList:' + product.id" class="books">
+    <div v-for = "product in productList" :key="'product:' + product.id" class="books">
             <div>
                 <figure @click="routeToProductDescription(product.id)"> 
-                <!-- <figure @click = "this.$router.push({name: 'productdescription', params: { title}}")> -->
                     <img :src = "product.url" height="150px" width="100px">
                 </figure>
                 <h2>{{product.title}}</h2>
@@ -26,7 +25,7 @@
 
 <script>
 import ProductListing from '@/components/product/ProductListing.vue'
-
+import {mapGetters} from 'vuex'
 export default {
     name:'productlisting',
     components: {
@@ -34,37 +33,10 @@ export default {
     },
     data (){
         return {
-            products:[
-                {
-                    id: 1,
-                    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQbCguIryM13WHy8TeJn5P9bTwHDfKPVuuz0vNVKwb_KhoBo3MC",
-                    title:"Kite Runner",
-                    author:"Khaleed",
-                    price: 300
-                },
-                {
-                    id: 2,
-                    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSgBuhT15PD5U-mVrhloPHX_Yp8QCbnINppJBEDPkaa0gF2lktm",
-                    title:"The Shining",
-                    author:"Stephen King",
-                    price: 260
-                },
-                 {
-                    id: 3,
-                    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSgx4W9Ie1dygiEyrJOuQeUHn5xAc8u5DrXD2giPvUKH1RBEuNb",
-                    title:"The Book Thief",
-                    author:"Markus Zusak",
-                    price: 480
-                },
-                {
-                    id: 4,
-                    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQoY0C60dff2TWbJFUw1Rwl72o9OOFtUN6asSNubXHdPny4zloi",
-                    title:"Gone Girl",
-                    author:"Gillian Flynn",
-                    price: 270
-                }
-            ]
         } 
+    },
+    computed: {
+        ...mapGetters(['productList'])
     },
     methods: {
         routeToProductDescription (id) {
@@ -73,8 +45,7 @@ export default {
                 params: {
                     id
                 }
-            })
-            
+            }) 
         }
     }
 }
@@ -104,5 +75,4 @@ export default {
 h2{
     font-size: 20px;
 }
-
 </style>

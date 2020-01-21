@@ -5,9 +5,7 @@
       <h1 style="background-color: red">Welcome!</h1>
       <router-link to="/product">Product</router-link> |
       <router-link to="/cart">Cart</router-link> |
-      <!-- <router-link to="/checkout">Checkout</router-link>  -->
     </div>
-   
     <router-view/>
   </div>
 </template>
