@@ -1,9 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import Home from '../views/Home'
+
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
+  },
     {
       path: '/product',
       name: 'product',
@@ -21,6 +28,9 @@ const routes = [
       ]
     },
     {
+      // TODO
+      // Theses routes are not required
+      // as these are just API calls...
       path: '/cart',
       name:'cart',
       component: () => import('../views/CartView.vue'),
@@ -47,7 +57,8 @@ const routes = [
         name:'checkout',
         component: () => import('../views/CheckoutView.vue'),
     }
-    ]
+]
+
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,

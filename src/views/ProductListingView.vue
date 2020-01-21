@@ -58,10 +58,10 @@ export default {
             this.$store.dispatch('productDetails', {
                 data: data,
                 success: function () {
-                    window.console.log('Product added successful...');
+                    window.console.log('Product added successfully...');
                 },
                 fail: function () {
-                    window.console.log('Product added failed ...');
+                    window.console.log('Product added failed...');
                 }
             })
         }
@@ -76,6 +76,7 @@ export default {
 }
 
 .books{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             display: inline-block;
             margin: 5px;
         border: 1px solid #ccc;

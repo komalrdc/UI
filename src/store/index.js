@@ -35,7 +35,7 @@ export default new Vuex.Store({
           author:"Gillian Flynn",
           price: 270
       }
-  ]
+  ],
   },
   mutations: {
     UPDATE_URL(state, url) {
@@ -58,8 +58,7 @@ export default new Vuex.Store({
         // success && success(res)
         // fail && fail(res)
       },
-
-      productDetails (context, payload) {
+      productDetails(context, payload) {
         fetch('http://localhost:8080/product/description/:id', {
           method: 'POST',
           headers: {
