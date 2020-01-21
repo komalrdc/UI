@@ -1,22 +1,19 @@
 <template>
   <main class ="app">
-    <Navbar />
-    <Sidebar />
-    <Footer />
+    
     <router-view/>
   </main>
 </template>
 
 <script>
-import Navbar from '@/components/App/Navbar'
-import Sidebar from '@/components/Sidebar'
-import Footer from '@/components/Footer'
-
 export default {
   name: 'App',
-  components: {
-    Navbar,Sidebar,Footer
-  }
+  
+  // computed: {
+  //   isHome () {
+  //     return this.$router.path === undefined
+  //   }
+  // }
 }
 </script>
 <style>

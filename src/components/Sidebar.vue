@@ -1,13 +1,11 @@
 <template>
-<div class="slide" >
-    <h1 clas="categories">Arts and music</h1> 
-    <h1>Biographiocs</h1>
-    <h1>Business</h1> 
-    <h1>Kids</h1>
-    <h1>comics</h1>
+<div class="sidebar" >
+<a href="">Fiction</a>
+<a href="">Non-Fiction</a>
+<a href="">Competitive</a>
+<a href="">Children</a>
+<a href="">Short Stories</a>
 </div>
-
-
 </template>
 
 <script>
@@ -18,10 +16,17 @@ export default {
 
 
 <style>
-.slide {
+.sidebar {
     display: flex;
     flex-direction: column;
-    border: 1 px solid red;
+    height: 300%;
+    width: 15%;
+      font-size: 25px;
+  background-color: #e9e9e9;
+}
+.sidebar a:hover {
+  color: black;
+
 }
 .categories {
     text-align: left;

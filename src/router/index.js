@@ -17,10 +17,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/LoginView.vue'),
   },
   {
-    path: '/newuser',
-    name: 'newuser',
+    path: '/signup',
+    name: 'signup',
     component: () => import(/* webpackChunkName: "about" */ '../views/NewUserView.vue'),
   },
+
 ]
 const router = new VueRouter({
   mode: 'history',
