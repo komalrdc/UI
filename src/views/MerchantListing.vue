@@ -1,10 +1,10 @@
 <template>
 <div>
-    
+    <div1> 
     <div id="nav"> 
-     <router-link to="/addbook">Add a new Book</router-link> 
-
-     <h1>Welcome Merchant!</h1>
+    <router-link to="/addbook" @click="toogleAddProductModalBox">Add a new Book</router-link> 
+    <button style="float:right">Sign Out</button>
+    <h1>Welcome Merchant!</h1> 
     </div>  
     <h2> Your products on sale: </h2> 
     <table id="table"> 
@@ -18,6 +18,7 @@
         <th>ISBN</th>
         <th>Quantity</th>
         <th>product logo</th>
+        <th>Product Rating</th> 
         </tr> 
         <tr>
         <tr v-for="product in marchantProducts" :key="product">
@@ -29,20 +30,19 @@
         <td>{{product.bindingtype}}</td>
         <td>{{product.ISBN}}</td>
         <td>{{product.quantity}}</td>  
-        <td><img src="https://icdn6.digitaltrends.com/image/digitaltrends/apple-iphone-xs-review-5-1500x994.jpg" height="100" wodth="100"></td> 
-        
-        <td><button  @click="popup()">edit details</button>
+        <td><img src="https://images-na.ssl-images-amazon.com/images/I/81YOuOGFCJL.jpg" height="100" wodth="100"></td> 
+        <td>{{product.rating}}</td> 
+        <td><button  @click="toogleAddProductModalBox">edit details</button>
         <span id="mypopup"></span>
         </td> 
-        <td><button>View Rating</button></td>
+        
         </tr>
     </table>
-    <AddProduct v-if="flag"></AddProduct>
-    
-
+    </div1> 
+    <AddProduct :toggleFunction="toogleAddProductModalBox" v-if="flag"></AddProduct>
 </div>
- 
 </template>
+
 <style scoped>
 table {
     border: 1px solid grey
@@ -58,11 +58,6 @@ export default {
   components: {
      AddProduct
   },
-//     variable: {
-//       flag: false
-//       window.console.log(flag)
-//   },
-  flag:true,
   data() {
     //  flag:false,
       return {
@@ -74,10 +69,11 @@ export default {
         price: "500",
         genre: "children",
         publisherName: "mc graw hill",
-        yearoOfPublishing: "2019",
+        yearOfPublishing: "2019",
         bindingtype: "soft binding",
         ISBN: "2243",
         quantity: "5",
+        rating: "5"
        // productlogo: ""
       },
       {
@@ -85,10 +81,11 @@ export default {
         price: "500",
         genre: "children",
         publisherName: "mc graw hill",
-        yearoOfPublishing: "2019",
+        yearOfPublishing: "2019",
         bindingtype: "soft binding",
         ISBN: "2243",
         quantity: "5",
+        rating: "5"
        // productlogo: ""
       },
       {
@@ -96,20 +93,22 @@ export default {
         price: "500",
         genre: "children",
         publisherName: "mc graw hill",
-        yearoOfPublishing: "2019",
+        yearOfPublishing: "2019",
         bindingtype: "soft binding",
         ISBN: "2243",
         quantity: "5",
+        rating: "5"
       },
       {
         productName: "harry potter",
         price: "500",
         genre: "children",
         publisherName: "mc graw hill",
-        yearoOfPublishing: "2019",
+        yearOfPublishing: "2019",
         bindingtype: "soft binding",
         ISBN: "2243",
         quantity: "5",
+        rating: "5"
       }
     ],
     flag:false
@@ -129,11 +128,9 @@ export default {
               data 
           })
       },
-     popup: function(){
-         //document.getElementById('mypopup').style.display="block"; 
-         //popup.classList.toggle("show");
-         this.flag=!this.flag; 
-         //window.console.log(flag); 
+     toogleAddProductModalBox: function(){
+        this.flag = !this.flag; 
+        //window.console.log(flag); 
          
      }
   }
@@ -150,10 +147,14 @@ export default {
 }
 #nav{
     background-color:orange; 
-    width:100%; 
+    width:95%; 
     
 }
+div1{
+    z-index: -1; 
+}
 h2{
+    
     text-align: left; 
 }
 </style>>

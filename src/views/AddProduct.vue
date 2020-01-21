@@ -10,9 +10,10 @@
 import AddProduct from '@/components/merchant/AddProduct.vue'
 
 export default {
-  name: 'AddProduct',
+  name: 'AddProduct',  
   components: {
     AddProduct
   }
 }
+
 </script>
