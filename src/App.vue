@@ -1,24 +1,11 @@
 <template>
   <div id="app">
-
-    <!-- <div id="header">
-      <h1> welcome merchant! </h1>
-    </div>
-    <div id="nav">
-      <label style="align:left">Merchant Name:</label>
-      <br>
-      <label> Address:</label>
-      <br> 
-    </div>   -->
-      <!-- <router-link to="/addbook">AddProduct</router-link> 
-      <br> 
-      <router-link to="/RemoveProduct">RemoveProduct</router-link> 
-      <br> 
-      <router-link to="/UpdateProduct">UpdateProduct</router-link>  -->
-      <br> 
+    <nav id="nav">
+      <h1 style="background-color: red">Welcome!</h1>
+      <router-link to="/product">Product</router-link> |
+      <router-link to="/cart">Cart</router-link> |
       <router-link to="/MerchantListing"></router-link> 
-      <!-- <br> 
-      <router-link to="/ViewRating">ViewRating</router-link>  -->
+    </nav>
     <router-view/>
   </div>
 </template>
@@ -26,11 +13,6 @@
 <script>
 export default {
   name: 'App',
-  data () {
-    return {
-    merchantProductList: ''
-    }
-  }
 }
 </script>
 
