@@ -1,61 +1,102 @@
+/* eslint-disable no-console */
 <template>
 <section class="modal">
     <div @click="toogleModalBox" class="modal_background"></div>
     <div class="modal_content">
         <span @click="toogleModalBox" class="modal_close">X</span>
-        <form>
+        <form id="myform" method="post">
             <fieldset>
                 <legend>Add New Product</legend>
             <label>Product Name</label>
-            <input id="ProductName" type="text"/>
+            <input id="ProductName" type="text" v-model="product.productName" required />
             <br><br>
+            <label>Author</label>
+            <input type="text" id="author"  v-model="product.author" required /> 
+            <br><br> 
             <label>Price</label>
-            <input id="Price" type="double"/>
+            <input id="Price" type="double" v-model="product.price" required />
             <br><br>
             <label> Product Logo </label>
-            <input id="logo" type="text"/> 
+            <input id="logo" type="text" v-model="product.url" required/> 
+            <button id="upload">Upload</button> 
             <br><br>
             <label> Genre </label>
-            <input id="genre" type="text"/>
+            <input id="genre" type="text" v-model="product.genre" required/>
             <br><br>
             <label> Publisher Name </label>
-            <input id="Publisher" type="text"/>
+            <input id="Publisher" type="text" v-model="product.publisher" required/>
             <br><br>
             <label> Year Of Publishing </label>
-            <input id="YearoOfPublishing" type="number"/>
+            <input id="YearoOfPublishing" type="number" v-modal="product.year" required/>
             <br><br>
             <label> Binding Type </label>
-            <input id="BindType" type="text"/>
+            <input id="BindType" type="text" v-model="product.binding" required/>
             <br><br>
             <label>Quantity</label>
-            <input type="number" id="quantity"/>
+            <input type="number" id="quantity" v-model="product.quantity" required/>
             <br><br>
             <label>Description</label>
-            <textarea></textarea>
+            <textarea v-model="product.description" required></textarea>
             <br><br> 
             <label> ISBN </label>
-            <input ID="isbn" type="number"/>
+            <input ID="isbn" type="number" v-model="product.isbn" required/>
             <br><br>
-            <button id="save" @click="SaveProduct()">Save</button> 
+            
+            <button id="save" @click="saveProduct">Save</button> 
             </fieldset>
         </form>    
     </div>
 </section>
 </template>
 
-<script>
-    export default{
-        name: 'Addproduct',
-        props: ['toggleFunction'],
-        methods: {
-            SaveProduct(){
-                alert('data updated successfully'); 
-            },
-            toogleModalBox () {
-                this.toggleFunction();
+<script> 
+export default{
+    name: 'Addproduct',
+    data: function () {
+        return {
+            product: {
+                merchantId: '1234',
+                productName: 'My Product',
+                author: 'Prakriti Tiwari',
+                price: '20',
+                url: '',
+                genre: 'fiction',
+                description: 'cvc',
+                attributes: {
+                publisher: "",
+                year: '2000',
+                binding: 'soft',
+            
+                } ,
+                quantity: '2',
+                isbn: '22345',
+                
+
             }
         }
+    },
+    props: ['toggleFunction'],
+
+    methods: {
+        saveProduct(event){
+            let data = {...this.product}
+            event.preventDefault();
+            event.stopPropagation();
+            this.$store.dispatch('addNewProduct', {
+                data: data,
+                success: this.onSuccessFun
+            })
+        },
+        onSuccessFun (res) {
+            // eslint-disable-next-line no-console
+            console.log(res)
+            this.$router.push('/MerchantListing')
+        },
+        toogleModalBox () {
+            this.toggleFunction();
+        }
     }
+}
 </script>
 
 <style scoped>

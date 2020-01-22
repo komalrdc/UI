@@ -33,7 +33,8 @@ const routes = [
     path: '/MerchantListing',
     name: 'MerchantListing',
     component: () => import('../views/MerchantListing.vue')
-  }
+  },
+  
 ]
 
 const router = new VueRouter({
