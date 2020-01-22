@@ -55,7 +55,7 @@ export default {
   /* overflow: hidden; */
   background-color: #e9e9e9;
 }
-.button {
+.btn {
   float: left;
   display: block;
   color: black;
@@ -78,8 +78,7 @@ export default {
   float: right;
   padding:10px;
   margin-right: 30px;
-  margin-top: 25px;
-}*/
+} 
 .search{
   float: left;
   padding: 6px;
@@ -90,12 +89,12 @@ export default {
   
 }
  .login{
-  margin-left: 450px;
-  padding: 10px;
-}
-.newuser{
-  margin-left: 50px;
-  padding: 10px;
-}  
+  margin-left: 400px;
+  padding: 10px; 
+ }
+ .newuser{
+   margin-left: 50px;
+   padding: 10px;
+ }
 
 </style>

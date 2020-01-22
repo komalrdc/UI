@@ -19,10 +19,10 @@ export default {
 .sidebar {
     display: flex;
     flex-direction: column;
-    height: 300%;
+    height: 100%;
     width: 15%;
-      font-size: 25px;
-  background-color: #e9e9e9;
+    font-size: 25px;
+    background-color: #e9e9e9;
 }
 .sidebar a:hover {
   color: black;

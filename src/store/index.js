@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     userDetails: {}
   },
+
   mutations: {
     UPDATE_URL(state, url) {
       state.users = {
