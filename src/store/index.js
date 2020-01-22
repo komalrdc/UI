@@ -36,23 +36,11 @@ export default new Vuex.Store({
           price: 270
       }
   ],
+  cart : []
   },
   mutations: {
-    UPDATE_URL(state, url) {
-      state.users = {
-        avatar_url: url
-      }
-    }
   },
   actions: {
-      myfirstAction(context) {
-       fetch('http://api.github.com/users/komalrd')
-       .then(res => res.json())
-       .then(res => {
-         context.commit('UPDATE_URL', res.avatar_url)
-       })
-
-      },
       fetchProductDetails (context, {data, success, fail}) {
         window.console.log([data, success, fail])
         // success && success(res)
@@ -69,11 +57,12 @@ export default new Vuex.Store({
           .then(res => res.json())
       },
   },
+  // addToCart(context, product)
+  // {
+
+  // },
 
   getters: {
-    myGetter(state) {
-      return state.users.avatar_url || ""
-    },
     productList : state => state.product || []
   }
 })

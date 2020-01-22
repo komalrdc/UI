@@ -2,7 +2,6 @@
   <div id="app">
 
     <nav id="nav">
-      <h1 style="background-color: red">Welcome!</h1>
       <router-link to="/product">Product</router-link> |
       <router-link to="/cart">Cart</router-link> |
     </nav>

@@ -14,7 +14,7 @@ export default {
     name:'addcart',
     components: {
         AddCart
-    }
+    }    
 }
 </script>
 

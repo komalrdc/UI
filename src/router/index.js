@@ -34,23 +34,6 @@ const routes = [
       path: '/cart',
       name:'cart',
       component: () => import('../views/CartView.vue'),
-      children:[
-        {
-          path: '/addcart',
-          name:'addcart',
-          component: () => import('../views/AddCartView.vue'),
-        },
-        {
-          path: '/removecart',
-          name:'removecart',
-          component: () => import('../views/RemoveCartView.vue'),
-        },
-        {
-          path: '/removeall',
-          name:'removeall',
-          component: () => import('../views/RemoveAllView.vue'),
-        }
-      ]
     },
     {
       path: '/checkout',

@@ -9,7 +9,7 @@
     <p>Fictional Books</p>
     <div v-for = "product in productList" :key="'product:' + product.id" class="books">
             <div>
-                <figure @click="routeToProductDescription(product.id +product.title + product.author + product.price)"> 
+                <figure @click="routeToProductDescription(product.id)"> 
                     <img :src = "product.url" height="150px" width="100px">
                 </figure>
                 <h2>{{product.title}}</h2>
@@ -76,22 +76,21 @@ export default {
 }
 
 .books{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            display: inline-block;
-            margin: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        display: inline-block;
+        margin: 5px;
         border: 1px solid #ccc;
-        /* float: left; */
         grid-template-columns: 40px 50px auto 50px 40px;
-    grid-template-rows: 25% 100px auto;
-    grid-column-start: 2;
-    grid-column-end: 4;
-    grid-row-start: row1-start;
-    grid-row-end: 3;
+        grid-template-rows: 25% 100px auto;
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row-start: row1-start;
+        grid-row-end: 3;
 }
 .books:hover {
-  border: 1px solid #777;
+    border: 1px solid #777;
 }
 h2{
-    font-size: 20px;
+        font-size: 20px;
 }
 </style>

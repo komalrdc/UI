@@ -1,9 +1,9 @@
 <template>
-  <main class="container">
+  <main class="productDescriptionView">
         <!-- <h1>Product Description</h1> -->
         <!-- <h1>{{$route.params.id}}</h1> -->
         <div class="left-column">
-            <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRfwDCwWtknObpzcJjSKAvpws-7N7-vvUUXmna5-cloG49AKDzE">
+            <img class="product_image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRfwDCwWtknObpzcJjSKAvpws-7N7-vvUUXmna5-cloG49AKDzE">
         </div>
         <div class = "right-column">
             <div class="description">
@@ -12,38 +12,40 @@
                 <p>Author, bind, publisher</p>
             </div>
             <div class = "merchant">
-                <p> Sold by merchant link </p>
+                <p> Sold by <a href=" " >Merchant link </a></p>
             </div>  
-            <div class="input-group">
-                <input type="button" data-field="number" @click="decrease">
-                <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field">
-                <input type="button" data-field="number" @click="increase">
+            <div> 
+                <p>Quantity: {{ value }}</p>
+                <vue-numeric-input  v-model="value" :min="1" :max="100" :step="1"></vue-numeric-input>
             </div>
             <div class="product-price">
                 <span>Price</span>
-                <p><router-link to="/cart/" tag="button" class="cart-btn">Add to Cart</router-link>
-                <router-link to="/checkout/" tag="button" class="cart-btn">Buy Now</router-link></p>
-            </div>
-                     
+                <!-- <button @click = "addtocart" class="cart-btn">Add to Cart</button> -->
+                <p><router-link to="/cart/" tag="button" class="cart-btn" >Add to Cart</router-link></p>
+            </div>         
         </div>
-        <!-- <router-link to="/cart/" tag="button">Add to Cart</router-link> -->
-        <!-- <button @click="routeToCart(product.id)">Add to Cart</button> -->
         <router-view></router-view>
-      </main>
+    </main>
 </template>
 
 <script>
+import VueNumericInput from 'vue-numeric-input'
+import {mapGetters} from 'vuex'
 export default {
     name: 'products',
-    data: function(){
+    data: function() {
           return {
-              number: 1
+              value: 1
           }
+    },
+    components: {
+       VueNumericInput
     },
     computed: {
         productId() {
             return this.$route.params.id
-        }
+        },
+         ...mapGetters(['productList'])
     },
     watch: {
         productId: function () {
@@ -51,12 +53,6 @@ export default {
         }
     },
     methods: {
-        increase: function(){
-            this.number = this.number +1
-        },
-        decrease: function(){
-            this.number = this.number-1
-        },
         fetchProductDetails(id) {
             // Dispatch action to fetch deatils related to one category
             this.$store.dispatch('fetchProductDetails', {
@@ -78,37 +74,58 @@ export default {
     },
     created: function() {
         this.fetchProductDetails(this.productId)
-    }
+    },
+     click(){
+            let data = {
+                id: this.product.id,
+                url: this.product.url,
+                title: this.product.title,
+                author: this.product.author,
+                price: this.product.price
+            }
+            this.$store.dispatch('cartDetails', {
+                data: data,
+                success: function () {
+                    window.console.log('Product added successfully...');
+                },
+                fail: function () {
+                    window.console.log('Product added failed...');
+                }
+            })
+        }
+
 }
 </script>
 
 <style scoped>
-html, body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
-}
- 
-.container {
+
+.productDescriptionView {
   max-width: 1200px;
-  margin: 0 auto;
+  min-height: 60vh;
+  margin: 0px auto;
   padding: 15px;
   display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: stretch;
 }
 .left-column {
-    height: 100px;
-    /* width:100px; */
-  width: 65%; 
-  position: relative;
+  transition: transform .2s;
+}
+.left-column:hover {
+    transform: scale(1.2);
 }
 .right-column {
-  width: 35%;
-  margin-top: 60px;
+  flex-basis: 65%;
 }
 .description {
   border-bottom: 1px solid #E1E8EE;
   margin-bottom: 20px;
+}
+
+.product_image {
+    width: 320px;
+    height: 500px;
 }
 .description span {
   font-size: 12px;
@@ -130,47 +147,10 @@ html, body {
   line-height: 24px;
 }
 
-.input-group {
-  clear: both;
-  margin: 15px 0;
-  position: relative;
-}
-
-/* .input-group input[type='button'] {
-  background-color: #eeeeee;
-  min-width: 38px;
-  width: auto;
-  transition: all 300ms ease;
-} */
-
-/* .input-group .button-minus,
-.input-group .button-plus {
-  font-weight: bold;
-  height: 38px;
-  padding: 0;
-  width: 38px;
-  position: relative;
-} */
-
-.input-group .quantity-field {
-  position: relative;
-  height: 38px;
-  left: -6px;
-  text-align: center;
-  width: 62px;
-  display: inline-block;
-  font-size: 13px;
-  margin: 0 0 5px;
-  resize: vertical;
-}
-
-/* .button-plus {
-  left: -13px;
-} */
-
 .product-price {
   display: flex;
   align-items: center;
+  margin-left: 300px;
 }
  
 .product-price span {
@@ -180,7 +160,7 @@ html, body {
   margin-right: 20px;
 }
 .cart-btn{
-  display: inline-block;
+  display: block;
   background-color: #7DC855;
   border-radius: 6px;
   font-size: 16px;
@@ -192,6 +172,4 @@ html, body {
 .cart-btn:hover {
   background-color: #64af3d;
 }
-
-
 </style>
