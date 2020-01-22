@@ -1,39 +1,62 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import Home from '../views/Home'
+
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    path: '/',
+    name: 'Home',
+    component: Home
   },
-  {
-    path: '/AddProduct',
-    name: 'AddProduct',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AddProduct.vue')
-  },
-  {
-    path: '/RemoveProduct',
-    name: 'RemoveProduct',
-    component: () => import(/* webpackChunkName: "about" */ '../views/RemoveProduct.vue')
-  },
-  {
-    path: '/UpdateProduct',
-    name: 'UpdateProduct',
-    component: () => import(/* webpackChunkName: "about" */ '../views/UpdateProduct.vue')
-  },
-  {
-    path: '/ViewRating',
-    name: 'ViewRating',
-    component: () => import(/* webpackChunkName: "about" */ '../views/ViewRating.vue')
-  },
-  {
-    path: '/MerchantListing',
-    name: 'MerchantListing',
-    component: () => import(/* webpackChunkName: "about" */ '../views/MerchantListing.vue')
-  }
+    {
+      path: '/product',
+      name: 'product',
+      component: () => import( '../views/ProductView.vue'),
+      children: [
+        {
+          path: '',
+          component: () => import( '../views/ProductListingView.vue'), 
+        },
+        {
+          path: 'description/:id',
+          name: 'description',
+          component: () => import( '../views/ProductDescriptionView.vue'),
+        }
+      ]
+    },
+    {
+      // TODO
+      // Theses routes are not required
+      // as these are just API calls...
+      path: '/cart',
+      name:'cart',
+      component: () => import('../views/CartView.vue'),
+      children:[
+        {
+          path: '/addcart',
+          name:'addcart',
+          component: () => import('../views/AddCartView.vue'),
+        },
+        {
+          path: '/removecart',
+          name:'removecart',
+          component: () => import('../views/RemoveCartView.vue'),
+        },
+        {
+          path: '/removeall',
+          name:'removeall',
+          component: () => import('../views/RemoveAllView.vue'),
+        }
+      ]
+    },
+    {
+      path: '/checkout',
+        name:'checkout',
+        component: () => import('../views/CheckoutView.vue'),
+    }
 ]
 
 const router = new VueRouter({

@@ -1,22 +1,18 @@
 <template>
   <div id="app">
 
-    <div id="nav">
+    <nav id="nav">
       <h1 style="background-color: red">Welcome!</h1>
-      <router-link to="/AddProduct">AddProduct</router-link> |
-      <router-link to="/RemoveProduct">RemoveProduct</router-link> |
-      <router-link to="/UpdateProduct">UpdateProduct</router-link> |
-      <router-link to="/MerchantListing">MerchantListing</router-link> |
-      <router-link to="/ViewRating">ViewRating</router-link> |
-    </div>
-   
+      <router-link to="/product">Product</router-link> |
+      <router-link to="/cart">Cart</router-link> |
+    </nav>
     <router-view/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
 }
 </script>
 
