@@ -17,13 +17,19 @@ const routes = [
     component: () => import('../components/merchant/AddProduct.vue')
   },
   {
-    path: '/removebook',
-    name: 'removebook',
-    component: () => import('../components/merchant/RemoveProduct.vue')
+     path: '/login',
+     name: 'login',
+     component: () =>import('../views/login.vue')
+
   },
- 
+  {    
+    path: '/newUser',
+    name: 'newUser',
+    component: () =>import('../views/newUser.vue') 
+
+  },
   {
-    path: '/MerchantListing',
+    path: '/MerchantListing/:id',
     name: 'MerchantListing',
     component: () => import('../views/MerchantListing.vue')
   },

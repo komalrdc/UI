@@ -72,11 +72,19 @@ export default new Vuex.Store({
         avatar_url: url
       }
     },
+    SET_USER_DETAILS(state, payload) {
+      window.console.log('@@@@@', payload)
+      state.userDetails = payload
+    },
+
     SET_PRODUCT(state, payload) {
       state.marchantProducts = payload
+    },
+    GET_MERCHANTID(state,payload){
+      state.merchantId=payload
     }
   },
-  actions: {
+  actions: { 
     // myfirstAction(context) {
     //   fetch('http://api.github.com/users/komalrd')
     //   .then(res => res.json())
@@ -135,23 +143,42 @@ export default new Vuex.Store({
         success && success(res)
       }) 
       window.console.log(this.x)
-    }
     },
     fetchProductDetails (context, {data, success, fail}) {
       window.console.log([data, success, fail])
       // success && success(res)
       // fail && fail(res)
     },
-    productDetails(context, payload) {
-      fetch('http://localhost:8080/product/description/:id', {
+    NewUser (context, payload) {
+      fetch('http://10.177.69.85:8080/router/signup', {
         method: 'POST',
-        headers: {
+        headers: { 
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload.data)
       })
         .then(res => res.json())
+        
     },
+    loginUser (context, {data, success}) {
+      // window.console.log(payload);
+
+      fetch('http://10.177.69.85:8080/router/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(data)
+      })
+        .then(res => res.json())
+        .then(res => {
+          context.commit('SET_USER_DETAILS', res),
+          context.commit('GET_MERCHANTID',res)
+          success && success(res)
+        })
+    }
+  },
   
   getters: {
     myGetter(state) {
@@ -160,9 +187,13 @@ export default new Vuex.Store({
    merchantProductList(state) {
       return state.marchantProducts
     },
-    productList : state => state.product || []
+    productList : state => state.product || [],
+    getmerchantid(state){
+      return state.merchantId
+    }
   
   },
+
   modules: {
     merchantProductList(state) {
       return state.marchantProducts

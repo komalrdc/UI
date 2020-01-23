@@ -43,7 +43,7 @@
             <br><br>
             <label>Number Of Pages</label>
             <input type="number" v-model="product.attributes.noofpages" required/> <br> 
-            <button id="save" @click="saveProduct">Save</button> 
+            <button style="font-size:20px" id="save" @click="saveProduct">Save</button> 
             </fieldset>
         </form>    
     </div>
@@ -83,7 +83,7 @@ export default{
           'toggleFunction'
           ],
 
-    methods: {
+    methods: {  
         saveProduct(event){
             let data = {...this.product}
             data.merchantId="1234"
@@ -131,16 +131,20 @@ export default{
 .modal_content {
     box-sizing: border-box;
     border-radius: 20px;
-    background-color: dodgerblue;
+    background-color: lightblue;
+    font-size:20;
     position: fixed;
     z-index: 100;
-    height: 80vh;
+    height: 90vh;
     width: 50vw;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 10px;
     overflow: hidden;
+}
+label{
+    font-style:oblique;
 }
 .modal_close {
     position: absolute;

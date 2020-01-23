@@ -1,28 +1,10 @@
 <template>
   <div id="app">
-
-    <!-- <div id="header">
-      <h1> welcome merchant! </h1>
-    </div>
-    <div id="nav">
-      <label style="align:left">Merchant Name:</label>
-      <br>
-      <label> Address:</label>
       <br> 
-    </div>   -->
-      <!-- <router-link to="/addbook">AddProduct</router-link> 
-      <br> 
-      <router-link to="/RemoveProduct">RemoveProduct</router-link> 
-      <br> 
-      <router-link to="/UpdateProduct">UpdateProduct</router-link>  -->
-      <br> 
-      <router-link to="/MerchantListing"></router-link> 
-      <!-- <br> 
-      <router-link to="/ViewRating">ViewRating</router-link>  -->
+      <router-link to="/MerchantListing:id"></router-link> 
+      <router-link to="/login"></router-link> 
+      <router-link to="/newUser"></router-link>
     <nav id="nav">
-      <!--router-link to="/product">Product</router-link> |
-      <router-link to="/cart">Cart</router-link> |
-      <router-link to="/MerchantListing"></router-link--> 
     </nav>
     <router-view/>
   </div>

@@ -10,7 +10,7 @@
     
     </div> 
     <br> <br>  
-     <router-link to="/addbook" @click="toogleAddProductModalBox">Add a new Book</router-link> 
+    <router-link style="float:right"  to="/addbook" @click="toogleAddProductModalBox">Add a new Book</router-link> 
     <h2> Your products on sale: </h2> 
     <table id="table"> 
         <tr>
@@ -22,7 +22,6 @@
         <th>year Of Publishing</th>
         <th>binding type</th> 
         <th>ISBN</th>
-        
         <th>Quantity</th>
         <th>product logo</th>
         <th>Product Rating</th> 
@@ -45,12 +44,11 @@
         <td><button  @click="toogleAddProductModalBox(product)">edit details</button>
         <span id="mypopup"></span> 
         </td> 
-        <td> <button @click="display">Remove Product</button></td>
+        <td> <button @click="display(product)">Remove Product</button></td>
         </tr>
     </table>
     
     <UpdateProduct v-if="flag" :selectedProduct="edit"  :toggleFunction="toogleAddProductModalBox"></UpdateProduct>
-    <RemoveProduct v-if="flag1" :selectedProduct="edit1" ></RemoveProduct> 
     </div> 
 </template>
 
@@ -64,14 +62,12 @@ table {
 //import AddProduct from '@/components/merchant/AddProduct.vue'
 import { mapGetters, mapActions } from 'vuex'
 import UpdateProduct from '@/components/merchant/UpdateProduct.vue'
-import RemoveProduct from '@/components/merchant/RemoveProduct.vue'
 //import {function} from '../../vue-temp/vue-editor-bridge'
 export default {
   name: 'App',
   components: {
      //AddProduct,
      UpdateProduct,
-     RemoveProduct
   },
   data() {
     //  flag:false,
@@ -92,7 +88,7 @@ export default {
     //   this.merchantProducts()
     // eslint-disable-next-line no-console
     this.getAllProductByMerchantId({
-      data: 1234
+      data: this.$route.params.id
     })
   },
   methods : {
@@ -114,15 +110,22 @@ export default {
         //window.console.log(flag); 
          
      },
-     display: function(product={}){
-        this.flag1 = !this.flag1;
-        this.edit1=product;
-        window.console.log(product.productId)
+     display: function(product){
+        let data = {...product.merchantId,...product.productId}
+        data.merchantId="1234"; 
+        data.productId= product.productId; 
+            event.preventDefault();
+            event.stopPropagation();
+            this.$store.dispatch('deleteProduct', {
+                data: data,
+                success: this.addNewProductSuccess
+            })
+        window.console.log(data.productId)
         alert('product deleted successfully'); 
          
      },
      home: function() {
-       //xyz  
+       
        
      }
   }
@@ -134,8 +137,9 @@ export default {
   width:100%; 
   padding:30px; 
   background-color:skyblue; 
-  row-gap:10px; 
-
+  row-gap:10px;
+  text-align: center;  
+  font-size:18; 
 
 }
 .nav{
@@ -145,8 +149,12 @@ export default {
   position: fixed;
   top: 0%;
   right: 0%;
-
+  font-size: 20;
     
+}
+td{
+   border: 1px solid #ddd;
+   font-size:20; 
 }
 .h1{
   color:white;

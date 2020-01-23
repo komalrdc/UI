@@ -42,8 +42,8 @@
             <input ID="isbn" type="number" v-model="product.isbn" required/>
             <br><br>
             <label>Number Of Pages</label>
-            <input type="number" v-model="product.attributes.noofpages" required/> <br> 
-            <button id="save" @click="saveProduct">Save</button> 
+            <input type="number" v-model="product.attributes.noofpages" required/> <br> <br> 
+            <button style="font-size:20px" id="save" @click="saveProduct">Save</button> 
             </fieldset>
         </form>    
     </div>
@@ -84,7 +84,7 @@ export default{
             let data = {...this.product}
             event.preventDefault();
             event.stopPropagation();
-            this.$store.dispatch('addNewProduct', {
+            this.$store.dispatch('addNewProduct', { 
                 data: data,
                 success: this.addNewProductSuccess
             })
@@ -105,6 +105,7 @@ export default{
 <style scoped>
     form{
         text-align: left; 
+        font-size: 40;
         /* background-color: orange;  */
     }
 
@@ -124,10 +125,10 @@ export default{
 .modal_content {
     box-sizing: border-box;
     border-radius: 20px;
-    background-color: dodgerblue;
+    background-color: lightblue;
     position: fixed;
     z-index: 100;
-    height: 80vh;
+    height: 90vh;
     width: 50vw;
     top: 50%;
     left: 50%;
