@@ -4,14 +4,14 @@
         <div class="Login">
 			<h1> LOGIN HERE </h1>
 			<div>
+				<input v-model="username" class="username input" type="text" placeholder="username">
+				<input v-model="password" class="password input" type="Password" placeholder="Password"> 
+
 				<input v-model="loginType" type="radio" name="login" value="customer" checked id="type-customer">
-				<label for="type-customer">Customer</label> <br>
+				<label for="type-customer">Customer</label>
 				
 				<input v-model="loginType" type="radio" name="login" value="merchant" checked id="type-merchant">
 				<label for="type-merchant">Merchant</label>
-				
-				<input v-model="username" class="username input" type="text" placeholder="username">
-				<input v-model="password" class="password input" type="Password" placeholder="Password">
 
 				<button @click="submitClicked" class="submit button">Submit</button>  <br> <br>
 				<button><a href="https://accounts.google.com/signin/v2/identifier?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" class="fa fa-google"> Gmail </a></button>

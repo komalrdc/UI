@@ -82,7 +82,46 @@ const routes = [
     name: 'Category',
     path: '/category/:id',
     component: () => import('@/views/Category')
-  }
+  },
+    {
+      path: '/product',
+      name: 'product',
+      component: () => import( '../views/ProductView.vue'),
+      children: [
+        {
+          path: '',
+          component: () => import( '../views/ProductListingView.vue'), 
+        },
+        {
+          path: 'description/:id',
+          name: 'description',
+          component: () => import( '../views/ProductDescriptionView.vue'),
+        }
+      ]
+    },
+    {
+      // TODO
+      // Theses routes are not required
+      // as these are just API calls...
+      path: '/cart',
+      name:'cart',
+      component: () => import('../views/CartView.vue'),
+    },
+    {
+      path: '/checkout',
+        name:'checkout',
+        component: () => import('../views/CheckoutView.vue'),
+    },
+    {
+      path: '/addbook',
+      name: 'AddProduct',
+      component: () => import('../components/merchant/AddProduct.vue')
+    },
+    {
+      path: '/MerchantListing',
+      name: 'MerchantListing',
+      component: () => import('../views/MerchantListing.vue')
+    }
 ]
 
 const router = new VueRouter({

@@ -1,38 +1,42 @@
 <template>
-  <main class="container">
+  <main class="productDescriptionView">
         <!-- <h1>Product Description</h1> -->
         <!-- <h1>{{$route.params.id}}</h1> -->
+        
         <div class="left-column">
-            <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRfwDCwWtknObpzcJjSKAvpws-7N7-vvUUXmna5-cloG49AKDzE">
+            <img class="product_image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRfwDCwWtknObpzcJjSKAvpws-7N7-vvUUXmna5-cloG49AKDzE">
         </div>
         <div class = "right-column">
             <div class="description">
                 <span>Books Category</span>
+                <h1>{{$route.params.id}}</h1>
                 <h1>Book name</h1>
                 <p>Author, bind, publisher</p>
             </div>
             <div class = "merchant">
-                <p> Sold by merchant link </p>
+                <p> Sold by <a href=" " >Merchant link </a></p>
             </div>  
-            <div class="input-group">
-                <input type="button" data-field="number" @click="decrease">
-                <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field">
-                <input type="button" data-field="number" @click="increase">
+          <div class="rating">
+            <h1>Rating</h1>
+            <!-- <StarRating :config="config"></StarRating>  -->
+          </div>
+            <div> 
+                <p>Quantity: {{ value }}</p>
+                <vue-numeric-input  v-model="value" :min="1" :max="100" :step="1"></vue-numeric-input>
             </div>
             <div class="product-price">
                 <span>Price</span>
-                <p><router-link to="/cart/" tag="button" class="cart-btn">Add to Cart</router-link>
-                <router-link to="/checkout/" tag="button" class="cart-btn">Buy Now</router-link></p>
-            </div>
-                     
+                <!-- <button @click = "addtocart" class="cart-btn">Add to Cart</button> -->
+                <p><router-link to="/cart/" tag="button" class="cart-btn" >Add to Cart</router-link></p>
+            </div>         
         </div>
-        <!-- <router-link to="/cart/" tag="button">Add to Cart</router-link> -->
-        <!-- <button @click="routeToCart(product.id)">Add to Cart</button> -->
         <router-view></router-view>
-      </main>
+    </main>
 </template>
 
 <script>
+import VueNumericInput from 'vue-numeric-input'
+import {mapGetters} from 'vuex'
 export default {
     name: 'products',
     data: function(){
@@ -43,29 +47,27 @@ export default {
     computed: {
         productId() {
             return this.$route.params.id
-        }
+        },
+        ...mapGetters(['productList'])
     },
     watch: {
         productId: function () {
             this.fetchProductDetails(this.productId)
         }
     },
+     components: {
+       VueNumericInput
+    },
     methods: {
-        increase: function(){
-            this.number = this.number +1
-        },
-        decrease: function(){
-            this.number = this.number-1
-        },
         fetchProductDetails(id) {
-            // Dispatch action to fetch deatils related to one category
-            this.$store.dispatch('fetchProductDetails', {
-                data: {
-                    id,
-                    success: this.onSuccess,
-                    fail: this.onFail
-                }
-            })
+                // Dispatch action to fetch deatils related to one category
+                this.$store.dispatch('fetchProductDetails', {
+                    data: {
+                        id,
+                        success: this.onSuccess,
+                        fail: this.onFail
+                    }
+                })
         },
         onSuccess () {
             // TODO
@@ -76,13 +78,42 @@ export default {
             // Show proper erros
         }
     },
+        increase: function(){
+            this.number = this.number +1
+        },
+        decrease: function(){
+            this.number = this.number-1
+        },
+        
     created: function() {
         this.fetchProductDetails(this.productId)
+    },
+
     }
-}
+
 </script>
 
 <style scoped>
+
+.productDescriptionView {
+  max-width: 1200px;
+  min-height: 60vh;
+  margin: 0px auto;
+  padding: 15px;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: stretch;
+}
+.left-column {
+  transition: transform .2s;
+}
+.left-column:hover {
+    transform: scale(1.2);
+}
+.right-column {
+  flex-basis: 65%;
+}
 html, body {
   height: 100%;
   width: 100%;
@@ -110,6 +141,11 @@ html, body {
   border-bottom: 1px solid #E1E8EE;
   margin-bottom: 20px;
 }
+
+.product_image {
+    width: 320px;
+    height: 500px;
+}
 .description span {
   font-size: 12px;
   color: #358ED7;
@@ -130,27 +166,16 @@ html, body {
   line-height: 24px;
 }
 
+.product-price {
+  display: flex;
+  align-items: center;
+  margin-left: 300px;
+}
 .input-group {
   clear: both;
   margin: 15px 0;
   position: relative;
 }
-
-/* .input-group input[type='button'] {
-  background-color: #eeeeee;
-  min-width: 38px;
-  width: auto;
-  transition: all 300ms ease;
-} */
-
-/* .input-group .button-minus,
-.input-group .button-plus {
-  font-weight: bold;
-  height: 38px;
-  padding: 0;
-  width: 38px;
-  position: relative;
-} */
 
 .input-group .quantity-field {
   position: relative;
@@ -163,10 +188,6 @@ html, body {
   margin: 0 0 5px;
   resize: vertical;
 }
-
-/* .button-plus {
-  left: -13px;
-} */
 
 .product-price {
   display: flex;
@@ -192,6 +213,5 @@ html, body {
 .cart-btn:hover {
   background-color: #64af3d;
 }
-
 
 </style>
