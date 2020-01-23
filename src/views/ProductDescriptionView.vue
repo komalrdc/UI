@@ -10,6 +10,8 @@
             <div class="description">
                 <span>Books Category</span>
                 <h1>{{$route.params.id}}</h1>
+                <h1>{{$route.params.title}}</h1>
+
                 <h1>Book name</h1>
                 <p>Author, bind, publisher</p>
             </div>
@@ -18,7 +20,7 @@
             </div>  
           <div class="rating">
             <h1>Rating</h1>
-            <!-- <StarRating :config="config"></StarRating>  -->
+            <StarRating :config="config"></StarRating> 
           </div>
             <div> 
                 <p>Quantity: {{ value }}</p>
@@ -169,7 +171,7 @@ html, body {
 .product-price {
   display: flex;
   align-items: center;
-  margin-left: 300px;
+  margin-left: 150px;
 }
 .input-group {
   clear: both;
