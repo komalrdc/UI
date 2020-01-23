@@ -4,16 +4,13 @@
         <!-- <h1>{{$route.params.id}}</h1> -->
         
         <div class="left-column">
-            <img class="product_image" :src="selectedProduct.url">
+            <img class="product_image" :src="selectedProducts.url">
         </div>
         <div class = "right-column">
             <div class="description">
                 <span>Books Category</span>
-                <!-- <h1>{{$route.params.id}}</h1> -->
-                <!-- <h1>{{$route.params.title}}</h1> -->
-                <h1>{{ selectedProduct.title}}</h1>
-                <p>{{selectedProduct.author}}</p>
-                <!-- <p>Author, bind, publisher</p> -->
+                <h1>{{ selectedProducts.title}}</h1>
+                <p>{{selectedProducts.author}}</p>
             </div>
             <div class = "merchant">
                 <p> Sold by <a href=" " >Merchant Link</a></p>
@@ -28,7 +25,7 @@
             </div>
             <div class="product-price">
                 <span>Price:</span>
-                <span>{{selectedProduct.price}}</span>
+                <span>{{selectedProducts.price}}</span>
                 <!-- <button @click = "routeTocart" class="cart-btn">Add to Cart</button> -->
                 <p><router-link to="/cart/" tag="button" class="cart-btn" >Add to Cart</router-link></p>
             </div>         
@@ -45,13 +42,13 @@ export default {
     data: function(){
           return {
               value: 1,
-              selectedProduct: {},
+              // selectedProduct: {},
               cartItems: {}
           }
     },
     created () {
       const id  = this.$route.params.id
-      this.selectedProduct =  this.productList[id-1]
+      this.selectedProducts =  this.productList[id-1]
       // eslint-disable-next-line no-console
       console.log(this.selectedProduct)
     },
@@ -60,7 +57,8 @@ export default {
             return this.$route.params.id
         },
         ...mapGetters(['productList']),
-        ...mapGetters(['productDescription'])
+        ...mapGetters(['productDescription']),
+        ...mapGetters(['selectedProducts'])
     },
     watch: {
         productId: function () {

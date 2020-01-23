@@ -62,17 +62,20 @@ export default new Vuex.Store({
     },
 
     getProductListing(context, {data, success}) {
-      fetch('http://10.177.2.194:8080/router/getProductByGenre/{genre}'+data, {
+      fetch('http://10.177.69.85:8080/router/getProductByGenre/'+data, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         }
       })
       .then(res => res.json()).then( (res) => {
+        console.log(res)
         context.commit('SET_SELECTED_PRODUCT',res)
         success && success(res)
-      }) 
-      window.console.log(this.x)
+      }).catch( (err) => {
+        console.log(err)
+      })
+      // window.console.log(this.x)
     },
 
     addproduct({data} ) {
@@ -135,6 +138,9 @@ export default new Vuex.Store({
     merchantProductList(state) {
       return state.marchantProducts
     },
-    productList : state => state.product || []
+    productList : state => state.product || [],
+    selectedProducts (state) {
+      return state.selectedProduct || []
+    }
   }
 })

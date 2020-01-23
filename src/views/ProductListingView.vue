@@ -7,7 +7,7 @@
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTt0wRZ7qencbqGT2YvT3DiTYyGNC9-IsM9zWE0haTOPo6UFHps">
     </div>
     <p>Fictional Books</p>
-    <div v-for = "product in productList" :key="'product:' + product.id" class="books">
+    <div v-for = "product in selectedProducts" :key="'product:' + product.id" class="books">
             <div>
                 <figure @click="routeToProductDescription(product.id)"> 
                     <img :src = "product.url" height="150px" width="100px">
@@ -32,12 +32,20 @@ export default {
     components: {
         ProductListing
     },
+    created () {
+        // eslint-disable-next-line no-console
+        console.log(this.selectedProducts)
+        // eslint-disable-next-line no-debugge
+        this.getProductListing({
+            data: "Fiction"
+        })
+    },
     data (){
         return {
         } 
     },
     computed: {
-        ...mapGetters(['productList'])
+        ...mapGetters(['productList', 'selectedProducts'])
     },
     methods: {
         ...mapActions(['getProductListing']),
@@ -48,7 +56,7 @@ export default {
             }
             window.console.log("selectedProduct", data)
             this.$store.dispatch('getProductListing', {
-                data
+                data: data
             })
         },
         routeToProductDescription (id) {
