@@ -24,13 +24,13 @@
             <input id="genre" type="text" v-model="product.genre" required/>
             <br><br>
             <label> Publisher Name </label>
-            <input id="Publisher" type="text" v-model="product.publisher" required/>
+            <input id="Publisher" type="text" v-model="product.attributes.publisher" required/>
             <br><br>
             <label> Year Of Publishing </label>
-            <input id="YearoOfPublishing" type="number" v-modal="product.year" required/>
+            <input id="YearoOfPublishing" type="number" v-model="product.attributes.year" required/>
             <br><br>
             <label> Binding Type </label>
-            <input id="BindType" type="text" v-model="product.binding" required/>
+            <input id="BindType" type="text" v-model="product.attributes.binding" required/>
             <br><br>
             <label>Quantity</label>
             <input type="number" id="quantity" v-model="product.quantity" required/>
@@ -41,7 +41,8 @@
             <label> ISBN </label>
             <input ID="isbn" type="number" v-model="product.isbn" required/>
             <br><br>
-            
+            <label>Number Of Pages</label>
+            <input type="number" v-model="product.attributes.noofpages" required/> <br> 
             <button id="save" @click="saveProduct">Save</button> 
             </fieldset>
         </form>    
@@ -59,20 +60,21 @@ export default{
                 productName: 'My Product',
                 author: 'Prakriti Tiwari',
                 price: '20',
-                url: '',
+                url: "",
                 genre: 'fiction',
                 description: 'cvc',
                 attributes: {
-                publisher: "",
-                year: '2000',
+                publisher: "xyz",
+                year: '2000',   
+                noofpages: '100',
                 binding: 'soft',
-            
                 } ,
                 quantity: '2',
                 isbn: '22345',
                 
 
-            }
+            },
+            successMessage:""
         }
     },
     props: ['toggleFunction'],
@@ -84,16 +86,18 @@ export default{
             event.stopPropagation();
             this.$store.dispatch('addNewProduct', {
                 data: data,
-                success: this.onSuccessFun
+                success: this.addNewProductSuccess
             })
         },
-        onSuccessFun (res) {
+        addNewProductSuccess (res) {
             // eslint-disable-next-line no-console
-            console.log(res)
+            this.successMessage = res
+           // console.log(res)
             this.$router.push('/MerchantListing')
         },
         toogleModalBox () {
             this.toggleFunction();
+
         }
     }
 }

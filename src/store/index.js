@@ -54,15 +54,14 @@ export default new Vuex.Store({
     //     context.commit('UPDATE_URL', res.avatar_url)
     //   }) 
     addproduct({data} ) {
-      fetch('http://10.177.2.194:8080/router/addProduct', {
+      fetch('http://10.177.69.85:8080/router/addProduct', {
         method: "POST",
         body: JSON.stringify(data)
         })
       .then(res => res.json())
     },
     addNewProduct (context, {data, success}) {
-
-      fetch('http://10.177.2.194:8080/router/addProduct', {
+      fetch('http://10.177.69.85:8080/router/addProduct', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
@@ -77,9 +76,24 @@ export default new Vuex.Store({
       }) 
       window.console.log(this.x)
     },
+    deleteProduct (context, {data, success}) {
+      fetch('http://10.177.69.85:8080/router/removeProduct', {
+        method: 'DELETE',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        }
+
+      })
+      .then(res => res.json()).then( (res) => {
+        context.commit('SET_PRODUCT',res)
+        success && success(res)
+      }) 
+      window.console.log(this.x)
+    },
     getAllProductByMerchantId (context, {data, success}) {
-      debugger
-      fetch('http://10.177.2.194:8080/router/getProductByMerchantId/'+data, {
+      fetch('http://10.177.69.85:8080/router/getProductByMerchantId/'+data, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
