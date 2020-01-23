@@ -8,6 +8,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     users: {},
+    cartItems: [],
+    cartCount: 0,
+    selectedProduct: [],
     product: [
       {
         id: 1,
@@ -40,22 +43,38 @@ export default new Vuex.Store({
   ],
   },
   mutations: {
-    UPDATE_URL(state, url) {
-      state.users = {
-        avatar_url: url
-      }
-    },
     SET_PRODUCT(state, payload) {
       state.marchantProducts = payload
+    },
+    SET_SELECTED_PRODUCT(state, payload) {
+      state.selectedProduct = payload
+    },
+    SET_CART_ITEMS(state, payload) {
+      state.cartItems = payload
     }
   },
   actions: {
-    // myfirstAction(context) {
-    //   fetch('http://api.github.com/users/komalrd')
-    //   .then(res => res.json())
-    //   .then(res => {
-    //     context.commit('UPDATE_URL', res.avatar_url)
-    //   }) 
+    selectedProduct({commit}, data) {
+        commit('SET_SELECTED_PRODUCT', data)
+    },
+    cartItems({commit}, data) {
+      commit('SET_CART_ITEMS', data)
+    },
+
+    getProductListing(context, {data, success}) {
+      fetch('http://10.177.2.194:8080/router/getProductByGenre/{genre}'+data, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => res.json()).then( (res) => {
+        context.commit('SET_SELECTED_PRODUCT',res)
+        success && success(res)
+      }) 
+      window.console.log(this.x)
+    },
+
     addproduct({data} ) {
       fetch('http://10.177.2.194:8080/router/addProduct', {
         method: "POST",
@@ -70,7 +89,6 @@ export default new Vuex.Store({
         body: JSON.stringify(data),
         headers: {
           'Content-Type': 'application/json'
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         }
 
       })
@@ -81,7 +99,6 @@ export default new Vuex.Store({
       window.console.log(this.x)
     },
     getAllProductByMerchantId (context, {data, success}) {
-      debugger
       fetch('http://10.177.2.194:8080/router/getProductByMerchantId/'+data, {
         method: 'GET',
         headers: {

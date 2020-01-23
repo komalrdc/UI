@@ -26,6 +26,7 @@
 <script>
 import ProductListing from '@/components/product/ProductListing.vue'
 import {mapGetters} from 'vuex'
+import {mapActions} from 'vuex'
 export default {
     name:'productlisting',
     components: {
@@ -39,7 +40,19 @@ export default {
         ...mapGetters(['productList'])
     },
     methods: {
+        ...mapActions(['getProductListing']),
+        
+        productListing: function() {
+            var data = {
+                selectedProduct: this.selectedProduct
+            }
+            window.console.log("selectedProduct", data)
+            this.$store.dispatch('getProductListing', {
+                data
+            })
+        },
         routeToProductDescription (id) {
+            this.$store.dispatch('selectedProduct', this.productList[id])
             this.$router.push({
                 name: 'description',
                 params: {

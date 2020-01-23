@@ -24,7 +24,6 @@ export default {
   color: #2c3e50;
 }
 #aside {
-  float:left;
   padding:30px; 
 
 }
@@ -35,7 +34,6 @@ export default {
 }
 #nav {
   padding:30px; 
-  float:left; 
   text-align: left; 
 
 }
@@ -43,7 +41,6 @@ export default {
 #nav1 {
   font-weight: bold;
   color: #2c3e50;
-  float: left; 
   align-items: left; 
   text-align: left; 
   padding:30px; 

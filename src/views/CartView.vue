@@ -8,25 +8,25 @@
     <div class="image">
       <img src="" alt="" />
     </div>
-    <ul>
-         <li v-for="product in productList" :key="product">
-                <img :src = "product.url" height="150px" width="100px">
-                {{product.title}} - {{product.price}} - {{product.author}}
-            </li>
-        </ul>
-    <div class="description">
-      <span>Book name</span><br>
-      <span>Author</span><br>
-      <span>White</span>
-    </div>
-      <p>Quantity: {{ value }}</p>
-      <vue-numeric-input  v-model="value" :min="1" :max="100" :step="1"></vue-numeric-input>
-    <div class="total-price">Total Price</div>
-    <h1>Merge</h1>
+    <ul class="product_list">
+      <li v-for="product in productList" :key="product" class="product_list_item">
+        <figure>
+          <img :src="product.url" height="150px" width="100px">
+        </figure>
+        <div class="added_items_quantity">
+          <p>{{product.title}}</p>
+          <p>{{product.price}}</p>
+          <p>{{product.author}}</p>
+          <p>Quantity: {{ value }}</p>
+          <vue-numeric-input  v-model="value" :min="1" :max="100" :step="1"></vue-numeric-input>
+          <div class="price">Combined Price</div>
+        </div>
+      </li>
+    </ul>
   </div>
+      <div class="total-price">Total Price: </div>
       <button @click="$router.push('checkout')" class="buy-btn">Proceed to Buy</button>
-       <h1>Your Shopping Cart</h1>
-        <button @click="$router.push('checkout')">Proceed to Buy</button>
+        <!-- <button @click="$router.push('checkout')">Proceed to Buy</button> -->
       <router-view></router-view>
       <Cart></Cart>
   </main>
@@ -45,12 +45,28 @@ export default {
        VueNumericInput
     },
     computed: {
-      ...mapGetters(['productList'])
+      ...mapGetters(['productList']),
+      ...mapGetters(['selectedProduct'])
     }
 }
 </script>
 
 <style scoped>
+/* .added_items{
+  flex-basis: 65%;
+  border: 2px solid red;
+  margin-right: 700px;
+  margin-top: 50px;
+}
+
+.added_items_quantity {
+  border: 2px solid blue;
+  display: inline-block;
+  margin-bottom: 50px;
+  margin-left: 700px;
+  float: right;
+
+}*/
 .buy-btn{
   display: block;
   background-color: #7DC855;
@@ -64,5 +80,17 @@ export default {
 }
 .buy-btn:hover {
   background-color: #64af3d;
+}
+.image {
+  margin: 10px;
+}
+.product_list {
+  list-style-type: none;
+  margin: 10px auto;
+}
+
+.product_list_item {
+  display: flex;
+  flex-flow: row;
 }
 </style>
