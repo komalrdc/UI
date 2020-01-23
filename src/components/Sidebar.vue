@@ -19,12 +19,12 @@ export default {
 .sidebar {
     display: flex;
     flex-direction: column;
-    height: 560px;
+    height: 590px;
     width: 15%;
     font-size: 25px;
     background-color: #e9e9e9;
     position: absolute;
-    margin-top: 92px;
+    margin-top: 4.8%;
 }
 .sidebar-item {
     margin: 10px 10px;

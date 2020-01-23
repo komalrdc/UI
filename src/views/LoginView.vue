@@ -68,6 +68,7 @@ export default {
 	padding-top: 30px;
 	border: 2px solid black;
 	border-radius: 20px 20px;
+	margin-top: 100px;
 }
 .input {
 	border: 1px solid black;

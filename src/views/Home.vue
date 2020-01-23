@@ -33,6 +33,7 @@ export default {
   top: 100px;
   width: 800px;
   margin-left: 30px;
+  position: absolute;
   }
 .container img {
   margin: 10px 20px;

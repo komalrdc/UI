@@ -55,6 +55,10 @@ export default {
   background-color: #001f33;
   height: 60px;
   width: 100vw;
+  position: fixed;
+  top: 0%;
+  right: 0%;
+
 }
 .btn {
   float: left;

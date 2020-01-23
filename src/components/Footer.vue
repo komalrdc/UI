@@ -24,7 +24,7 @@ export default {
 
 <style>
 .ab{
-  background-color: #e9e9e9;
+  background-color: #001f33;
     display: flex;
     flex-direction: row;
     position: fixed;
