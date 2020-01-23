@@ -2,16 +2,20 @@
     <nav id="navbar" class="navbar">
         <section class="navbar_division left">
             <router-link :to="{name: 'Home'}" tag="span">
-                <img class="navbar_logo" src="https://madewithvuejs.com/mandant/madewithvuejs/images/logo-vuetify.png" alt="logo">
+                <img class="navbar_logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSc_N_FCRJB6b0fkF51xtTKUr4QwmykKXLWzHEeO_gInMKmrV0R" alt="logo">
             </router-link>
         </section>
         <section class="navbar_division center">
-            <router-link to="/product" class="navbar_route" tag="span">Product</router-link>
+            <input type = "text" value="search" placeholder="search">
+            <router-link to="/search" class="navbar_route" tag="span">Search</router-link>
+            <!-- <router-link to="/product" class="navbar_route" tag="span">Product</router-link>
         <router-link to="/cart" class="navbar_route" tag="span">Cart</router-link>
-        <router-link to="/MerchantListing" class="navbar_route" tag="span">Merchant</router-link> 
+        <router-link to="/MerchantListing" class="navbar_route" tag="span">Merchant</router-link>  -->
         </section>
         <section class="navbar_division right">
-            Hi User
+            <router-link to="/login" class="navbar_route" tag="span">Login</router-link>
+            <router-link to="/newuser" class="navbar_route" tag="span">New User</router-link>
+            <router-link to="/cart" class="navbar_route" tag="span">Cart</router-link>
         </section>
         
         
@@ -40,7 +44,7 @@ export default {
     &_route {
         border-radius: 8px;
         background-color: dodgerblue;
-        font-size: 1.6rem;
+        font-size: 1.2rem;
         font-weight: bold;
         color: white;
         cursor: pointer;

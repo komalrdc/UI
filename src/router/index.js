@@ -12,25 +12,6 @@ const routes = [
     component: Home
   },
     {
-      path: '/product',
-      name: 'product',
-      component: () => import( '../views/ProductView.vue'),
-      children: [
-        {
-          path: '',
-          component: () => import( '../views/ProductListingView.vue'), 
-        },
-        {
-          path: 'description/:id',
-          name: 'description',
-          component: () => import( '../views/ProductDescriptionView.vue'),
-        }
-      ]
-    },
-    {
-      // TODO
-      // Theses routes are not required
-      // as these are just API calls...
       path: '/cart',
       name:'cart',
       component: () => import('../views/CartView.vue'),
@@ -49,7 +30,39 @@ const routes = [
       path: '/MerchantListing',
       name: 'MerchantListing',
       component: () => import('../views/MerchantListing.vue')
-    }
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: () => import('../views/SearchView.vue')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/LoginView.vue')
+    },
+    {
+      path: '/newuser',
+      name: 'newuser',
+      component: () => import('../views/NewUserView.vue')
+    },
+    {
+      path: '/product',
+      name: 'product',
+      component: () => import( '../views/ProductView.vue'),
+      children: [
+        {
+          path: '/:category',
+          component: () => import( '../views/ProductListingView.vue'), 
+        },
+        {
+          path: 'description/:id',
+          name: 'description',
+          component: () => import( '../views/ProductDescriptionView.vue'),
+        }
+      ]
+    },
+
 ]
 
 const router = new VueRouter({
