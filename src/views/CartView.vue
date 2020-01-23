@@ -24,6 +24,8 @@
     <div class="total-price">Total Price</div>
   </div>
       <button @click="$router.push('checkout')" class="buy-btn">Proceed to Buy</button>
+       <h1>Your Shopping Cart</h1>
+        <button @click="$router.push('checkout')">Proceed to Buy</button>
       <router-view></router-view>
       <Cart></Cart>
   </main>

@@ -37,37 +37,26 @@
 <script>
 import VueNumericInput from 'vue-numeric-input'
 import {mapGetters} from 'vuex'
-// import StarRating from 'vue-dynamic-star-rating'
-
 export default {
     name: 'products',
-    data: function() {
+    data: function(){
           return {
-              value: 1
+              number: 1
           }
     },
-    components: {
-       VueNumericInput
-    },
-    // config: {
-    //         rating: 4.7,
-    //         style: {
-    //             fullStarColor: '#ed8a19',
-    //             emptyStarColor: '#737373',
-    //             starWidth: 10,
-    //             starHeight: 10
-    //         }
-    //     },
     computed: {
         productId() {
             return this.$route.params.id
         },
-         ...mapGetters(['productList'])
+        ...mapGetters(['productList'])
     },
     watch: {
         productId: function () {
             this.fetchProductDetails(this.productId)
         }
+    },
+     components: {
+       VueNumericInput
     },
     methods: {
         fetchProductDetails(id) {
@@ -89,11 +78,19 @@ export default {
             // Show proper erros
         }
     },
+        increase: function(){
+            this.number = this.number +1
+        },
+        decrease: function(){
+            this.number = this.number-1
+        },
+        
     created: function() {
         this.fetchProductDetails(this.productId)
     },
 
-}
+    }
+
 </script>
 
 <style scoped>
@@ -116,6 +113,29 @@ export default {
 }
 .right-column {
   flex-basis: 65%;
+}
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+ 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+  display: flex;
+}
+.left-column {
+    height: 100px;
+    /* width:100px; */
+  width: 65%; 
+  position: relative;
+}
+.right-column {
+  width: 35%;
+  margin-top: 60px;
 }
 .description {
   border-bottom: 1px solid #E1E8EE;
@@ -151,6 +171,28 @@ export default {
   align-items: center;
   margin-left: 300px;
 }
+.input-group {
+  clear: both;
+  margin: 15px 0;
+  position: relative;
+}
+
+.input-group .quantity-field {
+  position: relative;
+  height: 38px;
+  left: -6px;
+  text-align: center;
+  width: 62px;
+  display: inline-block;
+  font-size: 13px;
+  margin: 0 0 5px;
+  resize: vertical;
+}
+
+.product-price {
+  display: flex;
+  align-items: center;
+}
  
 .product-price span {
   font-size: 26px;
@@ -159,7 +201,7 @@ export default {
   margin-right: 20px;
 }
 .cart-btn{
-  display: block;
+  display: inline-block;
   background-color: #7DC855;
   border-radius: 6px;
   font-size: 16px;
@@ -171,4 +213,5 @@ export default {
 .cart-btn:hover {
   background-color: #64af3d;
 }
+
 </style>
