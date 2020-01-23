@@ -2,12 +2,15 @@
 <template>
 <div>
     
-    <div id="nav"> 
-    <router-link to="/addbook" @click="toogleAddProductModalBox">Add a new Book</router-link> 
-    <button style="float:right" @click="home()">Sign Out</button>
-    <h1>Welcome Merchant!</h1> 
+    <div class="nav"> 
+
+    <button class="signout" style="float:right" @click="home()">Sign Out</button>
+    <button class="signout" > My Profile </button>
+    <h1 class="h1">Welcome Merchant!</h1> 
     
-    </div>  
+    </div> 
+    <br> <br>  
+     <router-link to="/addbook" @click="toogleAddProductModalBox">Add a new Book</router-link> 
     <h2> Your products on sale: </h2> 
     <table id="table"> 
         <tr>
@@ -19,6 +22,7 @@
         <th>year Of Publishing</th>
         <th>binding type</th> 
         <th>ISBN</th>
+        
         <th>Quantity</th>
         <th>product logo</th>
         <th>Product Rating</th> 
@@ -134,10 +138,28 @@ export default {
 
 
 }
-#nav{
-    background-color:orange; 
-    width:95%; 
+.nav{
+    background-color: #001f33;
+  height: 60px;
+  width: 100vw;
+  position: fixed;
+  top: 0%;
+  right: 0%;
+
     
+}
+.h1{
+  color:white;
+
+}
+.signout{
+  float:right;
+  padding: 10px;
+  padding-right: 50px;
+  border: none;
+  margin-left: 10px;
+  /* margin-right: 16px; */
+  font-size: 17;
 }
 div1{
     z-index: -1; 

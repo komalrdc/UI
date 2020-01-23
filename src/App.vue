@@ -20,9 +20,9 @@
       <!-- <br> 
       <router-link to="/ViewRating">ViewRating</router-link>  -->
     <nav id="nav">
-      <router-link to="/product">Product</router-link> |
+      <!--router-link to="/product">Product</router-link> |
       <router-link to="/cart">Cart</router-link> |
-      <router-link to="/MerchantListing"></router-link> 
+      <router-link to="/MerchantListing"></router-link--> 
     </nav>
     <router-view/>
   </div>
