@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 <template>
 <div>
-    <div> 
+    
     <div id="nav"> 
     <router-link to="/addbook" @click="toogleAddProductModalBox">Add a new Book</router-link> 
     <button style="float:right" @click="home()">Sign Out</button>
@@ -44,10 +44,10 @@
         <td> <button @click="display">Remove Product</button></td>
         </tr>
     </table>
-    </div> 
+    
     <UpdateProduct v-if="flag" :selectedProduct="edit"  :toggleFunction="toogleAddProductModalBox"></UpdateProduct>
     <RemoveProduct v-if="flag1" :selectedProduct="edit1" ></RemoveProduct> 
-</div>
+    </div> 
 </template>
 
 <style scoped>
@@ -72,7 +72,7 @@ export default {
   data() {
     //  flag:false,
       return {
-          merchantDetails : "Apple",
+          
           flag:false,
           flag1:false,
           edit: "",
@@ -118,7 +118,7 @@ export default {
          
      },
      home: function() {
-         
+       //xyz  
        
      }
   }

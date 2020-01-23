@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import Home from '../views/Home'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -19,22 +21,73 @@ const routes = [
     name: 'removebook',
     component: () => import('../components/merchant/RemoveProduct.vue')
   },
-  {
-    path: '/updatproduct',
-    name: 'updateproduct',
-    component: () => import('../views/UpdateProduct.vue')
-  },
-  {
-    path: '/ViewRating',
-    name: 'ViewRating',
-    component: () => import('../views/ViewRating.vue')
-  },
+ 
   {
     path: '/MerchantListing',
     name: 'MerchantListing',
     component: () => import('../views/MerchantListing.vue')
   },
-  
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
+},
+    {
+      path: '/product',
+      name: 'product',
+      component: () => import( '../views/ProductView.vue'),
+      children: [
+        {
+          path: '',
+          component: () => import( '../views/ProductListingView.vue'), 
+        },
+        {
+          path: 'description/:id',
+          name: 'description',
+          component: () => import( '../views/ProductDescriptionView.vue'),
+        }
+      ]
+    },
+    {
+      // TODO
+      // Theses routes are not required
+      // as these are just API calls...
+      path: '/cart',
+      name:'cart',
+      component: () => import('../views/CartView.vue'),
+      children:[
+        {
+          path: '/addcart',
+          name:'addcart',
+          component: () => import('../views/AddCartView.vue'),
+        },
+        {
+          path: '/removecart',
+          name:'removecart',
+          component: () => import('../views/RemoveCartView.vue'),
+        },
+        {
+          path: '/removeall',
+          name:'removeall',
+          component: () => import('../views/RemoveAllView.vue'),
+        }
+      ]
+    },
+    {
+      path: '/checkout',
+        name:'checkout',
+        component: () => import('../views/CheckoutView.vue'),
+    },
+    {
+      path: '/addbook',
+      name: 'AddProduct',
+      component: () => import('../components/merchant/AddProduct.vue')
+    },
+    {
+      path: '/MerchantListing',
+      name: 'MerchantListing',
+      component: () => import('../views/MerchantListing.vue')
+    }
 ]
 
 const router = new VueRouter({
