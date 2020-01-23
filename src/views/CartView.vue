@@ -22,6 +22,7 @@
       <p>Quantity: {{ value }}</p>
       <vue-numeric-input  v-model="value" :min="1" :max="100" :step="1"></vue-numeric-input>
     <div class="total-price">Total Price</div>
+    <h1>Merge</h1>
   </div>
       <button @click="$router.push('checkout')" class="buy-btn">Proceed to Buy</button>
        <h1>Your Shopping Cart</h1>
