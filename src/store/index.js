@@ -57,11 +57,6 @@ export default new Vuex.Store({
           .then(res => res.json())
       },
   },
-  // addToCart(context, product)
-  // {
-
-  // },
-
   getters: {
     productList : state => state.product || []
   }

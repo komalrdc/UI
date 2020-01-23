@@ -2,18 +2,24 @@
   <main class="productDescriptionView">
         <!-- <h1>Product Description</h1> -->
         <!-- <h1>{{$route.params.id}}</h1> -->
+        
         <div class="left-column">
             <img class="product_image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRfwDCwWtknObpzcJjSKAvpws-7N7-vvUUXmna5-cloG49AKDzE">
         </div>
         <div class = "right-column">
             <div class="description">
                 <span>Books Category</span>
+                <h1>{{$route.params.id}}</h1>
                 <h1>Book name</h1>
                 <p>Author, bind, publisher</p>
             </div>
             <div class = "merchant">
                 <p> Sold by <a href=" " >Merchant link </a></p>
             </div>  
+          <div class="rating">
+            <h1>Rating</h1>
+            <!-- <StarRating :config="config"></StarRating>  -->
+          </div>
             <div> 
                 <p>Quantity: {{ value }}</p>
                 <vue-numeric-input  v-model="value" :min="1" :max="100" :step="1"></vue-numeric-input>
@@ -31,6 +37,8 @@
 <script>
 import VueNumericInput from 'vue-numeric-input'
 import {mapGetters} from 'vuex'
+// import StarRating from 'vue-dynamic-star-rating'
+
 export default {
     name: 'products',
     data: function() {
@@ -41,6 +49,15 @@ export default {
     components: {
        VueNumericInput
     },
+    // config: {
+    //         rating: 4.7,
+    //         style: {
+    //             fullStarColor: '#ed8a19',
+    //             emptyStarColor: '#737373',
+    //             starWidth: 10,
+    //             starHeight: 10
+    //         }
+    //     },
     computed: {
         productId() {
             return this.$route.params.id
@@ -54,14 +71,14 @@ export default {
     },
     methods: {
         fetchProductDetails(id) {
-            // Dispatch action to fetch deatils related to one category
-            this.$store.dispatch('fetchProductDetails', {
-                data: {
-                    id,
-                    success: this.onSuccess,
-                    fail: this.onFail
-                }
-            })
+                // Dispatch action to fetch deatils related to one category
+                this.$store.dispatch('fetchProductDetails', {
+                    data: {
+                        id,
+                        success: this.onSuccess,
+                        fail: this.onFail
+                    }
+                })
         },
         onSuccess () {
             // TODO
@@ -75,24 +92,6 @@ export default {
     created: function() {
         this.fetchProductDetails(this.productId)
     },
-     click(){
-            let data = {
-                id: this.product.id,
-                url: this.product.url,
-                title: this.product.title,
-                author: this.product.author,
-                price: this.product.price
-            }
-            this.$store.dispatch('cartDetails', {
-                data: data,
-                success: function () {
-                    window.console.log('Product added successfully...');
-                },
-                fail: function () {
-                    window.console.log('Product added failed...');
-                }
-            })
-        }
 
 }
 </script>

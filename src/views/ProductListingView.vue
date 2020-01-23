@@ -44,7 +44,7 @@ export default {
                 name: 'description',
                 params: {
                     id
-                }
+                },
             }) 
         },
         click(){

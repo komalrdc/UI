@@ -5,18 +5,15 @@
   <div class="title">
     Shopping Bag
   </div>
- 
-  <!-- Product #1 -->
-  <div class="item">
-    <div class="buttons">
-      <span class="delete-btn"></span>
-      <span class="like-btn"></span>
-    </div>
- 
     <div class="image">
       <img src="" alt="" />
     </div>
- 
+    <ul>
+         <li v-for="product in productList" :key="product">
+                <img :src = "product.url" height="150px" width="100px">
+                {{product.title}} - {{product.price}} - {{product.author}}
+            </li>
+        </ul>
     <div class="description">
       <span>Book name</span><br>
       <span>Author</span><br>
@@ -26,8 +23,7 @@
       <vue-numeric-input  v-model="value" :min="1" :max="100" :step="1"></vue-numeric-input>
     <div class="total-price">Total Price</div>
   </div>
-</div>
-        <button @click="$router.push('checkout')" class="buy-btn">Proceed to Buy</button>
+      <button @click="$router.push('checkout')" class="buy-btn">Proceed to Buy</button>
       <router-view></router-view>
       <Cart></Cart>
   </main>
@@ -35,6 +31,7 @@
 
 <script>
 import VueNumericInput from 'vue-numeric-input'
+import { mapGetters } from 'vuex'
 export default {
   data: function() {
           return {
@@ -43,6 +40,9 @@ export default {
     },
   components: {
        VueNumericInput
+    },
+    computed: {
+      ...mapGetters(['productList'])
     }
 }
 </script>
