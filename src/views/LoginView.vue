@@ -14,8 +14,8 @@
 				<input v-model="password" class="password input" type="Password" placeholder="Password">
 
 				<button @click="submitClicked" class="submit button">Submit</button>  <br> <br>
-				<button><a href="https://accounts.google.com/signin/v2/identifier?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" class="fa fa-google"> LogIn With Gmail </a></button>  <br><br>
-				<button><a href="https://en-gb.facebook.com/login/" class="fa fa-facebook">Login With Facebook</a></button>
+				<button><a href="https://accounts.google.com/signin/v2/identifier?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" class="fa fa-google"> Gmail </a></button>
+				<button><a href="https://en-gb.facebook.com/login/" class="fa fa-facebook">Facebook</a></button>
 			</div>
 		</div>
 		<router-view/>

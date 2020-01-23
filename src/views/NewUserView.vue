@@ -79,6 +79,7 @@
 		padding-top: 30px;
 		border: 2px solid black;
 		border-radius: 20px 20px;
+		margin-top: 130px;
 		
 	}
 	.input{

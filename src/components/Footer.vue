@@ -24,21 +24,25 @@ export default {
 
 <style>
 .ab{
-  background-color: #001f33;
+    background-color: #001f33;
     display: flex;
     flex-direction: row;
     position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 12%;
 }
 .aa{
-    width: 30%;
+    width: 33%;
+    background-color: #e9e9e9;
 }
 .bb{
-    width: 30%;
+    width: 33%;
+    background-color: #e9e9e9;
 }
 .cc{
-    width: 40%;
+    width: 34%;
+    background-color: #e9e9e9;
 }
 </style>

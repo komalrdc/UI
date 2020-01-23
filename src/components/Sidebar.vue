@@ -19,7 +19,7 @@ export default {
 .sidebar {
     display: flex;
     flex-direction: column;
-    height: 590px;
+    height: 573px;
     width: 15%;
     font-size: 25px;
     background-color: #e9e9e9;
