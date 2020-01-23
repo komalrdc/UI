@@ -1,34 +1,32 @@
 <template>
-  <main>
-    <div class="shopping-cart">
-  <!-- Title -->
-  <div class="title">
-    Shopping Bag
-  </div>
-    <div class="image">
-      <img src="" alt="" />
-    </div>
-    <ul class="product_list">
-      <li v-for="product in productList" :key="product" class="product_list_item">
-        <figure>
-          <img :src="product.url" height="150px" width="100px">
-        </figure>
-        <div class="added_items_quantity">
-          <p>{{product.title}}</p>
-          <p>{{product.price}}</p>
-          <p>{{product.author}}</p>
-          <p>Quantity: {{ value }}</p>
-          <vue-numeric-input  v-model="value" :min="1" :max="100" :step="1"></vue-numeric-input>
-          <div class="price">Combined Price</div>
-        </div>
-      </li>
-    </ul>
-  </div>
-      <div class="total-price">Total Price: </div>
+  <main clas="cart">
+    <h3 class="page_headers">
+      Shopping Bag
+    </h3>
+    <div class="total-price">Total Price: </div>
       <button @click="$router.push('checkout')" class="buy-btn">Proceed to Buy</button>
         <!-- <button @click="$router.push('checkout')">Proceed to Buy</button> -->
       <router-view></router-view>
       <Cart></Cart>
+    <ul class="product_list ">
+      <li v-for="product in productList" :key="product" class="product_list_item ">
+        <figure class="">
+          <img :src="product.url" height="150px" width="150px">
+        </figure>
+        <div class="added_items_quantity center">
+          <p>{{product.title}}</p>
+          <p> This is the description of the book. Please read it....</p>
+          <p>{{product.price}}</p>
+          <p>{{product.author}}</p>
+        </div>
+        <section class="right">
+          <p>Quantity: {{ value }}</p>
+          <vue-numeric-input  v-model="value" :min="1" :max="100" :step="1"></vue-numeric-input>
+          <div class="price">Combined Price</div>
+        </section>
+      </li>
+    </ul>
+      
   </main>
 </template>
 
@@ -51,22 +49,7 @@ export default {
 }
 </script>
 
-<style scoped>
-/* .added_items{
-  flex-basis: 65%;
-  border: 2px solid red;
-  margin-right: 700px;
-  margin-top: 50px;
-}
-
-.added_items_quantity {
-  border: 2px solid blue;
-  display: inline-block;
-  margin-bottom: 50px;
-  margin-left: 700px;
-  float: right;
-
-}*/
+<style scoped lang="scss">
 .buy-btn{
   display: block;
   background-color: #7DC855;
@@ -85,12 +68,26 @@ export default {
   margin: 10px;
 }
 .product_list {
+  width: 50vw;
   list-style-type: none;
-  margin: 10px auto;
+  margin: 8px auto 0px;
+  padding: 0px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 8px 4px grey;
+  border: none;
 }
 
 .product_list_item {
   display: flex;
   flex-flow: row;
+  justify-content: center;
+  border-bottom: 3px solid grey;
+  &:last-child {
+    border: none
+  }
+}
+
+.center, .right {
+  flex-grow: 1;
 }
 </style>

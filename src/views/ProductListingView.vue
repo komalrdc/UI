@@ -1,6 +1,6 @@
 <template>
-<main>
-    <h1> Product Listing Page</h1>
+<main class="product_listing">
+    <h3 class="page_headers"> Product Listing Page</h3>
     <fieldset>
         <legend> Products </legend>       
         <div class="container">
