@@ -1,6 +1,5 @@
  <template>
  <main>
-	<Navbar />
 <body>
     <div class="Newuser">
 		<div>
@@ -25,7 +24,6 @@
  </main> 
  </template>
  <script>
- import Navbar from '@/components/App/Navbar'
 
  export default {
 	name: 'signup',
@@ -42,7 +40,6 @@
 		}
 	},
 	components: {
-		Navbar
 	},
 	methods: {
 		Submitclicked (){
@@ -75,7 +72,7 @@
 	
 	.Newuser{
 		text-align: center;
-		background-color: pink;
+		background-color:#e9e9e9;;
 		margin-left: 35%;
 		margin-right: 35%;
 		padding-bottom: 30px;

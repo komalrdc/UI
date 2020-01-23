@@ -1,29 +1,30 @@
 <template>
   <div class="nav">
       <p>{{this.userDetails}}</p>
-      <img src="@/assets/bookstore.jpeg" alt="Bookstoreimage" height= "70px" width="90px" class="img" @click="$router.push('/')"/>
-      <input type="text" class="search" placeholder="search" />
+      <img src="@/assets/bookstore.jpeg" alt="Bookstoreimage" height= "40px" width="70px" class="img" @click="$router.push('/')"/>
+      <input type="text" class="searchbox" placeholder="search" />
       <button class="search">Search</button>
-      <button @click="$router.push('login')" class="login">login</button>
+      <button class="cart" @click="$router.push('cart')">cart</button>
       <button @click="$router.push('signup')" class="newuser">newuser</button>
-      <button class="cart">cart</button>
+      <button @click="$router.push('login')" class="login">login</button>
     </div>
     
 </template>
 
 <script>
 // import newuser from '../views/NewUserView.vue'
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 
 export default {
   data: function () {
     return {
       username: 'anudeep',
-      password: 'anudeep-passwrod'
+      password: 'anudeep-passwrod',
+      userDeatils: ''
     }
   },
   computed: {
-    ...mapGetters(['userDetails'])
+    // ...mapGetters(['userDetails'])
   },
   // components: {
   //   newuser
@@ -46,14 +47,14 @@ export default {
 </script>
 
 <style>
-
-.img{
-  float: left;
-   
-}
+   .img{
+     float: left;
+   }
 .nav{
   /* overflow: hidden; */
-  background-color: #e9e9e9;
+  background-color: #001f33;
+  height: 60px;
+  width: 100vw;
 }
 .btn {
   float: left;
@@ -74,27 +75,45 @@ export default {
   background-color: #2196F3;
   color: white;
 }
+.searchbox {
+  float: left;
+  padding: 10px;
+  padding-right: 50px;
+  border: none;
+  margin-left: 300px;
+  margin-right: 0;
+  font-size: 17;
+  width: 200px;
+  align-items: stretch;
+  
+}
  .cart{
   float: right;
   padding:10px;
+  /* margin-right: 30px; */
+  background-color: #e9e9e9;
   margin-right: 30px;
 } 
 .search{
   float: left;
-  padding: 6px;
+  padding: 10px;
+  padding-right: 50px;
   border: none;
-  margin-top: 8px;
-  margin-right: 16px;
-  font-size: 17px;
-  
+  margin-left: 10px;
+  /* margin-right: 16px; */
+  font-size: 17;
 }
  .login{
-  margin-left: 400px;
+  /* margin-left: 450px; */
+    float: right;
   padding: 10px; 
+  background-color: #e9e9e9
  }
  .newuser{
-   margin-left: 50px;
-   padding: 10px;
+   /* margin-left: 200px; */
+     float: right;
+   padding: 10px; 
+   background-color:#e9e9e9;
  }
 
 </style>

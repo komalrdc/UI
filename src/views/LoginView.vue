@@ -1,12 +1,11 @@
     <template>
     <main>
-	<Navbar />
     <body>
         <div class="Login">
 			<h1> LOGIN HERE </h1>
 			<div>
 				<input v-model="loginType" type="radio" name="login" value="customer" checked id="type-customer">
-				<label for="type-customer">Customer</label>
+				<label for="type-customer">Customer</label> <br>
 				
 				<input v-model="loginType" type="radio" name="login" value="merchant" checked id="type-merchant">
 				<label for="type-merchant">Merchant</label>
@@ -25,7 +24,6 @@
     </template>
 
 <script>
-import Navbar from '@/components/App/Navbar'
 
 export default {
 	name: 'login',
@@ -37,7 +35,7 @@ export default {
 		}
 	},
 	components: {
-      Navbar
+      
 	},
 	methods: {
 		submitClicked () {
@@ -60,14 +58,10 @@ export default {
 }
 
 </script>
-
-  
-
-
 <style scoped>
 .Login{
 	text-align: center;
-	background-color: slateblue;
+	background-color: #e9e9e9;
 	margin-left: 30%;
 	margin-right: 30%;
 	padding-bottom: 30px;
@@ -98,10 +92,12 @@ export default {
 .fa-facebook {
   background: #3B5998;
   color: white;
+  margin-top: 20px;
 }
 .fa-google {
   background: #dd4b39;
   color: white;
+ 
 }
 
 
