@@ -152,12 +152,17 @@ export default new Vuex.Store({
     NewUser (context, payload) {
       fetch('http://10.177.69.85:8080/router/signup', {
         method: 'POST',
-        headers: { 
+        headers: { }
+      })
+    },
+    productDetails(context, payload) {
+      fetch('http://localhost:8080/product/description/:id', {
+        method: 'POST',
+        headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload.data)
-      })
-        .then(res => res.json())
+      }).then(res => res.json())
         
     },
     loginUser (context, {data, success}) {
@@ -184,19 +189,12 @@ export default new Vuex.Store({
     myGetter(state) {
       return state.users.avatar_url || ""
     },
-   merchantProductList(state) {
+    merchantProductList(state) {
       return state.marchantProducts
     },
     productList : state => state.product || [],
     getmerchantid(state){
       return state.merchantId
     }
-  
-  },
-
-  modules: {
-    merchantProductList(state) {
-      return state.marchantProducts
-    },
-  } 
+  }
 })

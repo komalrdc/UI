@@ -11,6 +11,13 @@
     </div> 
     <br> <br>  
     <router-link style="float:right"  to="/addbook" @click="toogleAddProductModalBox">Add a new Book</router-link> 
+    <div1> 
+    <div id="nav"> 
+    <router-link to="/addbook" @click="toogleAddProductModalBox">Add a new Book</router-link> 
+    <button style="float:right" @click="home()">Sign Out</button>
+    <h1>Welcome Merchant!</h1> 
+    
+    </div>  
     <h2> Your products on sale: </h2> 
     <table id="table"> 
         <tr>
@@ -62,12 +69,14 @@ table {
 //import AddProduct from '@/components/merchant/AddProduct.vue'
 import { mapGetters, mapActions } from 'vuex'
 import UpdateProduct from '@/components/merchant/UpdateProduct.vue'
+import AddProduct from '@/components/merchant/AddProduct.vue'
 //import {function} from '../../vue-temp/vue-editor-bridge'
 export default {
   name: 'App',
   components: {
      //AddProduct,
      UpdateProduct,
+     AddProduct
   },
   data() {
     //  flag:false,
