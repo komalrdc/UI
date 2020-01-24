@@ -7,14 +7,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-<<<<<<< HEAD
-=======
     users: {},
     cartItems: [],
     cartCount: 0,
     searchList: [],
     selectedProduct: [],
->>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
     product: [
       {
         id: 1,
@@ -48,18 +45,6 @@ export default new Vuex.Store({
   },
 
   mutations: {
-<<<<<<< HEAD
-    UPDATE_URL(state, url) {
-      state.users = {
-        avatar_url: url
-      }
-    },
-    SET_USER_DETAILS(state, payload) {
-      window.console.log('@@@@@', payload)
-      state.userDetails = payload
-    },
-=======
->>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
     SET_PRODUCT(state, payload) {
       state.marchantProducts = payload
     },
@@ -74,13 +59,6 @@ export default new Vuex.Store({
     }
   },
   actions: {
-<<<<<<< HEAD
-    // myfirstAction(context) {
-    //   fetch('http://api.github.com/users/komalrd')
-    //   .then(res => res.json())
-    //   .then(res => {
-    //     context.commit('UPDATE_URL', res.avatar_url)
-    //   }) 
       loginUser (context, payload) {
         // window.console.log(payload);
 
@@ -104,7 +82,8 @@ export default new Vuex.Store({
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(payload.data)
-=======
+        })
+      },
     selectedProduct({commit}, data) {
         commit('SET_SELECTED_PRODUCT', data)
     },
@@ -153,7 +132,6 @@ export default new Vuex.Store({
       fetch('http://10.177.2.194:8080/router/addProduct', {
         method: "POST",
         body: JSON.stringify(data)
->>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
         })
           .then(res => res.json())
           
@@ -175,12 +153,7 @@ export default new Vuex.Store({
       // window.console.log(this.x)
     // },
     getAllProductByMerchantId (context, {data, success}) {
-<<<<<<< HEAD
-      debugger
       fetch('http://10.177.69.85:8080/router/getProductByMerchantId/'+data, {
-=======
-      fetch('http://10.177.2.194:8080/router/getProductByMerchantId/'+data, {
->>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -221,18 +194,12 @@ export default new Vuex.Store({
     merchantProductList(state) {
       return state.marchantProducts
     },
-<<<<<<< HEAD
-    // productList : state => state.product || []
-    productList(state) {
-      return state.productList || []
-=======
     productList : state => state.product || [],
     selectedProducts (state) {
       return state.selectedProduct || []
     },
     search(state) {
       return state.searchList || []
->>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
     }
   }
 })
