@@ -7,24 +7,42 @@
         </section>
         <section class="navbar_division center">
             <input type = "text" placeholder="search">
-            <router-link to="/search" class="navbar_route" tag="span">Search</router-link>
-            <!-- <router-link to="/product" class="navbar_route" tag="span">Product</router-link>
-        <router-link to="/cart" class="navbar_route" tag="span">Cart</router-link>
-        <router-link to="/MerchantListing" class="navbar_route" tag="span">Merchant</router-link>  -->
+            <button @click ="searchListMethod" class="navbar_route">Search</button>
+            <!-- <router-link to="/search" class="navbar_route" tag="span">Search</router-link> -->
         </section>
         <section class="navbar_division right">
             <router-link to="/login" class="navbar_route" tag="span">Login</router-link>
             <router-link to="/newuser" class="navbar_route" tag="span">New User</router-link>
             <router-link to="/cart" class="navbar_route" tag="span">Cart</router-link>
         </section>
-        
-        
     </nav>
 </template>
 
 <script>
-export default {
-    name: 'Navbar'
+import { mapGetters, mapActions } from 'vuex'
+export default { 
+    name: 'Navbar',
+
+    computed: {
+      ...mapGetters(['search'])
+    },
+    created() {
+        window.console.log(this.searchList)
+      this.$store.commit('SET_SEARCH_LIST', 'Fiction')
+    },
+    methods: {
+        ...mapActions(['getSearchList']),
+        searchListMethod: function() {
+            this.$store.dispatch('getSearchList', {
+                data: this.searchList,
+                success: this.searchListSuccess
+            })
+        },
+        searchListSuccess: function (result) {
+          window.console.log(result);
+          window.debugger;
+        }
+    }
 }
 </script>
 

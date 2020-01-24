@@ -31,11 +31,11 @@ const routes = [
       name: 'MerchantListing',
       component: () => import('../views/MerchantListing.vue')
     },
-    {
-      path: '/search',
-      name: 'search',
-      component: () => import('../views/SearchView.vue')
-    },
+    // {
+    //   path: '/search',
+    //   name: 'search',
+    //   component: () => import('../views/SearchView.vue')
+    // },
     {
       path: '/login',
       name: 'login',

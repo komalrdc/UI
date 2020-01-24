@@ -37,7 +37,7 @@ export default {
         console.log(this.selectedProducts)
         // eslint-disable-next-line no-debugge
         this.getProductListing({
-            data: "Fiction"
+            data: this.$route.params.category
         })
     },
     data (){

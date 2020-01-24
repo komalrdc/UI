@@ -10,7 +10,7 @@ export default new Vuex.Store({
     users: {},
     cartItems: [],
     cartCount: 0,
-    search: [],
+    searchList: [],
     selectedProduct: [],
     product: [
       {
@@ -53,8 +53,8 @@ export default new Vuex.Store({
     SET_CART_ITEMS(state, payload) {
       state.cartItems = payload
     },
-    SET_SEARCH(state,payload) {
-      state.search =payload
+    SET_SEARCH_LIST(state,payload) {
+      state.searchList = payload
     }
   },
   actions: {
@@ -64,9 +64,27 @@ export default new Vuex.Store({
     cartItems({commit}, data) {
       commit('SET_CART_ITEMS', data)
     },
-    search({commit},data) {
-      commit('SET_SEARCH', data)
+    searchList({commit},data) {
+      commit('SET_SEARCH_LIST', data)
     },
+
+    getSearchList(context, {data,success}) {
+      window.debugger;
+      fetch('http://10.177.69.85:8090/router/search/search/'+data, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => res.json()).then( (res) => {
+        console.log(res)
+        context.commit('SET_SEARCH_LIST',res)
+        success && success(res)
+      }).catch( (err) => {
+        console.log(err)
+      })
+    },
+
     getProductListing(context, {data, success}) {
       fetch('http://10.177.69.85:8080/router/getProductByGenre/'+data, {
         method: 'GET',
@@ -148,8 +166,8 @@ export default new Vuex.Store({
     selectedProducts (state) {
       return state.selectedProduct || []
     },
-    search (state) {
-      return state.search || []
+    search(state) {
+      return state.searchList || []
     }
   }
 })
