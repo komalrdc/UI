@@ -24,13 +24,13 @@
             <input id="genre" type="text" v-model="product.genre" required/>
             <br><br>
             <label> Publisher Name </label>
-            <input id="Publisher" type="text" v-model="product.publisher" required/>
+            <input id="Publisher" type="text" v-model="product.attributes.publisher" required/>
             <br><br>
             <label> Year Of Publishing </label>
-            <input id="YearoOfPublishing" type="number" v-modal="product.year" required/>
+            <input id="YearoOfPublishing" type="number" v-model="product.attributes.year" required/>
             <br><br>
             <label> Binding Type </label>
-            <input id="BindType" type="text" v-model="product.binding" required/>
+            <input id="BindType" type="text" v-model="product.attributes.binding" required/>
             <br><br>
             <label>Quantity</label>
             <input type="number" id="quantity" v-model="product.quantity" required/>
@@ -41,8 +41,9 @@
             <label> ISBN </label>
             <input ID="isbn" type="number" v-model="product.isbn" required/>
             <br><br>
-            
-            <button id="save" @click="saveProduct">Save</button> 
+            <label>Number Of Pages</label>
+            <input type="number" v-model="product.attributes.noofpages" required/> <br> <br> 
+            <button style="font-size:20px" id="save" @click="saveProduct">Save</button> 
             </fieldset>
         </form>    
     </div>
@@ -55,53 +56,63 @@ export default{
     data: function () {
         return {
             product: {
-                merchantId: '1234',
+                merchantId: '',
                 productName: 'My Product',
                 author: 'Prakriti Tiwari',
                 price: '20',
-                url: '',
+                url: "",
                 genre: 'fiction',
                 description: 'cvc',
                 attributes: {
-                publisher: "",
-                year: '2000',
+                publisher: "xyz",
+                year: '2000',   
+                noofpages: '100',
                 binding: 'soft',
-            
                 } ,
                 quantity: '2',
                 isbn: '22345',
                 
 
-            }
+            },
+            successMessage:""
         }
     },
     props: ['toggleFunction'],
 
     methods: {
+        computed:{
+        //  ...mapGetters([
+     // 'getmerchantid',
+  //  ])
+        } ,
         saveProduct(event){
             let data = {...this.product}
             event.preventDefault();
             event.stopPropagation();
-            this.$store.dispatch('addNewProduct', {
+            this.$store.dispatch('addNewProduct', { 
                 data: data,
-                success: this.onSuccessFun
+                success: this.addNewProductSuccess
             })
         },
-        onSuccessFun (res) {
+        addNewProductSuccess (res) {
             // eslint-disable-next-line no-console
-            console.log(res)
+            this.successMessage = res
+           // console.log(res)
             this.$router.push('/MerchantListing')
+            this.toggleFunction(); 
         },
         toogleModalBox () {
             this.toggleFunction();
         }
     }
-}
+} 
+
 </script>
 
 <style scoped>
     form{
         text-align: left; 
+        font-size: 40;
         /* background-color: orange;  */
     }
 
@@ -121,10 +132,10 @@ export default{
 .modal_content {
     box-sizing: border-box;
     border-radius: 20px;
-    background-color: dodgerblue;
+    background-color: lightblue;
     position: fixed;
     z-index: 100;
-    height: 80vh;
+    height: 90vh;
     width: 50vw;
     top: 50%;
     left: 50%;

@@ -8,7 +8,35 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/about',
+    name: 'about',
+    component: () => import('../views/About.vue'),
+  },
+  {
+    path: '/addbook',
+    name: 'AddProduct',
+    component: () => import('../components/merchant/AddProduct.vue')
+  },
+  {
+     path: '/login',
+     name: 'login',
+     component: () =>import('../views/login.vue')
+
+  },
+  {    
+    path: '/newUser',
+    name: 'newUser',
+    component: () =>import('../views/newUser.vue') 
+
+  },
+  {
+    path: '/MerchantListing/:id',
+    name: 'MerchantListing',
+    component: () => import('../views/MerchantListing.vue')
+  },
+  {
     path: '/',
+<<<<<<< HEAD
     name: 'home',
     component: home
   },
@@ -83,6 +111,11 @@ const routes = [
     path: '/category/:id',
     component: () => import('@/views/Category')
   },
+=======
+    name: 'Home',
+    component: Home
+},
+>>>>>>> 54bf1011533701dec2a443a9cd03f5a380180e14
     {
       path: '/cart',
       name:'cart',

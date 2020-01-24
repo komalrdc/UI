@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <main clas="cart">
     <h3 class="page_headers">
       Shopping Bag
@@ -6,6 +7,35 @@
     <div class="total-price">Total Price: </div>
       <button @click="$router.push('checkout')" class="buy-btn">Proceed to Buy</button>
         <!-- <button @click="$router.push('checkout')">Proceed to Buy</button> -->
+=======
+  <main>
+    <div class="shopping-cart">
+  <!-- Title -->
+  <div class="title">
+    Shopping Bag
+  </div>
+    <div class="image">
+      <img src="" alt="" />
+    </div>
+    <ul>
+         <li v-for="product in productList" :key="product">
+                <img :src = "product.url" height="150px" width="100px">
+                {{product.title}} - {{product.price}} - {{product.author}}
+            </li>
+        </ul>
+    <div class="description">
+      <span>Book name</span><br>
+      <span>Author</span><br>
+      <span>White</span>
+    </div>
+      <p>Quantity: {{ value }}</p>
+      <vue-numeric-input  v-model="value" :min="1" :max="100" :step="1"></vue-numeric-input>
+    <div class="total-price">Total Price</div>
+  </div>
+      <button @click="$router.push('checkout')" class="buy-btn">Proceed to Buy</button>
+       <h1>Your Shopping Cart</h1>
+        <button @click="$router.push('checkout')">Proceed to Buy</button>
+>>>>>>> 54bf1011533701dec2a443a9cd03f5a380180e14
       <router-view></router-view>
       <Cart></Cart>
     <ul class="product_list ">
@@ -29,11 +59,13 @@
       
   </main>
 </template>
-
 <script>
 import VueNumericInput from 'vue-numeric-input'
 import { mapGetters } from 'vuex'
+<<<<<<< HEAD
 import Cart from '../components/cart/Cart'
+=======
+>>>>>>> 54bf1011533701dec2a443a9cd03f5a380180e14
 export default {
   data: function() {
           return {
@@ -41,6 +73,7 @@ export default {
           }
     },
   components: {
+<<<<<<< HEAD
     Cart,
        VueNumericInput
     },
@@ -57,6 +90,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+=======
+       VueNumericInput
+    },
+    computed: {
+      ...mapGetters(['productList'])
+    }
+}
+</script>
+<style scoped>
+>>>>>>> 54bf1011533701dec2a443a9cd03f5a380180e14
 .buy-btn{
   display: block;
   background-color: #7DC855;
@@ -69,6 +112,7 @@ export default {
   margin-right:auto
 }
 .buy-btn:hover {
+<<<<<<< HEAD
   background-color: #64af3d;
 }
 .image {
@@ -96,5 +140,8 @@ export default {
 
 .center, .right {
   flex-grow: 1;
+=======
+  background-color: #64AF3D;
+>>>>>>> 54bf1011533701dec2a443a9cd03f5a380180e14
 }
 </style>

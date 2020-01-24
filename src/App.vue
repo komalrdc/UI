@@ -1,42 +1,26 @@
 <template>
   <main>
   <div id="app">
-<<<<<<< HEAD
     <nav id="nav">
       <Navbar />
       <Footer />
-      <!-- <router-link to="/product">Product</router-link> |
-      <router-link to="/cart">Cart</router-link> |
-      <router-link to="/MerchantListing">Merchant Profile</router-link>  -->
     </nav>
-=======
-    <Navbar />
     <Sidebar/>
->>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
     <router-view/>
   </div>
   </main>
 </template>
  
 <script>
-<<<<<<< HEAD
 import Navbar from '@/components/App/Navbar'
 import Footer from '@/components/Footer'
+import Sidebar from '@/components/Sidebar'
 //import Home from '@/views/Home'
 
-
 export default {
   name: 'App',
   components: {
-    Navbar,Footer
-=======
-import Navbar from './components/App/Navbar'
-import Sidebar from './components/App/Sidebar'
-export default {
-  name: 'App',
-  components: {
-    Navbar, Sidebar
->>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
+    Navbar,Footer, Sidebar
   }
 }
 </script>

@@ -1,4 +1,4 @@
- <template>
+<template>
  <main>
 <body>
     <div class="Newuser">
@@ -19,7 +19,7 @@
 	<button @click="Submitclicked()">Submit</button>
 		</div>
     </div>
-	<router-view />
+	<router-view /> 
 </body>
  </main> 
  </template>
@@ -35,7 +35,7 @@
 			pincode:'',
 			password:'',
 			confirmPassword:'',
-			loginType: 'customer'
+			loginType: 'merchant'
 		}
 	},
 	components: {
@@ -55,7 +55,9 @@
 			this.$store.dispatch('NewUser', {
 				data: data,
 				success: function () {
-					window.console.log('login successful...');
+                    window.console.log('login successful...');
+                    
+                    
 				},
 				fail: function () {
 					window.console.log('login failed ...');
@@ -87,5 +89,6 @@
 	margin: 10px auto;
 	padding: 5px;
 	}
-
+ 
+ 
  </style>

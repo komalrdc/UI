@@ -1,4 +1,4 @@
-    <template>
+<template>
     <main>
     <body>
         <div class="Login">
@@ -24,6 +24,7 @@
     </template>
 
 <script>
+//import MerchantListing from './views/MerchantListing.vue'; 
 export default {
 	name: 'login',
 	data: function () {
@@ -45,13 +46,20 @@ export default {
 			}
 			this.$store.dispatch('loginUser', {
 				data: data,
-				success: function () {
-					window.console.log('login successful...');
-				},
+				
+				success: this.loginSuccess, 
 				fail: function () {
 					window.console.log('login failed ...');
 				}
 			})
+		},
+		loginSuccess (res) {
+			if (this.loginType =='merchant'){ 
+				window.console.log(this.loginType);
+				this.$router.push('MerchantListing/'+res.response)
+				// window.location= ("//localhost:8080/MerchantListing"); 
+				// } 
+				window.console.log('login successful...');  }
 		}
 	}
 }
@@ -82,11 +90,9 @@ export default {
   text-align: center;
   text-decoration: none;
 }
-
 .fa:hover {
   opacity: 0.7;
 }
-
 .fa-facebook {
   background: #3B5998;
   color: white;
@@ -97,5 +103,4 @@ export default {
   color: white;
  
 }
-
 </style>

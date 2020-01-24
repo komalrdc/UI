@@ -7,12 +7,7 @@
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTt0wRZ7qencbqGT2YvT3DiTYyGNC9-IsM9zWE0haTOPo6UFHps">
     </div>
     <p>Fictional Books</p>
-<<<<<<< HEAD
-    <!-- <p>{{this.get()}}</p> -->
-    <div v-for = "(product, index) in productList" :key="index" class="books">
-=======
     <div v-for = "product in selectedProducts" :key="'product:' + product.id" class="books">
->>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
             <div>
                 <figure @click="routeToProductDescription(product.id)"> 
                     <img :src = "product.url" height="150px" width="100px">
@@ -31,11 +26,7 @@
 <script>
 import ProductListing from '@/components/product/ProductListing.vue'
 import {mapGetters} from 'vuex'
-<<<<<<< HEAD
-
-=======
 import {mapActions} from 'vuex'
->>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
 export default {
     name:'productlisting',
     components: {
@@ -57,11 +48,6 @@ export default {
         ...mapGetters(['productList', 'selectedProducts'])
     },
     methods: {
-<<<<<<< HEAD
-        // get () {
-        //     return this.productList
-        // },
-=======
         ...mapActions(['getProductListing']),
         
         productListing: function() {
@@ -73,7 +59,6 @@ export default {
                 data: data
             })
         },
->>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
         routeToProductDescription (id) {
             this.$store.dispatch('selectedProduct', this.productList[id])
             this.$router.push({
