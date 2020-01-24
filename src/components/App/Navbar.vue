@@ -6,7 +6,7 @@
             </router-link>
         </section>
         <section class="navbar_division center">
-            <input type = "text" value="search" placeholder="search">
+            <input type = "text" placeholder="search">
             <router-link to="/search" class="navbar_route" tag="span">Search</router-link>
             <!-- <router-link to="/product" class="navbar_route" tag="span">Product</router-link>
         <router-link to="/cart" class="navbar_route" tag="span">Cart</router-link>

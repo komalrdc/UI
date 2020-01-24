@@ -47,20 +47,20 @@ const routes = [
       component: () => import('../views/NewUserView.vue')
     },
     {
-      path: '/product',
-      name: 'product',
+      path: '/product/:category',
+      name: 'Product',
       component: () => import( '../views/ProductView.vue'),
-      children: [
-        {
-          path: '/:category',
-          component: () => import( '../views/ProductListingView.vue'), 
-        },
-        {
-          path: 'description/:id',
-          name: 'description',
-          component: () => import( '../views/ProductDescriptionView.vue'),
-        }
-      ]
+      // children: [
+      //   {
+      //     path: '/category',
+      //     component: () => import( '../views/ProductListingView.vue'), 
+      //   },
+      //   {
+      //     path: 'description/:id',
+      //     name: 'description',
+      //     component: () => import( '../views/ProductDescriptionView.vue'),
+      //   }
+      // ]
     },
 
 ]

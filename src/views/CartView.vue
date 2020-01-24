@@ -9,7 +9,7 @@
       <router-view></router-view>
       <Cart></Cart>
     <ul class="product_list ">
-      <li v-for="product in productList" :key="product" class="product_list_item ">
+      <li v-for="product in productList" :key="product.title" class="product_list_item ">
         <figure class="">
           <img :src="product.url" height="150px" width="150px">
         </figure>
@@ -33,6 +33,7 @@
 <script>
 import VueNumericInput from 'vue-numeric-input'
 import { mapGetters } from 'vuex'
+import Cart from '../components/cart/Cart'
 export default {
   data: function() {
           return {
@@ -40,6 +41,7 @@ export default {
           }
     },
   components: {
+    Cart,
        VueNumericInput
     },
     computed: {

@@ -10,6 +10,7 @@ export default new Vuex.Store({
     users: {},
     cartItems: [],
     cartCount: 0,
+    search: [],
     selectedProduct: [],
     product: [
       {
@@ -51,6 +52,9 @@ export default new Vuex.Store({
     },
     SET_CART_ITEMS(state, payload) {
       state.cartItems = payload
+    },
+    SET_SEARCH(state,payload) {
+      state.search =payload
     }
   },
   actions: {
@@ -60,7 +64,9 @@ export default new Vuex.Store({
     cartItems({commit}, data) {
       commit('SET_CART_ITEMS', data)
     },
-
+    search({commit},data) {
+      commit('SET_SEARCH', data)
+    },
     getProductListing(context, {data, success}) {
       fetch('http://10.177.69.85:8080/router/getProductByGenre/'+data, {
         method: 'GET',
@@ -141,6 +147,9 @@ export default new Vuex.Store({
     productList : state => state.product || [],
     selectedProducts (state) {
       return state.selectedProduct || []
+    },
+    search (state) {
+      return state.search || []
     }
   }
 })
