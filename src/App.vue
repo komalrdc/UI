@@ -4,13 +4,13 @@
       <router-link to="/MerchantListing:id"></router-link> 
       <router-link to="/login"></router-link> 
       <router-link to="/newUser"></router-link>
-    <nav id="nav">
-    <nav id="nav">
+    <!--nav id="nav"-->
+     <!--nav id="nav">
       <h1 style="background-color: red">Welcome!</h1>
       <router-link to="/product">Product</router-link> |
       <router-link to="/cart">Cart</router-link> |
       <router-link to="/MerchantListing"></router-link> 
-    </nav>
+    </nav--> 
     <router-view/>
   </div>
 </template>

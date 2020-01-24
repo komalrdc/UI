@@ -7,6 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    merchantId: '',
     users: {},
     // marchantProducts: [
     //   {
@@ -80,17 +81,15 @@ export default new Vuex.Store({
     SET_PRODUCT(state, payload) {
       state.marchantProducts = payload
     },
+    GET_DETAILS(state,payload){
+       state.merchantdetails=payload
+    },
     GET_MERCHANTID(state,payload){
-      state.merchantId=payload
+      debugger;
+      state.merchantId=payload.response
     }
   },
   actions: { 
-    // myfirstAction(context) {
-    //   fetch('http://api.github.com/users/komalrd')
-    //   .then(res => res.json())
-    //   .then(res => {
-    //     context.commit('UPDATE_URL', res.avatar_url)
-    //   }) 
     addproduct({data} ) {
       fetch('http://10.177.69.85:8080/router/addProduct', {
         method: "POST",
@@ -144,6 +143,19 @@ export default new Vuex.Store({
       }) 
       window.console.log(this.x)
     },
+    getMerchantDetails(context,{data,success}){
+      fetch('http://10.177.69.85:8080/router/getMerchantById/'+data, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        }
+      })
+      .then(res => res.json()).then( (res) => {
+        context.commit('GET_DETAILS',res)
+        success && success(res)
+      }) 
+    },
     fetchProductDetails (context, {data, success, fail}) {
       window.console.log([data, success, fail])
       // success && success(res)
@@ -152,8 +164,13 @@ export default new Vuex.Store({
     NewUser (context, payload) {
       fetch('http://10.177.69.85:8080/router/signup', {
         method: 'POST',
-        headers: { }
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload.data)
       })
+        .then(res => res.json())
+    
     },
     productDetails(context, payload) {
       fetch('http://localhost:8080/product/description/:id', {
@@ -192,9 +209,13 @@ export default new Vuex.Store({
     merchantProductList(state) {
       return state.marchantProducts
     },
+    merchantDetails(state){
+      return state.merchantdetails
+    },
     productList : state => state.product || [],
-    getmerchantid(state){
-      return state.merchantId
-    }
+    getmerchantid: state => state.merchantId
+    // getmerchantid(state){
+    //   return state.merchantId
+    // }
   }
 })

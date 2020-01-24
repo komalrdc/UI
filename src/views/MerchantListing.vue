@@ -5,19 +5,19 @@
     <div class="nav"> 
 
     <button class="signout" style="float:right" @click="home()">Sign Out</button>
-    <button class="signout" > My Profile </button>
+    <button class="signout" @click="details" > My Profile </button>
     <h1 class="h1">Welcome Merchant!</h1> 
     
     </div> 
     <br> <br>  
     <router-link style="float:right"  to="/addbook" @click="toogleAddProductModalBox">Add a new Book</router-link> 
-    <div1> 
-    <div id="nav"> 
+    
+    <!--div id="nav"> 
     <router-link to="/addbook" @click="toogleAddProductModalBox">Add a new Book</router-link> 
     <button style="float:right" @click="home()">Sign Out</button>
     <h1>Welcome Merchant!</h1> 
     
-    </div>  
+    </div-->  
     <h2> Your products on sale: </h2> 
     <table id="table"> 
         <tr>
@@ -54,7 +54,7 @@
         <td> <button @click="display(product)">Remove Product</button></td>
         </tr>
     </table>
-    
+     <MerchantDetails v-if="flag1" :toggleFunction="details"></MerchantDetails>
     <UpdateProduct v-if="flag" :selectedProduct="edit"  :toggleFunction="toogleAddProductModalBox"></UpdateProduct>
     </div> 
 </template>
@@ -66,17 +66,17 @@ table {
 </style>
 
 <script>
-//import AddProduct from '@/components/merchant/AddProduct.vue'
+import MerchantDetails from '@/components/merchant/MerchantDetails'
 import { mapGetters, mapActions } from 'vuex'
 import UpdateProduct from '@/components/merchant/UpdateProduct.vue'
-import AddProduct from '@/components/merchant/AddProduct.vue'
+//import func from '../../vue-temp/vue-editor-bridge'
+//import AddProduct from '@/components/merchant/AddProduct.vue'
 //import {function} from '../../vue-temp/vue-editor-bridge'
 export default {
   name: 'App',
   components: {
-     //AddProduct,
      UpdateProduct,
-     AddProduct
+     MerchantDetails
   },
   data() {
     //  flag:false,
@@ -90,7 +90,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'merchantProductList'
+      'merchantProductList',
+      'getmerchantid'
     ])
   },
   created () {
@@ -115,9 +116,7 @@ export default {
       },
      toogleAddProductModalBox: function(product = {}){
         this.flag  = !this.flag;
-        this.edit=product; 
-        //window.console.log(flag); 
-         
+        this.edit=product;  
      },
      display: function(product){
         let data = {...product.merchantId,...product.productId}
@@ -133,9 +132,19 @@ export default {
         alert('product deleted successfully'); 
          
      },
-     home: function() {
-       
-       
+     details: function (){
+         this.flag1=!this.flag1;
+         //let data={...product.merchantId}
+         window.console.log('getmerchantId',this.getmerchantid); 
+         event.preventDefault();
+            event.stopPropagation();
+            window.debugger;
+            this.$store.dispatch('getMerchantDetails', {
+                data: this.getmerchantid,
+                //success: this.addNewProductSuccess
+            })
+     }, 
+     home: function() {  
      }
   }
 

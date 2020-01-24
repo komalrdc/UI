@@ -82,7 +82,6 @@ export default{
           'selectedProduct',
           'toggleFunction'
           ],
-
     methods: {  
         saveProduct(event){
             let data = {...this.product}

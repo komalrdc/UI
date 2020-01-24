@@ -94,6 +94,7 @@ export default{
             this.successMessage = res
            // console.log(res)
             this.$router.push('/MerchantListing')
+            this.toggleFunction(); 
         },
         toogleModalBox () {
             this.toggleFunction();
