@@ -4,29 +4,29 @@
         <!-- <h1>{{$route.params.id}}</h1> -->
         
         <div class="left-column">
-            <img class="product_image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRfwDCwWtknObpzcJjSKAvpws-7N7-vvUUXmna5-cloG49AKDzE">
+            <img class="product_image" :src="selectedProducts.url">
         </div>
         <div class = "right-column">
             <div class="description">
                 <span>Books Category</span>
-                <h1>{{$route.params.id}}</h1>
-                <h1>Book name</h1>
-                <p>Author, bind, publisher</p>
+                <h1>{{ selectedProducts.title}}</h1>
+                <p>{{selectedProducts.author}}</p>
             </div>
             <div class = "merchant">
-                <p> Sold by <a href=" " >Merchant link </a></p>
+                <p> Sold by <a href=" " >Merchant Link</a></p>
             </div>  
           <div class="rating">
             <h1>Rating</h1>
-            <!-- <StarRating :config="config"></StarRating>  -->
+            <StarRating :config="config"></StarRating> 
           </div>
             <div> 
                 <p>Quantity: {{ value }}</p>
                 <vue-numeric-input  v-model="value" :min="1" :max="100" :step="1"></vue-numeric-input>
             </div>
             <div class="product-price">
-                <span>Price</span>
-                <!-- <button @click = "addtocart" class="cart-btn">Add to Cart</button> -->
+                <span>Price:</span>
+                <span>{{selectedProducts.price}}</span>
+                <!-- <button @click = "routeTocart" class="cart-btn">Add to Cart</button> -->
                 <p><router-link to="/cart/" tag="button" class="cart-btn" >Add to Cart</router-link></p>
             </div>         
         </div>
@@ -41,14 +41,24 @@ export default {
     name: 'products',
     data: function(){
           return {
-              number: 1
+              value: 1,
+              // selectedProduct: {},
+              cartItems: {}
           }
+    },
+    created () {
+      const id  = this.$route.params.id
+      this.selectedProducts =  this.productList[id-1]
+      // eslint-disable-next-line no-console
+      console.log(this.selectedProduct)
     },
     computed: {
         productId() {
             return this.$route.params.id
         },
-        ...mapGetters(['productList'])
+        ...mapGetters(['productList']),
+        ...mapGetters(['productDescription']),
+        ...mapGetters(['selectedProducts'])
     },
     watch: {
         productId: function () {
@@ -77,20 +87,22 @@ export default {
             // TODO
             // Show proper erros
         }
-    },
-        increase: function(){
-            this.number = this.number +1
-        },
-        decrease: function(){
-            this.number = this.number-1
-        },
-        
-    created: function() {
-        this.fetchProductDetails(this.productId)
-    },
+    },       
+    routeToCart(id) {
+            this.$store.dispatch('cartItems', this.productList[id])
+            this.$router.push({
+                name: 'cartitems',
+                params: {
+                    id
+                },
+            }) 
+    
+    // created: function() {
+    //     this.fetchProductDetails(this.productId)
+    // },
 
     }
-
+}
 </script>
 
 <style scoped>
@@ -169,7 +181,7 @@ html, body {
 .product-price {
   display: flex;
   align-items: center;
-  margin-left: 300px;
+  margin-left: 150px;
 }
 .input-group {
   clear: both;

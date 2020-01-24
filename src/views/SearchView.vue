@@ -1,15 +1,12 @@
 <template>
-  <main clas="cart">
+  <main clas="search">
     <h3 class="page_headers">
-      Shopping Bag
+      Search List
     </h3>
-    <div class="total-price">Total Price: </div>
-      <button @click="$router.push('checkout')" class="buy-btn">Proceed to Buy</button>
-        <!-- <button @click="$router.push('checkout')">Proceed to Buy</button> -->
       <router-view></router-view>
-      <Cart></Cart>
+      <Search></Search>
     <ul class="product_list ">
-      <li v-for="product in productList" :key="product.title" class="product_list_item ">
+      <li v-for="product in searchList" :key="product" class="product_list_item ">
         <figure class="">
           <img :src="product.url" height="150px" width="150px">
         </figure>
@@ -19,11 +16,6 @@
           <p>{{product.price}}</p>
           <p>{{product.author}}</p>
         </div>
-        <section class="right">
-          <p>Quantity: {{ value }}</p>
-          <vue-numeric-input  v-model="value" :min="1" :max="100" :step="1" @click="quantity"></vue-numeric-input>
-          <div class="price">Combined Price</div>
-        </section>
       </li>
     </ul>
       
@@ -31,9 +23,8 @@
 </template>
 
 <script>
-import VueNumericInput from 'vue-numeric-input'
-import { mapGetters } from 'vuex'
-import Cart from '../components/cart/Cart'
+import Search from '@/components/Search/Search'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   data: function() {
           return {
@@ -41,17 +32,28 @@ export default {
           }
     },
   components: {
-    Cart,
-       VueNumericInput
+    Search
     },
     computed: {
-      ...mapGetters(['productList']),
-      ...mapGetters(['selectedProduct'])
+      ...mapGetters(['productList', 'search']),
     },
+    // created () {
+    //   window.console.log(this.searchList)
+    //   this.$store.commit('SET_SEARCH_LIST', 'Fiction')
+    // },
     methods: {
-      quantity: function() {
-        
-      }
+    ...mapActions(['getSearchList']),
+
+        // searchListMethod: function() {
+        //     this.$store.dispatch('getSearchList', {
+        //         data: this.searchList,
+        //         success: this.searchListSuccess
+        //     })
+        // },
+        // searchListSuccess: function (result) {
+        //   window.console.log(result);
+        //   window.debugger;
+        // }
     }
 }
 </script>
@@ -94,7 +96,7 @@ export default {
   }
 }
 
-.center, .right {
+.center {
   flex-grow: 1;
 }
 </style>

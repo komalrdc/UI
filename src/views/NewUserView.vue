@@ -1,4 +1,8 @@
+<<<<<<< HEAD
  <template>
+=======
+<template>
+>>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
  <main>
 <body>
     <div class="Newuser">
@@ -24,7 +28,10 @@
  </main> 
  </template>
  <script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
  export default {
 	name: 'signup',
 	data: function () {
@@ -60,7 +67,10 @@
 				},
 				fail: function () {
 					window.console.log('login failed ...');
+<<<<<<< HEAD
 
+=======
+>>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
 			}
 		})
 		}
@@ -90,6 +100,11 @@
 	padding: 5px;
 	}
  
+<<<<<<< HEAD
 
  
  </style>
+=======
+ 
+ </style>
+>>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514

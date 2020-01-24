@@ -7,6 +7,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+<<<<<<< HEAD
+=======
+    users: {},
+    cartItems: [],
+    cartCount: 0,
+    searchList: [],
+    selectedProduct: [],
+>>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
     product: [
       {
         id: 1,
@@ -40,6 +48,7 @@ export default new Vuex.Store({
   },
 
   mutations: {
+<<<<<<< HEAD
     UPDATE_URL(state, url) {
       state.users = {
         avatar_url: url
@@ -49,11 +58,23 @@ export default new Vuex.Store({
       window.console.log('@@@@@', payload)
       state.userDetails = payload
     },
+=======
+>>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
     SET_PRODUCT(state, payload) {
       state.marchantProducts = payload
+    },
+    SET_SELECTED_PRODUCT(state, payload) {
+      state.selectedProduct = payload
+    },
+    SET_CART_ITEMS(state, payload) {
+      state.cartItems = payload
+    },
+    SET_SEARCH_LIST(state,payload) {
+      state.searchList = payload
     }
   },
   actions: {
+<<<<<<< HEAD
     // myfirstAction(context) {
     //   fetch('http://api.github.com/users/komalrd')
     //   .then(res => res.json())
@@ -83,6 +104,56 @@ export default new Vuex.Store({
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(payload.data)
+=======
+    selectedProduct({commit}, data) {
+        commit('SET_SELECTED_PRODUCT', data)
+    },
+    cartItems({commit}, data) {
+      commit('SET_CART_ITEMS', data)
+    },
+    searchList({commit},data) {
+      commit('SET_SEARCH_LIST', data)
+    },
+
+    getSearchList(context, {data,success}) {
+      window.debugger;
+      fetch('http://10.177.69.85:8090/router/search/search/'+data, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => res.json()).then( (res) => {
+        console.log(res)
+        context.commit('SET_SEARCH_LIST',res)
+        success && success(res)
+      }).catch( (err) => {
+        console.log(err)
+      })
+    },
+
+    getProductListing(context, {data, success}) {
+      fetch('http://10.177.69.85:8080/router/getProductByGenre/'+data, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => res.json()).then( (res) => {
+        console.log(res)
+        context.commit('SET_SELECTED_PRODUCT',res)
+        success && success(res)
+      }).catch( (err) => {
+        console.log(err)
+      })
+      // window.console.log(this.x)
+    },
+
+    addproduct({data} ) {
+      fetch('http://10.177.2.194:8080/router/addProduct', {
+        method: "POST",
+        body: JSON.stringify(data)
+>>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
         })
           .then(res => res.json())
           
@@ -104,8 +175,12 @@ export default new Vuex.Store({
       // window.console.log(this.x)
     // },
     getAllProductByMerchantId (context, {data, success}) {
+<<<<<<< HEAD
       debugger
       fetch('http://10.177.69.85:8080/router/getProductByMerchantId/'+data, {
+=======
+      fetch('http://10.177.2.194:8080/router/getProductByMerchantId/'+data, {
+>>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -146,9 +221,18 @@ export default new Vuex.Store({
     merchantProductList(state) {
       return state.marchantProducts
     },
+<<<<<<< HEAD
     // productList : state => state.product || []
     productList(state) {
       return state.productList || []
+=======
+    productList : state => state.product || [],
+    selectedProducts (state) {
+      return state.selectedProduct || []
+    },
+    search(state) {
+      return state.searchList || []
+>>>>>>> 80c2e40ccaa9a3b0f0a5cc6f77757ba2940f0514
     }
   }
 })
