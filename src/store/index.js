@@ -153,6 +153,7 @@ export default new Vuex.Store({
       })
       .then(res => res.json()).then( (res) => {
         context.commit('GET_DETAILS',res)
+        window.console.log(res)
         success && success(res)
       }) 
     },

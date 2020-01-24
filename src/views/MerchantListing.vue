@@ -62,7 +62,7 @@
 <style scoped>
 table {
     border: 1px solid grey
-}
+} 
 </style>
 
 <script>
@@ -158,7 +158,7 @@ export default {
   row-gap:10px;
   text-align: center;  
   font-size:18; 
-
+   
 }
 .nav{
     background-color: #001f33;

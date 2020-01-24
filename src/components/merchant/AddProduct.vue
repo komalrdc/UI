@@ -56,7 +56,7 @@ export default{
     data: function () {
         return {
             product: {
-                merchantId: '1234',
+                merchantId: '',
                 productName: 'My Product',
                 author: 'Prakriti Tiwari',
                 price: '20',
@@ -80,6 +80,11 @@ export default{
     props: ['toggleFunction'],
 
     methods: {
+        computed:{
+        //  ...mapGetters([
+     // 'getmerchantid',
+  //  ])
+        } ,
         saveProduct(event){
             let data = {...this.product}
             event.preventDefault();
@@ -100,7 +105,8 @@ export default{
             this.toggleFunction();
         }
     }
-}
+} 
+
 </script>
 
 <style scoped>
