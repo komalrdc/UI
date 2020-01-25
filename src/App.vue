@@ -3,9 +3,9 @@
   <div id="app">
     <nav id="nav">
       <Navbar />
-      <Footer />
     </nav>
     <Sidebar/>
+
     <router-view/>
   </div>
   </main>
@@ -13,14 +13,16 @@
  
 <script>
 import Navbar from '@/components/App/Navbar'
-import Footer from '@/components/Footer'
+// import Genre from '@/views/Genre'
+
+
 import Sidebar from '@/components/Sidebar'
 //import Home from '@/views/Home'
 
 export default {
   name: 'App',
   components: {
-    Navbar,Footer, Sidebar
+    Navbar, Sidebar
   }
 }
 </script>
@@ -38,12 +40,13 @@ export default {
 
 }
 #header {
-  padding: 30px;
+  
   text-decoration-color: red; 
   
 }
 #nav {
-  padding:30px; 
+  height: 80px;
+
   text-align: left; 
 
 }

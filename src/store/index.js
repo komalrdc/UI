@@ -9,11 +9,13 @@ export default new Vuex.Store({
   state: {
     merchantId: '',
     users: {},
-    cartItems: [],
-    cartCount: 0,
+    categoryProducts: [],
+    // cartItems: [],
+    // cartCount: 0,
     searchList: [],
     selectedProduct: [],
     marchantProducts: [],
+    searchDisplay: [],
     product: [
       {
         id: 1,
@@ -44,6 +46,36 @@ export default new Vuex.Store({
         price: 270
       }
   ],
+  genre:[
+    {
+      id: 1,
+      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQbCguIryM13WHy8TeJn5P9bTwHDfKPVuuz0vNVKwb_KhoBo3MC",
+      title:"Kite Runner",
+      author:"Khaleed",
+      price: 300
+    },
+    {
+      id: 2,
+      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSgBuhT15PD5U-mVrhloPHX_Yp8QCbnINppJBEDPkaa0gF2lktm",
+      title:"The Shining",
+      author:"Stephen King",
+      price: 260
+    },
+    {
+      id: 3,
+      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSgx4W9Ie1dygiEyrJOuQeUHn5xAc8u5DrXD2giPvUKH1RBEuNb",
+      title:"The Book Thief",
+      author:"Markus Zusak",
+      price: 480
+    },
+    {
+      id: 4,
+      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQoY0C60dff2TWbJFUw1Rwl72o9OOFtUN6asSNubXHdPny4zloi",
+      title:"Gone Girl",
+      author:"Gillian Flynn",
+      price: 270
+    }
+],
   },
   mutations: {
     SET_PRODUCT(state, payload) {
@@ -58,6 +90,9 @@ export default new Vuex.Store({
     SET_SEARCH_LIST(state,payload) {
       state.searchList = payload
     },
+    SET_SEARCH_DISPLAY(state,payload) {
+      state.searchDisplay = payload
+    },
     UPDATE_URL(state, url) {
       state.users = {
         avatar_url: url
@@ -67,27 +102,22 @@ export default new Vuex.Store({
       window.console.log('@@@@@', payload)
       state.userDetails = payload
     },
-
-    SET_PRODUCT(state, payload) {
-      state.marchantProducts = payload
-    },
     GET_DETAILS(state,payload){
        state.merchantdetails=payload
     },
     GET_MERCHANTID(state,payload){
-      debugger;
       state.merchantId=payload.response
     },
+    GET_CATEGORY_PRODUCTS(state, payload) {
+      state.categoryProducts = payload
+    }
   },
   actions: {
       loginUser (context, payload) {
-        // window.console.log(payload);
-
         fetch('http://10.177.69.85:8080/router/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
           },
           body: JSON.stringify(payload.data)
         })
@@ -104,6 +134,7 @@ export default new Vuex.Store({
           },
           body: JSON.stringify(payload.data)
         })
+        .then(res=>res.json)
       },
     selectedProduct({commit}, data) {
         commit('SET_SELECTED_PRODUCT', data)
@@ -114,10 +145,12 @@ export default new Vuex.Store({
     searchList({commit},data) {
       commit('SET_SEARCH_LIST', data)
     },
-
-    getSearchList(context, {data,success}) {
-      window.debugger;
-      fetch('http://10.177.69.85:8090/router/search/search/'+data, {
+    searchDisplay({commit}, data) {
+      commit('SET_SEARCH_DISPLAY', data)
+   },
+    getSearchList(context, {data, success}) {
+      window.console.log(data)
+      fetch('http://10.177.69.85:8080/search/search?keyword='+ data, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -146,7 +179,21 @@ export default new Vuex.Store({
       }).catch( (err) => {
         console.log(err)
       })
-      // window.console.log(this.x)
+    },
+    getcategoryProducts(context, {data, success}) {
+      fetch('http://10.177.69.85:8080/router/getProductByGenre/'+data, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => res.json()).then( (res) => {
+        console.log(res)
+        context.commit('GET_CATEGORY_PRODUCTS',res)
+        success && success(res)
+      }).catch( (err) => {
+        console.log(err)
+      })
     },
   addproduct({data} ) {
     fetch('http://10.177.69.85:8080/router/addProduct', {
@@ -163,6 +210,11 @@ export default new Vuex.Store({
         'Content-Type': 'application/json'
       }
     })
+    .then(res => res.json()).then( (res) => {
+      context.commit('SET_PRODUCT',res)
+      success && success(res)
+    }) 
+    window.console.log(this.x)
   },
   deleteProduct (context, {data, success}) {
     fetch('http://10.177.69.85:8080/router/removeProduct', {
@@ -170,7 +222,6 @@ export default new Vuex.Store({
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       }
 
     })
@@ -185,7 +236,6 @@ export default new Vuex.Store({
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       }
     })
     .then(res => res.json()).then( (res) => {
@@ -199,7 +249,6 @@ export default new Vuex.Store({
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       }
     })
     .then(res => res.json()).then( (res) => {
@@ -213,17 +262,6 @@ export default new Vuex.Store({
     // success && success(res)
     // fail && fail(res)
   },
-  NewUser (context, payload) {
-    fetch('http://10.177.69.85:8080/router/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload.data)
-    })
-      .then(res => res.json())
-  
-  },
   productDetails(context, payload) {
     fetch('http://localhost:8080/product/description/:id', {
       method: 'POST',
@@ -233,24 +271,6 @@ export default new Vuex.Store({
       body: JSON.stringify(payload.data)
     }).then(res => res.json())
       
-  },
-  loginUser (context, {data, success}) {
-    // window.console.log(payload);
-
-    fetch('http://10.177.69.85:8080/router/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: JSON.stringify(data)
-    })
-      .then(res => res.json())
-      .then(res => {
-        context.commit('SET_USER_DETAILS', res),
-        context.commit('GET_MERCHANTID',res)
-        success && success(res)
-      })
   },
 },
   getters: {
@@ -274,6 +294,14 @@ export default new Vuex.Store({
     merchantDetails(state){
       return state.merchantdetails
     },
-    getmerchantid: state => state.merchantId
+    getmerchantid: state => state.merchantId,
+    searchDisplay(state){
+      return state.searchDisplay
+    },
+    categoryProducts(state){
+      return state.categoryProducts
+    },
+    genreList : state => state.genre || [],
+
   }
 })

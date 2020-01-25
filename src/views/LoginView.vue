@@ -1,79 +1,132 @@
-    <template>
-    <main>
+<template>
+  <main>
     <body>
-        <div class="Login">
-			<h1> LOGIN HERE </h1>
-			<div>
-				<input v-model="username" class="username input" type="text" placeholder="username">
-				<input v-model="password" class="password input" type="Password" placeholder="Password"> 
-
-				<input v-model="loginType" type="radio" name="login" value="customer" checked id="type-customer">
-				<label for="type-customer">Customer</label>
-				
-				<input v-model="loginType" type="radio" name="login" value="merchant" checked id="type-merchant">
-				<label for="type-merchant">Merchant</label>
-
-				<button @click="submitClicked" class="submit button">Submit</button>  <br> <br>
-				<button><a href="https://accounts.google.com/signin/v2/identifier?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" class="fa fa-google"> Gmail </a></button>
-				<button><a href="https://en-gb.facebook.com/login/" class="fa fa-facebook">Facebook</a></button>
-			</div>
-		</div>
-		<router-view/>
+      <div class="Login">
+        <h3>LOGIN</h3>
+        <div>
+          <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="margin-top:10%"></div>
+          <input
+            v-model="username"
+            class="username input"
+            type="text"
+            placeholder="username"
+          />
+          <input
+            v-model="password"
+            class="password input"
+            type="Password"
+            placeholder="Password"
+          />
+          <div class="typecontainer">
+            <div class="type">
+              <input
+                v-model="loginType"
+                type="radio"
+                name="login"
+                value="customer"
+                checked
+                id="type-customer"
+              />
+              <label for="type-customer" style="margin-left: 5px"
+                >Customer</label
+              >
+            </div>
+            <div class="type">
+              <input
+                v-model="loginType"
+                type="radio"
+                name="login"
+                value="merchant"
+                checked
+                id="type-merchant"
+              />
+              <label for="type-merchant" style="margin-left: 5px"
+                >Merchant</label
+              >
+            </div>
+          </div>
+          <div class="Loginbuttoncontainer">
+            <button @click="submitClicked" class="submitbutton">Login</button>
+          </div>
+          <div class="socialloginContainer">
+            <!-- <button>
+              <img src="@/assets/facebook.png" height="16px" width="16px" />
+            </button>
+            <button>
+              <img src="@/assets/gmail.png" height="16px" width="16px" />
+            </button> -->
+              <Facebook></Facebook>
+              <Gmail></Gmail>
+          </div>
+        </div>
+      </div>
+      <router-view />
     </body>
-    </main>
-    </template>
+  </main>
+</template>
 
 <script>
+import Facebook from '@/components/Facebook'
+import Gmail from '@/components/Gmail'
 export default {
-	name: 'login',
-	data: function () {
-		return {
-			username: '',
-			password: '',
-			loginType: 'customer'
-		}
-	},
-	components: {
-      
-	},
-	methods: {
-		submitClicked () {
-			let data = {
-				email: this.username,
-				password: this.password,
-				loginType: this.loginType
-			}
-			this.$store.dispatch('loginUser', {
-				data: data,
-				success: function () {
-					window.console.log('login successful...');
-				},
-				fail: function () {
-					window.console.log('login failed ...');
-				}
-			})
-		}
-	}
-}
+ 
+  name: "login",
+  data: function() {
+    return {
+      username: "",
+      password: "",
+      loginType: "customer"
+    };
+  },
+  components: {Gmail,Facebook},
+  methods: {
+    onSignIn:  function(googleUser) {
+			var profile = googleUser.getBasicProfile();
+			window.console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+			window.console.log('Name: ' + profile.getName());
+			window.console.log('Image URL: ' + profile.getImageUrl());
+			window.console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present
+			
+		},
+    submitClicked() {
+      let data = {
+        email: this.username,
+        password: this.password,
+        loginType: this.loginType
+      };
+      this.$store.dispatch("loginUser", {
+        data: data,
+        success: function() {
+          window.console.log("login successful...");
+        },
+        fail: function() {
+          window.console.log("login failed ...");
+        }
+      });
+    }
+  }
+};
 </script>
 <style scoped>
-.Login{
-	text-align: center;
-	background-color: #e9e9e9;
-	margin-left: 30%;
-	margin-right: 30%;
-	padding-bottom: 30px;
-	padding-top: 30px;
-	border: 2px solid black;
-	border-radius: 20px 20px;
-	margin-top: 100px;
+.Login {
+  background-color: #e9e9e9;
+  margin-left: 30%;
+  margin-right: 30%;
+  padding-bottom: 30px;
+  padding-top: 2px;
+  padding-left: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+  margin-top: 100px;
 }
 .input {
-	border: 1px solid black;
-	border-radius: 8px;
-	display: block;
-	margin: 10px auto;
-	padding: 5px;
+  border: 0.5px solid rgba(201, 196, 196, 0.952);
+  display: block;
+  margin-top: 10px;
+  align-self: center;
+  width: 90%;
+  margin-bottom: 20px;
+  padding: 5px;
 }
 .fa {
   padding: 20px;
@@ -83,19 +136,31 @@ export default {
   text-decoration: none;
 }
 
-.fa:hover {
-  opacity: 0.7;
+.typecontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
 }
 
-.fa-facebook {
-  background: #3B5998;
-  color: white;
+.type {
+  margin: 5px;
+}
+
+.submitbutton {
+	padding: 10px 30px 10px 30px;
+	background-color: #0ea1b6;
+	color: white;
+}
+.Loginbuttoncontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.socialloginContainer {
   margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.fa-google {
-  background: #dd4b39;
-  color: white;
- 
-}
-
 </style>

@@ -8,35 +8,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/About.vue'),
-  },
-  {
-    path: '/addbook',
-    name: 'AddProduct',
-    component: () => import('../components/merchant/AddProduct.vue')
-  },
-  {
-     path: '/login',
-     name: 'login',
-     component: () =>import('../views/login.vue')
-
-  },
-  {    
-    path: '/newUser',
-    name: 'newUser',
-    component: () =>import('../views/newUser.vue') 
-
-  },
-  {
-    path: '/MerchantListing/:id',
-    name: 'MerchantListing',
-    component: () => import('../views/MerchantListing.vue')
-  },
-  {
     path: '/',
-<<<<<<< HEAD
     name: 'home',
     component: home
   },
@@ -46,9 +18,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/LoginView.vue'),
   },
   {
-    path: '/signup',
-    name: 'signup',
-    component: () => import(/* webpackChunkName: "about" */ '../views/NewUserView.vue'),
+    path: '/newuser',
+    name: 'newuser',
+    component: () => import('../views/NewUserView.vue')
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: () => import( '../views/SearchView.vue'),
   },
   {
     path: '/product',
@@ -67,29 +44,14 @@ const routes = [
     ]
   },
   {
-    // TODO
-    // Theses routes are not required
-    // as these are just API calls...
+    path: '/MerchantListing/:id',
+    name: 'MerchantListing',
+    component: () => import('../views/MerchantListing.vue')
+  },
+  {
     path: '/cart',
     name:'cart',
     component: () => import('../views/CartView.vue'),
-    children:[
-      {
-        path: '/addcart',
-        name:'addcart',
-        component: () => import('../views/AddCartView.vue'),
-      },
-      {
-        path: '/removecart',
-        name:'removecart',
-        component: () => import('../views/RemoveCartView.vue'),
-      },
-      {
-        path: '/removeall',
-        name:'removeall',
-        component: () => import('../views/RemoveAllView.vue'),
-      }
-    ]
   },
   {
     path: '/checkout',
@@ -102,71 +64,16 @@ const routes = [
     component: () => import('../components/merchant/AddProduct.vue')
   },
   {
-    path: '/MerchantListing',
-    name: 'MerchantListing',
-    component: () => import('../views/MerchantListing.vue')
-  },
-  {
     name: 'Category',
     path: '/category/:id',
     component: () => import('@/views/Category')
   },
-=======
-    name: 'Home',
-    component: Home
-},
->>>>>>> 54bf1011533701dec2a443a9cd03f5a380180e14
-    {
-      path: '/cart',
-      name:'cart',
-      component: () => import('../views/CartView.vue'),
-    },
-    {
-      path: '/checkout',
-        name:'checkout',
-        component: () => import('../views/CheckoutView.vue'),
-    },
-    {
-      path: '/addbook',
-      name: 'AddProduct',
-      component: () => import('../components/merchant/AddProduct.vue')
-    },
-    {
-      path: '/MerchantListing',
-      name: 'MerchantListing',
-      component: () => import('../views/MerchantListing.vue')
-    },
-    // {
-    //   path: '/search',
-    //   name: 'search',
-    //   component: () => import('../views/SearchView.vue')
-    // },
-    {
-      path: '/login',
-      name: 'login',
-      component: () => import('../views/LoginView.vue')
-    },
-    {
-      path: '/newuser',
-      name: 'newuser',
-      component: () => import('../views/NewUserView.vue')
-    },
     {
       path: '/product/:category',
       name: 'Product',
       component: () => import( '../views/ProductView.vue'),
-      // children: [
-      //   {
-      //     path: '/category',
-      //     component: () => import( '../views/ProductListingView.vue'), 
-      //   },
-      //   {
-      //     path: 'description/:id',
-      //     name: 'description',
-      //     component: () => import( '../views/ProductDescriptionView.vue'),
-      //   }
-      // ]
     },
+    
 
 ]
 

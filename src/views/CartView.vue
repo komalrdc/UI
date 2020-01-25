@@ -1,13 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <main clas="cart">
-    <h3 class="page_headers">
-      Shopping Bag
-    </h3>
-    <div class="total-price">Total Price: </div>
-      <button @click="$router.push('checkout')" class="buy-btn">Proceed to Buy</button>
-        <!-- <button @click="$router.push('checkout')">Proceed to Buy</button> -->
-=======
   <main>
     <div class="shopping-cart">
   <!-- Title -->
@@ -35,7 +26,6 @@
       <button @click="$router.push('checkout')" class="buy-btn">Proceed to Buy</button>
        <h1>Your Shopping Cart</h1>
         <button @click="$router.push('checkout')">Proceed to Buy</button>
->>>>>>> 54bf1011533701dec2a443a9cd03f5a380180e14
       <router-view></router-view>
       <Cart></Cart>
     <ul class="product_list ">
@@ -62,10 +52,7 @@
 <script>
 import VueNumericInput from 'vue-numeric-input'
 import { mapGetters } from 'vuex'
-<<<<<<< HEAD
 import Cart from '../components/cart/Cart'
-=======
->>>>>>> 54bf1011533701dec2a443a9cd03f5a380180e14
 export default {
   data: function() {
           return {
@@ -73,7 +60,6 @@ export default {
           }
     },
   components: {
-<<<<<<< HEAD
     Cart,
        VueNumericInput
     },
@@ -90,16 +76,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-=======
-       VueNumericInput
-    },
-    computed: {
-      ...mapGetters(['productList'])
-    }
-}
-</script>
-<style scoped>
->>>>>>> 54bf1011533701dec2a443a9cd03f5a380180e14
 .buy-btn{
   display: block;
   background-color: #7DC855;
@@ -112,7 +88,6 @@ export default {
   margin-right:auto
 }
 .buy-btn:hover {
-<<<<<<< HEAD
   background-color: #64af3d;
 }
 .image {
@@ -140,8 +115,6 @@ export default {
 
 .center, .right {
   flex-grow: 1;
-=======
   background-color: #64AF3D;
->>>>>>> 54bf1011533701dec2a443a9cd03f5a380180e14
 }
 </style>

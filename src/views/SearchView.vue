@@ -6,13 +6,14 @@
       <router-view></router-view>
       <Search></Search>
     <ul class="product_list ">
-      <li v-for="product in searchList" :key="product" class="product_list_item ">
+      <li v-for="product in search" :key="product" class="product_list_item ">
         <figure class="">
           <img :src="product.url" height="150px" width="150px">
         </figure>
         <div class="added_items_quantity center">
-          <p>{{product.title}}</p>
-          <p> This is the description of the book. Please read it....</p>
+          <p>{{product.productName}}</p>
+          <p>{{product.description}}</p>
+          <p>{{product.genre}}</p>
           <p>{{product.price}}</p>
           <p>{{product.author}}</p>
         </div>
@@ -31,29 +32,17 @@ export default {
               value: 1
           }
     },
+    created() {
+      window.console.log(this.searchDisplay)
+    },
   components: {
     Search
     },
     computed: {
-      ...mapGetters(['productList', 'search']),
+      ...mapGetters(['productList', 'search','searchDisplay']),
     },
-    // created () {
-    //   window.console.log(this.searchList)
-    //   this.$store.commit('SET_SEARCH_LIST', 'Fiction')
-    // },
     methods: {
     ...mapActions(['getSearchList']),
-
-        // searchListMethod: function() {
-        //     this.$store.dispatch('getSearchList', {
-        //         data: this.searchList,
-        //         success: this.searchListSuccess
-        //     })
-        // },
-        // searchListSuccess: function (result) {
-        //   window.console.log(result);
-        //   window.debugger;
-        // }
     }
 }
 </script>

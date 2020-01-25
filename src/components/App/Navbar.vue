@@ -2,18 +2,18 @@
     <nav id="navbar" class="navbar">
         <section class="navbar_division left">
             <router-link :to="{name: 'Home'}" tag="span">
-                <img class="navbar_logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSc_N_FCRJB6b0fkF51xtTKUr4QwmykKXLWzHEeO_gInMKmrV0R" alt="logo">
+                <img class="navbar_logo" src="@/assets/bookslogo.png" alt="logo">
             </router-link>
         </section>
         <section class="navbar_division center">
-            <input type = "text" placeholder="search">
-            <button @click ="searchListMethod" class="navbar_route">Search</button>
+            <input type = "text" v-model="searchTerm" placeholder="   search..." class="navbar_searchBar">
+            <button @click ="searchListMethod" class="navbar_route">Search <img src="@/assets/search.png" height="16px" width="16px"></button>
             <!-- <router-link to="/search" class="navbar_route" tag="span">Search</router-link> -->
         </section>
         <section class="navbar_division right">
-            <router-link to="/login" class="navbar_route" tag="span">Login</router-link>
-            <router-link to="/newuser" class="navbar_route" tag="span">New User</router-link>
-            <router-link to="/cart" class="navbar_route" tag="span">Cart</router-link>
+            <router-link to="/login" class="navbar_route" tag="button"> Login <img src="@/assets/login.png" height="16px" width="16px"></router-link>
+            <router-link to="/newuser" class="navbar_newuser" tag="button">Sign Up<img src="@/assets/new.png" height="16px" width="16px"></router-link>
+            <router-link to="/cart" class="navbar_route" tag="button">Cart <img src="@/assets/shopping.png" height="16px" width="16px"></router-link>
         </section>
     </nav>
 </template>
@@ -22,7 +22,12 @@
 import { mapGetters, mapActions } from 'vuex'
 export default { 
     name: 'Navbar',
-
+    data: function () {
+    return {
+      searchTerm: '',
+      searchDisplay: '',
+    }
+    },
     computed: {
       ...mapGetters(['search'])
     },
@@ -34,45 +39,70 @@ export default {
         ...mapActions(['getSearchList']),
         searchListMethod: function() {
             this.$store.dispatch('getSearchList', {
-                data: this.searchList,
+                data: this.searchTerm,
                 success: this.searchListSuccess
             })
         },
         searchListSuccess: function (result) {
           window.console.log(result);
-          window.debugger;
+          this.$router.push('/search')
         }
-    }
+    },
 }
 </script>
 
 <style lang="scss" scoped>
 
 .navbar {
-    background-color: whitesmoke;
+    //sbackground-color: whitesmoke
     height: 80px;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-around;
+    
+    //justify-content: space-between;
     align-items: stretch;
     &_division {
         display: flex;
         align-items: center;
     }
     &_route {
+        align-items: center;
+        align-content: center;
+        align-self: center;
+        width: 100px;
         border-radius: 8px;
-        background-color: dodgerblue;
-        font-size: 1.2rem;
+        background-color: #0ea1b6;
+        font-size: 1.6rem;
         font-weight: bold;
         color: white;
         cursor: pointer;
-        margin: 0px 5px;
-        padding: 10px 30px;
+        margin-left:10px;
+        padding: auto;
+        height: 30px;
     }
     &_logo {
-        width: 80px;
-        height: 80px;
+        margin-left: 30px;
+        margin-right: 30px;
+        width: 40px;
+        height: 40px;
     }
+    &_searchBar {
+        height: 30px;
+        width: 680px;
+    }
+    &_newuser {
+        width: 100px;
+        border-radius: 8px;
+        background-color: #0ea1b6;
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        margin-left:20px;
+        padding: auto;
+        height: 30px;
+    }
+
 }
 
 .left {
@@ -80,5 +110,6 @@ export default {
 }
 .right {
     font-size: 1.5rem;
+    margin-left: 30px;
 }
 </style>

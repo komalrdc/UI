@@ -43,7 +43,6 @@ export default {
 <style scoped>
     form{
         text-align: left; 
-        /* background-color: orange;  */
     }
 
 .modal {
