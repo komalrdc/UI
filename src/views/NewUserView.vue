@@ -6,29 +6,14 @@
           <div class="typecontainer">
             <div class="type">
               <input
-                v-model="loginType"
-                type="radio"
-                name="login"
-                value="customer"
-                checked
-                id="type-customer"
+                v-model="loginType" type="radio" name="login" value="customer" checked id="type-customer"
               />
-              <label for="type-customer" style="margin-left: 5px"
-                >Customer</label
-              >
+              <label for="type-customer" style="margin-left: 5px">Customer</label>
             </div>
             <div class="type">
               <input
-                v-model="loginType"
-                type="radio"
-                name="login"
-                value="merchant"
-                checked
-                id="type-merchant"
-              />
-              <label for="type-merchant" style="margin-left: 5px"
-                >Merchant</label
-              >
+                v-model="loginType" type="radio" name="login" value="merchant" checked id="type-merchant"/>
+              <label for="type-merchant" style="margin-left: 5px">Merchant</label>
             </div>
           </div>
 

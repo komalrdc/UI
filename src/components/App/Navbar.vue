@@ -55,9 +55,12 @@ export default {
 
 .navbar {
     //sbackground-color: whitesmoke
-    height: 80px;
+    background-color: white !important;
+    height: 65px;
     display: flex;
     flex-flow: row nowrap;
+    position:fixed;
+    width: 100px;
     
     //justify-content: space-between;
     align-items: stretch;

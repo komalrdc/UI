@@ -3,7 +3,7 @@
     :params="googleSignInParams"
     @success="onSignInSuccess"
     @error="onSignInError">
-    Sign in with Google
+    Google
   </g-signin-button>
 </template>
  <script>
@@ -35,10 +35,24 @@ export default {
 .g-signin-button {
   /* This is where you control how the button looks. Be creative! */
   display: inline-block;
-   padding: 4px 8px;
-   border-radius: 3px;
-   background-color: #3C82F7;
-   color: #fff;
-  box-shadow: 0 3px 0 #0F69FF;
+    border-radius: 10px;
+  color: #FFFFFF;
+text-decoration: none;
+background: #0EA1B6;
+padding-top: 12px;
+padding-bottom: 12px;
+padding-left: 20px;
+padding-right: 20px;
+cursor: pointer;
+transition: all 0.4s ease 0s;
  }
+ .g-signin-button:hover{
+  border-radius: 10px;
+  color: #FFFFFF;
+  background: #DE5246;
+  border-color: #DE5246;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+ }
+ 
  </style>

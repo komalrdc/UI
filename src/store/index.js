@@ -103,29 +103,37 @@ export default new Vuex.Store({
       state.userDetails = payload
     },
     GET_DETAILS(state,payload){
-       state.merchantdetails=payload
-    },
-    GET_MERCHANTID(state,payload){
-      state.merchantId=payload.response
-    },
+      state.merchantdetails=payload.response
+   },
+   GET_MERCHANTID(state,payload){
+    state.merchantId = payload.response
+  },
     GET_CATEGORY_PRODUCTS(state, payload) {
       state.categoryProducts = payload
     }
   },
   actions: {
-      loginUser (context, payload) {
-        fetch('http://10.177.69.85:8080/router/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload.data)
+    loginUser (context, {data, success, fail}) {
+      // window.console.log(payload);
+      fetch('http://10.177.69.85:8080/login/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(data)
+      })
+        .then(res => res.json())
+        .then(res => {
+          if (res !== "Not registered") {
+          context.commit('GET_MERCHANTID', res)
+          success && success()
+          } else {
+            fail&& fail()
+          }
         })
-          .then(res => res.json())
-          .then(res => {
-            context.commit('SET_USER_DETAILS', res)
-          })
-      },
+
+    },
       NewUser (context, payload) {
         fetch('http://10.177.69.85:8080/router/signup', {
           method: 'POST',
@@ -180,8 +188,9 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    getcategoryProducts(context, {data, success}) {
-      fetch('http://10.177.69.85:8080/router/getProductByGenre/'+data, {
+    getcategoryProducts(context, data) {
+      window.console.log('were in the diajsabfkjasfbjhs', data)
+      fetch('http://10.177.69.85:8080/product/getProductByGenre/'+data, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -189,74 +198,68 @@ export default new Vuex.Store({
       })
       .then(res => res.json()).then( (res) => {
         console.log(res)
+        // window.console.log("Here")
         context.commit('GET_CATEGORY_PRODUCTS',res)
-        success && success(res)
       }).catch( (err) => {
         console.log(err)
       })
     },
-  addproduct({data} ) {
-    fetch('http://10.177.69.85:8080/router/addProduct', {
-      method: "POST",
-      body: JSON.stringify(data)
+    addNewProduct (context, {data, success}) {
+      fetch('http://10.177.69.85:8090/product/addProduct', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
-        .then(res => res.json())
-   },
-  addNewProduct (context, {data, success}) {
-    fetch('http://10.177.69.85:8080/router/addProduct', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(res => res.json()).then( (res) => {
-      context.commit('SET_PRODUCT',res)
-      success && success(res)
-    }) 
-    window.console.log(this.x)
-  },
-  deleteProduct (context, {data, success}) {
-    fetch('http://10.177.69.85:8080/router/removeProduct', {
-      method: 'DELETE',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-
-    })
-    .then(res => res.json()).then( (res) => {
-      context.commit('SET_PRODUCT',res)
-      success && success(res)
-    }) 
-    window.console.log(this.x)
-  },
-  getAllProductByMerchantId (context, {data, success}) {
-    fetch('http://10.177.69.85:8080/router/getProductByMerchantId/'+data, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(res => res.json()).then( (res) => {
-      context.commit('SET_PRODUCT',res)
-      success && success(res)
-    }) 
-    window.console.log(this.x)
-  },
-  getMerchantDetails(context,{data,success}){
-    fetch('http://10.177.69.85:8080/router/getMerchantById/'+data, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(res => res.json()).then( (res) => {
-      context.commit('GET_DETAILS',res)
-      window.console.log(res)
-      success && success(res)
-    }) 
-  },
+      .then(res => res.json()).then( (res) => {
+        context.commit('SET_PRODUCT',res)
+        success && success(res)
+      })
+    },
+    deleteProduct (context, {data, success}) {
+      fetch('http://10.177.69.85:8080/product/removeProduct', {
+        method: 'DELETE',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        }
+      })
+      .then(res => res.json()).then( (res) => {
+        //context.commit('SET_PRODUCT',res)
+        success && success(res)
+      })
+      window.console.log(this.x)
+    },
+    getAllProductByMerchantId (context, {data, success}) {
+      fetch('http://10.177.69.85:8080/merchant/getProductByMerchantId/'+data, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        }
+      })
+      .then(res => res.json()).then( (res) => {
+        context.commit('SET_PRODUCT',res)
+        success && success(res)
+      })
+      window.console.log(this.x)
+    },
+    getMerchantDetails(context,{data,success}){
+      fetch('http://10.177.69.85:8080/merchant/getMerchantById/'+data, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        }
+      })
+      .then(res => res.json()).then( (res) => {
+        context.commit('GET_DETAILS', res)
+        window.console.log(res)
+        success && success(res)
+      })
+    },
   fetchProductDetails (context, {data, success, fail}) {
     window.console.log([data, success, fail])
     // success && success(res)
@@ -264,7 +267,7 @@ export default new Vuex.Store({
   },
   productDetails(context, payload) {
     fetch('http://localhost:8080/product/description/:id', {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -291,10 +294,12 @@ export default new Vuex.Store({
     search(state) {
       return state.searchList || []
     },
-    merchantDetails(state){
+    getMerchantDetails(state){
       return state.merchantdetails
     },
-    getmerchantid: state => state.merchantId,
+    merchantId(state){
+      return state.merchantId
+    },
     searchDisplay(state){
       return state.searchDisplay
     },

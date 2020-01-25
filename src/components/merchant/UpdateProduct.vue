@@ -1,9 +1,8 @@
-
 <template>
-<section class="modal">
-    <div @click="toogleModalBox" class="modal_background"></div>
-    <div class="modal_content">
-        <span @click="toogleModalBox" class="modal_close">X</span>
+<section class="modal1">
+    <div @click="toogleModalBox" class="modal_background1"></div>
+    <div class="modal_content1">
+        <span @click="toogleModalBox" class="modal_close1">X</span>
         <form id="myform" method="post">
             <fieldset>
                 <legend>Update Product Details</legend>
@@ -11,14 +10,14 @@
             <input id="ProductName" type="text" v-model="product.productName" required />
             <br><br>
             <label>Author</label>
-            <input type="text" id="author"  v-model="product.author" required /> 
-            <br><br> 
+            <input type="text" id="author"  v-model="product.author" required />
+            <br><br>
             <label>Price</label>
             <input id="Price" type="double" v-model="product.price" required />
             <br><br>
             <label> Product Logo </label>
-            <input id="logo" type="text" v-model="product.url" required/> 
-            <button id="upload">Upload</button> 
+            <input id="logo" type="text" v-model="product.url" required/>
+            <button id="upload">Upload</button>
             <br><br>
             <label> Genre </label>
             <input id="genre" type="text" v-model="product.genre" required/>
@@ -37,20 +36,19 @@
             <br><br>
             <label>Description</label>
             <textarea v-model="product.description" required></textarea>
-            <br><br> 
+            <br><br>
             <label> ISBN </label>
             <input ID="isbn" type="number" v-model="product.isbn" required/>
             <br><br>
             <label>Number Of Pages</label>
-            <input type="number" v-model="product.attributes.noofpages" required/> <br> 
-            <button style="font-size:20px" id="save" @click="saveProduct">Save</button> 
+            <input type="number" v-model="product.attributes.noofpages" required/> <br>
+            <button style="font-size:20px" id="save" @click="saveProduct">Save</button>
             </fieldset>
-        </form>    
+        </form>
     </div>
 </section>
 </template>
-
-<script> 
+<script>
 export default{
     name: 'Addproduct',
     data: function () {
@@ -65,7 +63,7 @@ export default{
             //     description: 'cvc',
             //     attributes: {
             //     publisher: "xyz",
-            //     year: '2000',   
+            //     year: '2000',
             //     noofpages: '100',
             //     binding: 'soft',
             //     } ,
@@ -82,10 +80,9 @@ export default{
           'selectedProduct',
           'toggleFunction'
           ],
-    methods: {  
+    methods: {
         saveProduct(event){
             let data = {...this.product}
-            data.merchantId="1234"
             event.preventDefault();
             event.stopPropagation();
             this.$store.dispatch('addNewProduct', {
@@ -93,31 +90,27 @@ export default{
                 success: this.addNewProductSuccess
             })
         },
-        addNewProductSuccess (res) {
+        addNewProductSuccess () {
             // eslint-disable-next-line no-console
-            console.log(res)
-            
-            this.toggleFunction();
-
+            console.log(123)
+            alert("product updated successfully")
+           this.toggleFunction();
         },
         toogleModalBox () {
             this.toggleFunction();
-
         }
     }
 }
 </script>
-
 <style scoped>
     form{
-        text-align: left; 
+        text-align: left;
         /* background-color: orange;  */
     }
-
-.modal {
+.modal1 {
     position: relative;
 }
-.modal_background {
+.modal_background1 {
     z-index: 50;
     position: fixed;
     top: 0;
@@ -126,15 +119,14 @@ export default{
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.7);
 }
-
-.modal_content {
+.modal_content1 {
     box-sizing: border-box;
     border-radius: 20px;
     background-color: lightblue;
     font-size:20;
     position: fixed;
     z-index: 100;
-    height: 90vh;
+    height: 100vh;
     width: 50vw;
     top: 50%;
     left: 50%;
@@ -145,7 +137,7 @@ export default{
 label{
     font-style:oblique;
 }
-.modal_close {
+.modal_close1 {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -155,7 +147,7 @@ label{
     width: 20px;
     cursor: pointer;
 }
-.modal_close:hover {
+.modal_close1:hover {
     transform: scale(1.5);
 }
 </style>

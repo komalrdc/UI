@@ -96,11 +96,6 @@ export default {
                     id
                 },
             }) 
-    
-    // created: function() {
-    //     this.fetchProductDetails(this.productId)
-    // },
-
     }
 }
 </script>

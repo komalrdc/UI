@@ -1,31 +1,8 @@
 <template>
   <main>
-    <div class="shopping-cart">
-  <!-- Title -->
-  <div class="title">
-    Shopping Bag
-  </div>
-    <div class="image">
-      <img src="" alt="" />
-    </div>
-    <ul>
-         <li v-for="product in productList" :key="product">
-                <img :src = "product.url" height="150px" width="100px">
-                {{product.title}} - {{product.price}} - {{product.author}}
-            </li>
-        </ul>
-    <div class="description">
-      <span>Book name</span><br>
-      <span>Author</span><br>
-      <span>White</span>
-    </div>
-      <p>Quantity: {{ value }}</p>
-      <vue-numeric-input  v-model="value" :min="1" :max="100" :step="1"></vue-numeric-input>
-    <div class="total-price">Total Price</div>
-  </div>
       <button @click="$router.push('checkout')" class="buy-btn">Proceed to Buy</button>
-       <h1>Your Shopping Cart</h1>
-        <button @click="$router.push('checkout')">Proceed to Buy</button>
+       <h3>Your Shopping Cart</h3>
+        <!-- <button @click="$router.push('checkout')">Proceed to Buy</button> --> 
       <router-view></router-view>
       <Cart></Cart>
     <ul class="product_list ">
@@ -45,8 +22,7 @@
           <div class="price">Combined Price</div>
         </section>
       </li>
-    </ul>
-      
+    </ul>    
   </main>
 </template>
 <script>
@@ -76,8 +52,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+// h3{
+//   border: 2px solid red;
+  
+// }
 .buy-btn{
   display: block;
+  margin-top: 70px;
   background-color: #7DC855;
   border-radius: 6px;
   font-size: 16px;
@@ -101,6 +82,7 @@ export default {
   border-radius: 15px;
   box-shadow: 0px 0px 8px 4px grey;
   border: none;
+  background: whitesmoke;
 }
 
 .product_list_item {
@@ -115,6 +97,6 @@ export default {
 
 .center, .right {
   flex-grow: 1;
-  background-color: #64AF3D;
+  // background-color: #64AF3D;
 }
 </style>

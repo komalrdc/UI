@@ -13,9 +13,39 @@ const routes = [
     component: home
   },
   {
+    path: '/MerchantListing',
+    name: 'MerchantListing',
+    component: () => import('../views/MerchantListing.vue')
+  },
+  {
+    path: '/cart',
+    name:'cart',
+    component: () => import('../views/CartView.vue'),
+  },
+  {
+    path: '/checkout',
+      name:'checkout',
+      component: () => import('../views/CheckoutView.vue'),
+  },
+  {
+    path: '/addbook',
+    name: 'AddProduct',
+    component: () => import('../components/merchant/AddProduct.vue')
+  },
+  {
+    name: 'Category',
+    path: '/category/:id',
+    component: () => import('@/views/Category')
+  },
+  {
+    path: '/product/:category',
+    name: 'Product',
+    component: () => import( '../views/ProductView.vue'),
+  },
+  {
     path: '/login',
     name: 'login',
-    component: () => import(/* webpackChunkName: "about" */ '../views/LoginView.vue'),
+    component: () => import('../views/LoginView.vue'),
   },
   {
     path: '/newuser',
@@ -43,38 +73,7 @@ const routes = [
       },
     ]
   },
-  {
-    path: '/MerchantListing/:id',
-    name: 'MerchantListing',
-    component: () => import('../views/MerchantListing.vue')
-  },
-  {
-    path: '/cart',
-    name:'cart',
-    component: () => import('../views/CartView.vue'),
-  },
-  {
-    path: '/checkout',
-      name:'checkout',
-      component: () => import('../views/CheckoutView.vue'),
-  },
-  {
-    path: '/addbook',
-    name: 'AddProduct',
-    component: () => import('../components/merchant/AddProduct.vue')
-  },
-  {
-    name: 'Category',
-    path: '/category/:id',
-    component: () => import('@/views/Category')
-  },
-    {
-      path: '/product/:category',
-      name: 'Product',
-      component: () => import( '../views/ProductView.vue'),
-    },
-    
-
+  
 ]
 
 const router = new VueRouter({

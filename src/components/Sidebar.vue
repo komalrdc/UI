@@ -1,34 +1,47 @@
 <template>
 <div class="sidebar" >
-<router-link @click ="categoryProducts" class="sidebar-item" :to="{name: 'Category', params: {id: 'fiction'}}">Fiction</router-link>
-<router-link @click ="categoryProducts" class="sidebar-item" :to="{name: 'Category', params: {id: 'non-fiction'}}">Non Fiction</router-link>
-<router-link @click ="categoryProducts" class="sidebar-item" :to="{name: 'Category', params: {id: 'Competitive'}}">Competitive</router-link>
-<router-link @click ="categoryProducts" class="sidebar-item" :to="{name: 'Category', params: {id: 'Children'}}">Children</router-link>
-<router-link @click ="categoryProducts" class="sidebar-item" :to="{name: 'Category', params: {id: 'Short-Stories'}}">Short-Stories</router-link>
+<router-link class="sidebar-item" :to="{name: 'Category', params: {id: 'Fiction'}}">Fiction</router-link>
+<router-link class="sidebar-item" :to="{name: 'Category', params: {id: 'Non-Fiction'}}">Non Fiction</router-link>
+<router-link class="sidebar-item" :to="{name: 'Category', params: {id: 'Competitive'}}">Competitive</router-link>
+<router-link class="sidebar-item" :to="{name: 'Category', params: {id: 'Children'}}">Children</router-link>
+<router-link class="sidebar-item" :to="{name: 'Category', params: {id: 'Short Stories'}}">Short-Stories</router-link>
 </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
+    data: function () {
+        return {
+            routerParams: '',
+        }
+    },
+     created() {
+        window.console.log(this.routerParams)
+      this.$store.commit('GET_CATEGORY_PRODUCTS', 'routerParams')
+    },
+    computed: {
+        ...mapGetters(['genreList'])
+    },
  methods: {
      categoryProducts: function() {
-         this.$store.dispatch('', {
-                data: this.routerParams,
-                success: this.catergoryProductsSuccess
+         this.$store.dispatch('getcategoryProducts', {
+                data: this.routerParams.id,
+                success: this.categoryProductsSuccess
             })
         },
         categoryProductsSuccess: function (result) {
           window.console.log(result);
+          window.console.log(this.$router.params)
           this.$router.push('/category/:id')
         }
     }
-    
 }
 </script>
 
 <style>
 .sidebar {
-    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: row;
     align-items: center; 
@@ -38,8 +51,9 @@ export default {
     width: 100%;
     font-size: 25px;
     justify-content: space-between;
-    /* background-color: #e9e9e9; */
-    position: absolute;
+    position: fixed;
+    background-color: white;
+    margin-top: -25px;
 }
 .sidebar-item {
     align-self: center;

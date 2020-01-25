@@ -1,7 +1,6 @@
 <template>
   <main clas="search">
     <h3 class="page_headers">
-      Search List
     </h3>
       <router-view></router-view>
       <Search></Search>
@@ -71,8 +70,9 @@ export default {
   margin: 8px auto 0px;
   padding: 0px;
   border-radius: 15px;
-  box-shadow: 0px 0px 8px 4px grey;
+  box-shadow: 0px 0px 4px 4px grey;
   border: none;
+  margin-top: 50px;
 }
 
 .product_list_item {

@@ -5,7 +5,6 @@
       <Navbar />
     </nav>
     <Sidebar/>
-
     <router-view/>
   </div>
   </main>

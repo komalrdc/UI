@@ -89,6 +89,7 @@ export default {
 			
 		},
     submitClicked() {
+      let self = this
       let data = {
         email: this.username,
         password: this.password,
@@ -97,7 +98,12 @@ export default {
       this.$store.dispatch("loginUser", {
         data: data,
         success: function() {
-          window.console.log("login successful...");
+          // window.console.log(this.loginType);
+          if (self.loginType ==='merchant'){
+                window.console.log("Here");
+                
+                self.$router.push('/MerchantListing')
+                window.console.log('login successful...');  }
         },
         fail: function() {
           window.console.log("login failed ...");
@@ -148,9 +154,15 @@ export default {
 }
 
 .submitbutton {
-	padding: 10px 30px 10px 30px;
-	background-color: #0ea1b6;
-	color: white;
+  padding: 10px 30px 10px 30px;
+  background-color: #0EA1B6;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+transition: all 0.4s ease 0s;
+}
+.submitbutton:hover{
+    background: #0C8699;
 }
 .Loginbuttoncontainer {
   display: flex;

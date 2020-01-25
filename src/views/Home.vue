@@ -29,7 +29,9 @@
         <span class="dot" @click="currentSlide(3)"></span>
       </div>
       <div>
-        <div>
+        <div v-for="product in genreList"
+              :key="'product:' + product.id"
+              class="books">
           <p class="genretype">Fictional Books</p>
           <div class="booklist">
             <div
@@ -57,11 +59,11 @@
 </template>
 
 <script>
-//import Sidebar from '@/components/Sidebar'
+// import Sidebar from '@/components/Sidebar'
 import Genre from "@/views/Genre";
 import { mapGetters } from "vuex";
 export default {
-  components: Genre,
+  components: Genre, 
   name: "slides",
   computed: {
     ...mapGetters(["genreList"])
@@ -184,12 +186,6 @@ q {
   border: 1px solid #ccc;
   padding: 20px;
   margin-bottom: 30px
-  /* grid-template-columns: 40px 50px auto 50px 40px;
-        grid-template-rows: 25% 100px auto;
-        grid-column-start: 2;
-        grid-column-end: 4;
-        grid-row-start: row1-start;
-        grid-row-end: 3; */
 }
 .books:hover {
   border: 1px solid #777;
