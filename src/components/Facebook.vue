@@ -3,7 +3,7 @@
     :params="fbSignInParams"
     @success="onSignInSuccess"
     @error="onSignInError">
-    Sign in with Facebook
+    Facebook
   </fb-signin-button>
 
 </template>
@@ -30,13 +30,26 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .fb-signin-button {
   display: inline-block;
-  padding: 4px 8px;
-  border-radius: 3px;
-  background-color: #4267B2;
-  color: #fff;
+    border-radius: 10px;
+  color: #ffffff;
+text-decoration: none;
+background: #0ea1b6;
+padding: 12px;
+transition: all 0.4s ease 0s;
+margin-right: 50px;
+margin-left: -25px;
+align-self: center;
   
+}
+.fb-signin-button:hover{
+  border-radius: 10px;
+  color: #ffffff;
+  background: #3b5998;
+  border-color: #3b5998;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
 }
 </style>

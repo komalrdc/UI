@@ -27,6 +27,17 @@ const routes = [
     name: 'Search',
     component: () => import( '../views/SearchView.vue'),
   },
+  // CustomerPage changed
+  {
+    path: '/customerpage',
+    name: 'CustomerPage',
+    component: () => import( '../views/CustomerHome.vue'),
+  },
+  {
+    path: '/customerprofile',
+    name: 'CustomerProfile',
+    component: () => import( '../views/CustomerProfile.vue'),
+  },
   {
     path: '/product',
     name: 'product',

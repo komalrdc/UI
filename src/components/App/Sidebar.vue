@@ -15,7 +15,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .sidebar {
     display: flex;
     flex-direction: column;
@@ -23,7 +23,7 @@ export default {
     width: 15%;
     font-size: 25px;
     background-color: #e9e9e9;
-    position: absolute;
+    position: fixed;
     margin-top: 4.8%;
 }
 .sidebar-item {

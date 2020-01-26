@@ -10,6 +10,7 @@
           <p class="author">- John Keats</p>
         </div>
         <div class="mySlides">
+
           <q
             >But man is not made for defeat. A man can be destroyed but not
             defeated.</q
@@ -107,12 +108,19 @@ export default {
 </script>
 
 <style>
+/* .image{
+  width: 100%;
+  height: 450px;
+
+} */
 .slideshow-container {
   position: relative;
-  background: #f1f1f1f1;
+  background-image:"https://www.tokkoro.com/picsup/3109773-books_education_knowledge_literature_novels_story-books.jpg";
+
   margin-top: 42px;
 }
 .mySlides {
+  position:absolute;
   width: 100%;
   display: none;
   padding: 80px;

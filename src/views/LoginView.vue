@@ -47,7 +47,9 @@
           </div>
           <div class="Loginbuttoncontainer">
             <button @click="submitClicked" class="submitbutton">Login</button>
-          </div>
+          </div>          
+          <div class = simply> Or simply using</div>
+
           <div class="socialloginContainer">
             <!-- <button>
               <img src="@/assets/facebook.png" height="16px" width="16px" />
@@ -151,7 +153,15 @@ export default {
 	padding: 10px 30px 10px 30px;
 	background-color: #0ea1b6;
 	color: white;
+  border-radius: 10px;
+  cursor: pointer;
+transition: all 0.4s ease 0s;
 }
+.submitbutton:hover{
+    background: #0c8699;
+
+}
+
 .Loginbuttoncontainer {
   display: flex;
   justify-content: center;
@@ -161,6 +171,14 @@ export default {
   margin-top: 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
+     align-items: center;
+}
+.simply{
+  color: #615f5f;
+  margin: 0px auto;
+  align-self:center;
+  margin-left: 38%;
+  margin-top: 10px;
+
 }
 </style>

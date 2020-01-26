@@ -58,6 +58,9 @@ export default {
     height: 80px;
     display: flex;
     flex-flow: row nowrap;
+    position: fixed;
+    top: 0%;
+    background-color: white;
     
     //justify-content: space-between;
     align-items: stretch;
