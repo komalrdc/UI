@@ -101,9 +101,11 @@ export default {
           // window.console.log(this.loginType);
           if (self.loginType ==='merchant'){
                 window.console.log("Here");
-                
                 self.$router.push('/MerchantListing')
                 window.console.log('login successful...');  }
+                else if(self.loginType ==='customer') {
+                  self.$router.push('/customerpage')
+                }
         },
         fail: function() {
           window.console.log("login failed ...");

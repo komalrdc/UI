@@ -5,13 +5,14 @@
       <div class="booklist">
           <div v-for = "product in categoryProducts" :key="'product:' + product.id" class="books">
             <div>
-              <!-- <figure @click="routeToProductDescription(product.id)"> -->
-                <img :src = "product.url" height="150px" width="100px" class="image" @click="routeToProductDescription(product.productId)">
-              <!-- </figure> -->
+              <figure @click="routeToProductDescription(product.productId)">
+                <img :src = "product.url" height="150px" width="100px" class="image"> 
+                <!-- @click="routeToProductDescription(product.productId)"> -->
+              </figure>
                 <div class = "productdetails">
-                <h3>{{product.product_name}}</h3>
+                <h3>{{product.productName}}</h3>
                 <h3>{{product.author}}</h3>
-                <h3 img src= "@/assests/discount.png">{{product.price}}</h3>
+                <h3 img src= "@/assets/discount.png">{{product.price}}</h3>
                 <h2>{{product.description}}</h2>
                 </div>
             </div>
@@ -25,6 +26,11 @@ import Sidebar from '@/components/Sidebar'
 import {mapGetters} from 'vuex'
 export default {
     name: 'Category',
+    data: function() {
+      return{
+        //data: ''
+      }
+    },
     components: {
            Sidebar
         },
@@ -34,8 +40,9 @@ export default {
         },
         ...mapGetters(['categoryProducts', 'genreList']),
     },
+    // For displaying category products
       created() {
-        window.console.log('this is the created hook were callnf',this.$route.params.id)
+        window.console.log('this is the created hook were calling',this.$route.params.id)
         this.$store.dispatch('getcategoryProducts', this.$route.params.id)
     },
      watch: {
@@ -46,14 +53,37 @@ export default {
       }
     }, 
     methods: {
-      routeToProductDescription: function(id){
-        window.console.log(id); 
-        this.$store.dispatch('productDetails',{
-             data: id
+       routeToProductDescription (id) {
+        //window.console.log("product id:" +id)
+        var data=id
+            this.$store.dispatch('productDetails', 
+               data,
+              // success: getProductDetailSuccess
+            )
+           // window.console.log(this.data)
+           this.$router.push("/product/description/:id")
+
+        },
 
 
-        }) 
-      } 
+        click(){
+            let data = {
+                id: this.product.id,
+                url: this.product.url,
+                title: this.product.title,
+                author: this.product.author,
+                price: this.product.price
+            }
+            this.$store.dispatch('productDetails', {
+                data: data,
+                success: function () {
+                    window.console.log('Product added successfully...');
+                },
+                fail: function () {
+                    window.console.log('Product added failed...');
+                }
+            })
+        }
     }
   
 }

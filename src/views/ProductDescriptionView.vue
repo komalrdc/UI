@@ -8,9 +8,14 @@
         </div>
         <div class = "right-column">
             <div class="description">
-                <span>Books Category</span>
-                <h1>{{ selectedProducts.title}}</h1>
+                <span>{{selectedProducts.genre}}</span>
+                <h1>{{ selectedProducts.productName}}</h1>
                 <p>{{selectedProducts.author}}</p>
+                <p>{{selectedProducts.description}}</p>
+                <p>Year of publication:{{selectedProducts.attributes.year}}</p>
+                <p>No Of Pages:{{selectedProducts.attributes.noofpages}}</p>
+                <p>Publisher: {{selectedProducts.attributes.publisher}}</p>
+                <p>Format: {{selectedProducts.attributes.binding}}</p>
             </div>
             <div class = "merchant">
                 <p> Sold by <a href=" " >Merchant Link</a></p>
@@ -27,7 +32,7 @@
                 <span>Price:</span>
                 <span>{{selectedProducts.price}}</span>
                 <!-- <button @click = "routeTocart" class="cart-btn">Add to Cart</button> -->
-                <p><router-link to="/cart/" tag="button" class="cart-btn" >Add to Cart</router-link></p>
+                <p><button @click="routeToCart(selectedProducts.productId)"  tag="button" class="cart-btn" >Add to Cart</button></p>
             </div>         
         </div>
         <router-view></router-view>
@@ -42,21 +47,25 @@ export default {
     data: function(){
           return {
               value: 1,
-              // selectedProduct: {},
+              //selectedProduct: [],
               cartItems: {}
           }
+    },
+      components: {
+       VueNumericInput
     },
     created () {
       const id  = this.$route.params.id
       this.selectedProducts =  this.productList[id-1]
       // eslint-disable-next-line no-console
       console.log(this.selectedProduct)
+      this.$store.dispatch('getcategoryProducts', this.$route.params.id)
     },
     computed: {
         productId() {
             return this.$route.params.id
         },
-        ...mapGetters(['productList']),
+        ...mapGetters(['productList', 'categoryProducts','merchantId']),
         ...mapGetters(['productDescription']),
         ...mapGetters(['selectedProducts'])
     },
@@ -64,9 +73,6 @@ export default {
         productId: function () {
             this.fetchProductDetails(this.productId)
         }
-    },
-     components: {
-       VueNumericInput
     },
     methods: {
         fetchProductDetails(id) {
@@ -86,17 +92,14 @@ export default {
         onFail () {
             // TODO
             // Show proper erros
-        }
-    },       
+        },
+      
     routeToCart(id) {
-            this.$store.dispatch('cartItems', this.productList[id])
-            this.$router.push({
-                name: 'cartitems',
-                params: {
-                    id
-                },
-            }) 
+      window.console.log(id)
+            this.$store.dispatch('cartItems',id) 
+            this.$route.push('/cart')
     }
+    } 
 }
 </script>
 
@@ -151,7 +154,8 @@ html, body {
 
 .product_image {
     width: 320px;
-    height: 500px;
+    height: 400px;
+    margin-top: 50px;
 }
 .description span {
   font-size: 12px;

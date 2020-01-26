@@ -120,6 +120,7 @@ export default {
       this.flag1 = !this.flag1
      },
      home: function() {
+       this.$router.push("/")
      },
     toggle: function() {
        this.flag1=!this.flag1;

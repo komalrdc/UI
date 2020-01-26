@@ -29,9 +29,11 @@
         <span class="dot" @click="currentSlide(3)"></span>
       </div>
       <div>
-        <div v-for="product in genreList"
-              :key="'product:' + product.id"
-              class="books">
+        <div
+          v-for="product in genreList"
+          :key="'product:' + product.id"
+          class="books"
+        >
           <p class="genretype">Fictional Books</p>
           <div class="booklist">
             <div
@@ -42,7 +44,10 @@
               <div>
                 <div class="bookimage">
                   <figure @click="routeToProductDescription(product.id)">
-                    <img :src="product.url" style="width:100%;height:100%;object-fit:cover;"  />
+                    <img
+                      :src="product.url"
+                      style="width:100%;height:100%;object-fit:cover;"
+                    />
                   </figure>
                 </div>
                 <h5>{{ product.title }}</h5>
@@ -63,7 +68,7 @@
 import Genre from "@/views/Genre";
 import { mapGetters } from "vuex";
 export default {
-  components: Genre, 
+  components: Genre,
   name: "slides",
   computed: {
     ...mapGetters(["genreList"])
@@ -185,22 +190,21 @@ q {
   align-content: center;
   border: 1px solid #ccc;
   padding: 20px;
-  margin-bottom: 30px
+  margin-bottom: 30px;
 }
 .books:hover {
   border: 1px solid #777;
 }
 
 .bookimage {
-  display:block;
+  display: block;
   margin: auto;
   height: 150px;
-  width: 100px
+  width: 100px;
 }
 .genretype {
   font-size: 20px;
   margin-left: 30px;
   padding-top: 20px;
-
 }
 </style>
