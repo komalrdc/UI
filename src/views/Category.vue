@@ -9,10 +9,10 @@
                 <img :src = "product.url" height="150px" width="100px" class="image"> 
               </figure>
                 <div class = "productdetails">
-                <h3>{{product.productName}}</h3>
-                <h3>{{product.author}}</h3>
-                <h3 img src= "@/assets/discount.png">{{product.price}}</h3>
-                <h2>{{product.description}}</h2>
+                <h4>Book Name: {{product.productName}}</h4>
+                <h4>Author: {{product.author}}</h4>
+                <h4 img src= "@/assets/discount.png">Price: {{product.price}}</h4>
+                <router-link to="/cart" tag="button" class="buy-btn">Add to Cart</router-link>
                 </div>
             </div>
         </div>
@@ -91,13 +91,13 @@ export default {
 
 <style scoped>
 .booklist {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: row;
   justify-content: center;
   display: grid;
   grid-template-columns: auto auto auto auto;
-  padding-top: 70px;
+  padding-top: 90px;
   padding-left: 30px;
   padding-right: 10px;
   align-items: center;
@@ -126,10 +126,23 @@ export default {
 }
 .productdetails {
   align-self: center;
-  font-size: 5px;
+  font-size: 2px;
   justify-items: center; 
-  text-align: justify;
-  text-justify: inter-word;
 
+}
+.buy-btn{
+  display: inline;
+  background-color: #7DC855;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #FFFFFF;
+  padding: 8px 10px;
+  transition: all .5s;
+  margin-left:auto;
+  margin-right:15px;
+
+}
+.buy-btn:hover {
+  background-color: #64af3d;
 }
 </style>

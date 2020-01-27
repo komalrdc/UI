@@ -17,6 +17,7 @@ export default new Vuex.Store({
     selectedProduct: [],
     marchantProducts: [],
     searchDisplay: [],
+    topFive: [],
     product: [
       {
         id: 1,
@@ -107,7 +108,7 @@ export default new Vuex.Store({
       state.userDetails = payload
     },
     GET_DETAILS(state,payload){
-      state.merchantdetails=payload.response
+      state.merchantdetails=payload
    },
    GET_MERCHANTID(state,payload){
     state.merchantId = payload.response
@@ -115,6 +116,9 @@ export default new Vuex.Store({
     GET_CATEGORY_PRODUCTS(state, payload) {
       state.categoryProducts = payload
     },
+    GET_TOP_FIVE(state,payload){
+      state.topFive= payload
+    }
   
   },
   actions: {
@@ -327,7 +331,18 @@ export default new Vuex.Store({
 
       })
 
-    }
+    },
+    getTopFive(context){
+      fetch("http://10.177.68.24:8080/product/getTopProducts",{
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+      .then(res => res.json()).then((res) => {
+        context.commit('GET_TOP_FIVE', res)
+      }) 
+    } 
 },
   getters: {
     myGetter(state) {
@@ -362,6 +377,9 @@ export default new Vuex.Store({
     genreList : state => state.genre || [],
     cartdetails(state){
       return state.cartdetails
+    },
+    topFive(state){
+       return state.topFive || []
     }
 
   }

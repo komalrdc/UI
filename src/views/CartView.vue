@@ -1,8 +1,9 @@
 <template>
   <main>
-
+      <div class ="center">
       <button @click="checkout" class="buy-btn">Proceed to Buy</button>
        <h3>Your Shopping Cart</h3>
+       </div>
         <!-- <button @click="$router.push('checkout')">Proceed to Buy</button> --> 
       <router-view></router-view>
       <Cart></Cart>
@@ -57,15 +58,14 @@ export default {
     },
     methods: {
           ...mapActions([
-    'getCartDetails'
+        'getCartDetails'
     ]),
       removeFromCart: function(product){
          let data1= {cartId:this.isLogged,productId:product.productId,merchantId:product.merchantId,quantity:"0"}
          window.console.log(data1)
             this.$store.dispatch('cartItems',{ 
                data: data1,
-               success: this.reloadCart
-               
+               success: this.reloadCart 
             }) 
            
             },
@@ -116,7 +116,7 @@ export default {
 }
 .image {
   margin: 10px;
-  
+
 }
 .product_list {
   width: 50vw;
@@ -145,5 +145,9 @@ export default {
 }
 .price {
   margin-top: 8px;
+}
+
+.center{
+  justify-content: center;
 }
 </style>

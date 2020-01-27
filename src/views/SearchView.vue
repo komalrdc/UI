@@ -6,7 +6,7 @@
       <Search></Search>
     <ul class="product_list ">
       <li v-for="product in search" :key="product" class="product_list_item ">
-        <figure class="">
+        <figure class="image">
           <img :src="product.url" height="150px" width="150px">
         </figure>
         <div class="added_items_quantity center">
@@ -92,5 +92,12 @@ export default {
 .center {
   flex-grow: 1;
   margin-left: 15px;
+}
+
+.image {
+  cursor: pointer;
+}
+.image:hover {
+  transform: scale(1.1);
 }
 </style>

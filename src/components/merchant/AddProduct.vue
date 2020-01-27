@@ -84,7 +84,7 @@ export default{
             window.console.log(this.getmerchantid)
             let data = {...this.product}
            // window.console.log(this.getmerchantid)
-            data.merchantId='7d034019-7ded-4541-8733-c5ca1f2fc5a9'
+            data.merchantId=localStorage.getItem('isLogged')
             event.preventDefault();
             event.stopPropagation();
             this.$store.dispatch('addNewProduct', {

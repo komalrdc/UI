@@ -32,21 +32,22 @@
         <span class="dot" @click="currentSlide(3)"></span>
       </div>
       <div>
-        <div v-for="product in genreList" :key="'product:' + product.id" class="books">
-          <p class="genretype">Fictional Books</p>
+        <p class="genretype">Best Sellers</p>
           <div class="booklist">
-            <div v-for="product in genreList" :key="'product:' + product.id" class="books">
+        <div v-for="product in topFive" :key="'product:' + product.id" class="books">
+        
+            <!-- <div v-for="product in topFive" :key="'product:' + product.id" class="books"> -->
               <div>
                 <div class="bookimage">
-                  <figure @click="routeToProductDescription(product.id)">
-                    <img :src="product.url" style="width:100%;height:100%;object-fit:cover;" />
+                  <figure @click="routeToProductDescription(product.productId)">
+                    <img :src="product.url" style="width:100%;height:100%;object-fit:cover;" class="image" />
                   </figure>
                 </div>
-                <h5>{{ product.title }}</h5>
+                <h5>{{ product.productName }}</h5>
                 <h5>{{ product.author }}</h5>
                 <h5>{{ product.price }}</h5>
+                <router-link to="/cart" tag="button" class="buy-btn">Add to Cart</router-link>
               </div>
-            </div>
           </div>
         </div>
       </div>
@@ -57,12 +58,12 @@
 <script>
 // import Sidebar from '@/components/Sidebar'
 import Genre from "@/views/Genre";
-import { mapGetters } from "vuex";
+import { mapGetters,mapActions } from "vuex";
 export default {
   components: Genre,
   name: "slides",
   computed: {
-    ...mapGetters(["genreList"])
+    ...mapGetters(["genreList", "topFive","selectedProducts"]),
   },
   data() {
     return {
@@ -71,8 +72,12 @@ export default {
   },
   mounted() {
     this.showSlides(this.slideIndex);
+    this.getTopFive()
   },
   methods: {
+    ...mapActions([
+      'getTopFive'
+    ]),
     plusSlides(n) {
       window.console.log("Clicked on slide");
       this.showSlides((this.slideIndex += n));
@@ -99,9 +104,39 @@ export default {
       }
       slides[this.slideIndex - 1].style.display = "block";
       dots[this.slideIndex - 1].className += " active";
-    }
-  }
-};
+    },
+
+  routeToProductDescription (id) {
+    window.console.log("in description")
+            this.$store.dispatch('selectedProduct', this.productList[id])
+            this.$router.push({
+                name: 'description',
+                params: {
+                    id
+                },
+            }) 
+        },
+        click(){
+            let data = {
+                id: this.product.id,
+                url: this.product.url,
+                title: this.product.title,
+                author: this.product.author,
+                price: this.product.price
+            }
+            this.$store.dispatch('productDetails', {
+                data: data,
+                success: function () {
+                    window.console.log('Product added successfully...');
+                },
+                fail: function () {
+                    window.console.log('Product added failed...');
+                }
+            })
+        }
+        }
+}
+
 </script>
 <style>
 .slideshow-container {
@@ -182,22 +217,27 @@ q {
   color: cornflowerblue;
 }
 .booklist {
+ box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  padding-top: 90px;
   padding-left: 30px;
-  padding-right: 30px;
+  padding-right: 10px;
   align-items: center;
 }
 .books {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   align-content: center;
   border: 1px solid #ccc;
   padding: 20px;
-  margin-bottom: 30px;
+  margin: 10px;
+  height: 325px;
+  width: 200px;
 }
 .books:hover {
   border: 1px solid #777;
@@ -207,10 +247,29 @@ q {
   margin: auto;
   height: 150px;
   width: 100px;
+  cursor:pointer;
+}
+.bookimage:hover {
+  transform:scale(1.1)
 }
 .genretype {
   font-size: 20px;
   margin-left: 30px;
   padding-top: 20px;
+}
+.buy-btn{
+  display: inline;
+  background-color: #7DC855;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #FFFFFF;
+  padding: 8px 10px;
+  transition: all .5s;
+  margin-left:auto;
+  margin-right:15px;
+
+}
+.buy-btn:hover {
+  background-color: #64af3d;
 }
 </style>

@@ -12,7 +12,7 @@
 	<input  v-model="name"   type="text" placeholder="Name" ><br><br>
 	<input  v-model="address" type="text" placeholder="Address"> <br><br>
 	<input  v-model="email" type="email" placeholder="Email"> <br><br>
-	<input  v-model="phoneNumber" type="number" placeholder="Phone Number"><br><br>
+	<input  v-model="phoneNumber" type="text" placeholder="Phone Number"><br><br>
 	<input  v-model="pincode" type="number" placeholder="Pincode"> <br><br>
 	<input  v-model="password" type="Password" placeholder="Password"><br><br>
 	<input  v-model="confirmPassword" type="Password" placeholder="Confirm Password"><br><br>

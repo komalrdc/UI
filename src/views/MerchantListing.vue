@@ -74,7 +74,7 @@ export default {
   },
   created () {
       this.getAllProductByMerchantId({
-      data: '7d034019-7ded-4541-8733-c5ca1f2fc5a9'
+      data: localStorage.getItem('isLogged')
     })
   },
   methods : {
@@ -97,7 +97,7 @@ export default {
      remove: function(product){
         let data = {...product.merchantId,...product.productId}
         data.productId= product.productId;
-        data.merchantId= this.merchantId;
+        data.merchantId= localStorage.getItem('isLogged');
             event.preventDefault();
             event.stopPropagation();
             this.$store.dispatch('deleteProduct', {
@@ -111,7 +111,7 @@ export default {
          event.preventDefault();
             event.stopPropagation();
             this.$store.dispatch('getMerchantDetails', {
-                data: "7d034019-7ded-4541-8733-c5ca1f2fc5a9",
+                data: localStorage.getItem('isLogged'),
                 success: this.getMerchantDetailsSuccess
             })
      },
