@@ -3,22 +3,25 @@
     <div>
       <div class="slideshow-container">
         <div class="mySlides">
-          <q
-            >I love you the more in that I believe you had liked me for my own
-            sake and for nothing else</q
-          >
-          <p class="author">- John Keats</p>
+          <img src="https://cdn.pixabay.com/photo/2015/07/17/22/42/library-849797_960_720.jpg" />
+          <div class="mySlides1">
+            <q>Memories warm you up from the inside. But they also tear you apart.</q>
+            <p class="author">― Haruki Murakami, Kafka on the Shore</p>
+          </div>
         </div>
         <div class="mySlides">
-          <q
-            >But man is not made for defeat. A man can be destroyed but not
-            defeated.</q
-          >
-          <p class="author">- Ernest Hemingway</p>
+          <img src="https://cdn.pixabay.com/photo/2016/02/16/21/07/books-1204029_960_720.jpg" />
+          <div class="mySlides1">
+            <q>And, when you want something, all the universe conspires in helping you to achieve it.</q>
+            <p class="author">― Paulo Coelho, The Alchemist</p>
+          </div>
         </div>
         <div class="mySlides">
-          <q>I have not failed. I've just google ways that won't work.</q>
-          <p class="author">- Thomas A. Edison</p>
+          <img src="https://cdn.pixabay.com/photo/2014/08/08/21/03/bookshelf-413705_960_720.jpg" />
+          <div class="mySlides1">
+            <q>We've all got both light and dark inside us. What matters is the part we choose to act on. That's who we really are.</q>
+            <p class="author">—J. K. Rowling, Harry Potter and the Order of the Phoenix</p>
+          </div>
         </div>
         <a class="prev" @click="plusSlides(-1)">❮</a>
         <a class="next" @click="plusSlides(1)">❯</a>
@@ -29,25 +32,14 @@
         <span class="dot" @click="currentSlide(3)"></span>
       </div>
       <div>
-        <div
-          v-for="product in genreList"
-          :key="'product:' + product.id"
-          class="books"
-        >
+        <div v-for="product in genreList" :key="'product:' + product.id" class="books">
           <p class="genretype">Fictional Books</p>
           <div class="booklist">
-            <div
-              v-for="product in genreList"
-              :key="'product:' + product.id"
-              class="books"
-            >
+            <div v-for="product in genreList" :key="'product:' + product.id" class="books">
               <div>
                 <div class="bookimage">
                   <figure @click="routeToProductDescription(product.id)">
-                    <img
-                      :src="product.url"
-                      style="width:100%;height:100%;object-fit:cover;"
-                    />
+                    <img :src="product.url" style="width:100%;height:100%;object-fit:cover;" />
                   </figure>
                 </div>
                 <h5>{{ product.title }}</h5>
@@ -62,7 +54,6 @@
     </div>
   </main>
 </template>
-
 <script>
 // import Sidebar from '@/components/Sidebar'
 import Genre from "@/views/Genre";
@@ -112,18 +103,34 @@ export default {
   }
 };
 </script>
-
 <style>
 .slideshow-container {
   position: relative;
   background: #f1f1f1f1;
-  margin-top: 42px;
+  margin-top: 10px;
 }
 .mySlides {
   width: 100%;
   display: none;
-  padding: 80px;
+  /* padding: 80px; */
+  height: 370px;
   text-align: center;
+}
+.mySlides img {
+  width: 100%;
+  height: 100%;
+}
+.mySlides1 {
+  background-color: white;
+  width: 70%;
+  color: black;
+  border-radius: 8px;
+  opacity: 0.85;
+  padding: 10px;
+  position: absolute;
+  z-index: 500;
+  top: 40%;
+  left: 15%;
 }
 .prev,
 .next {
@@ -151,7 +158,7 @@ export default {
 }
 .dot-container {
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   background: #ddd;
 }
 .dot {
@@ -195,7 +202,6 @@ q {
 .books:hover {
   border: 1px solid #777;
 }
-
 .bookimage {
   display: block;
   margin: auto;

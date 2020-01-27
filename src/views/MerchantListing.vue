@@ -179,16 +179,14 @@ th{
 }
 .signout{
   float:right;
-  /* padding: 10px;
-  padding-right: 50px; */
   border: none;
   margin-left: 10px;
-  margin-top: 5px;
-  font-size: 20px;
-  padding: 10px 30px 10px 30px;
+  margin-top: 10px;
+  font-size: 15px;
+  padding: 8px 20px 8px 20px;
   background-color: #0EA1B6;
   color: white;
-  border-radius: 10px;
+  border-radius: 7px;
   cursor: pointer;
   transition: all 0.4s ease 0s;
 }

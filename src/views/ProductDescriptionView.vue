@@ -47,6 +47,7 @@ export default {
     data: function(){
           return {
               value: 1,
+              isLogged: localStorage.getItem('isLogged'),
               //selectedProduct: [],
               cartItems: {}
           }
@@ -95,9 +96,13 @@ export default {
         },
       
     routeToCart(id) {
-      window.console.log(id)
-            this.$store.dispatch('cartItems',id) 
-            this.$route.push('/cart')
+      window.console.log(this.isLogged)
+      let data1= {cartId:this.isLogged,productId:id,merchantId:this.selectedProducts.merchantId,quantity:this.value}
+            this.$store.dispatch('cartItems',{
+               data: data1
+
+            })
+            this.$router.push('/cart')
     }
     } 
 }

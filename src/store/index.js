@@ -12,6 +12,7 @@ export default new Vuex.Store({
     categoryProducts: [],
     cartItems: [],
     // cartCount: 0,
+    cartdetails:[],
     searchList: [],
     selectedProduct: [],
     marchantProducts: [],
@@ -87,6 +88,9 @@ export default new Vuex.Store({
     SET_CART_ITEMS(state, payload) {
       state.cartItems = payload
     },
+    GET_CART_DETAILS(state,payload){
+       state.cartdetails=payload
+    },
     SET_SEARCH_LIST(state,payload) {
       state.searchList = payload
     },
@@ -110,7 +114,8 @@ export default new Vuex.Store({
   },
     GET_CATEGORY_PRODUCTS(state, payload) {
       state.categoryProducts = payload
-    }
+    },
+  
   },
   actions: {
     loginUser (context, {data, success, fail}) {
@@ -126,6 +131,7 @@ export default new Vuex.Store({
         .then(res => res.json())
         .then(res => {
           if (res !== "Not registered") {
+          localStorage.setItem('isLogged',res.response)  
           context.commit('GET_MERCHANTID', res)
           success && success()
           } else {
@@ -289,6 +295,39 @@ export default new Vuex.Store({
       success && success(res)
     })
   },
+   getCartDetails(context,{data,success}){
+      fetch("http://10.177.68.24:8080/cart/getFromCart/"+data,{
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+      .then(res => res.json()).then((res) => {
+        context.commit('GET_CART_DETAILS', res)
+        window.console.log(res)
+        success && success(res)
+      }) 
+  },
+    removefromcart(data){
+        fetch("http://10.177.68.24:8080/cart/removeAllFromCart",{
+        method:'DELETE',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+
+    } )
+    },
+    checkout(context,data){
+      fetch("http://10.177.68.24:8080/order/checkout/"+data,{
+         method:'GET',
+         headers: {
+          'Content-Type': 'application/json'
+        },
+
+      })
+
+    }
 },
   getters: {
     myGetter(state) {
@@ -321,6 +360,9 @@ export default new Vuex.Store({
       return state.categoryProducts
     },
     genreList : state => state.genre || [],
+    cartdetails(state){
+      return state.cartdetails
+    }
 
   }
 })

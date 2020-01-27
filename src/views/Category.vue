@@ -7,7 +7,6 @@
             <div>
               <figure @click="routeToProductDescription(product.productId)">
                 <img :src = "product.url" height="150px" width="100px" class="image"> 
-                <!-- @click="routeToProductDescription(product.productId)"> -->
               </figure>
                 <div class = "productdetails">
                 <h3>{{product.productName}}</h3>
@@ -96,6 +95,8 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
   padding-top: 70px;
   padding-left: 30px;
   padding-right: 10px;
@@ -116,13 +117,19 @@ export default {
     border: 1px solid #777;
 }
 .image {
+  margin-top: 5px;
+  justify-content: center;
   display:block;
   margin: auto;
-  height: 150px;
+  height: 125px;
   width: 100px
 }
 .productdetails {
   align-self: center;
+  font-size: 5px;
+  justify-items: center; 
+  text-align: justify;
+  text-justify: inter-word;
 
 }
 </style>

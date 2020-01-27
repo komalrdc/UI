@@ -10,11 +10,12 @@
           <img :src="product.url" height="150px" width="150px">
         </figure>
         <div class="added_items_quantity center">
-          <p>{{product.productName}}</p>
-          <p>{{product.description}}</p>
-          <p>{{product.genre}}</p>
-          <p>{{product.price}}</p>
-          <p>{{product.author}}</p>
+          <p>Book name: {{product.productName}}</p>
+          <p>Description: {{product.description}}</p>
+          <p>Genre: {{product.genre}}</p>
+          <p>Price: {{product.price}}</p>
+          <p>Author: {{product.author}}</p>
+          <router-link to="/cart" tag="button" class="buy-btn">Add to Cart</router-link>
         </div>
       </li>
     </ul>
@@ -48,29 +49,32 @@ export default {
 
 <style scoped lang="scss">
 .buy-btn{
-  display: block;
+  display: inline;
   background-color: #7DC855;
   border-radius: 6px;
   font-size: 16px;
   color: #FFFFFF;
-  padding: 12px 30px;
+  padding: 10px 20px;
   transition: all .5s;
   margin-left:auto;
-  margin-right:auto
+  margin-right:15px;
+
 }
 .buy-btn:hover {
   background-color: #64af3d;
 }
 .image {
   margin: 10px;
+  justify-content: center;
+  padding-left: 10px;
 }
 .product_list {
   width: 50vw;
   list-style-type: none;
   margin: 8px auto 0px;
   padding: 0px;
-  border-radius: 15px;
-  box-shadow: 0px 0px 4px 4px grey;
+  border-radius: 10px;
+  box-shadow: 0px 0px 2px 2px grey;
   border: none;
   margin-top: 50px;
 }
@@ -79,7 +83,7 @@ export default {
   display: flex;
   flex-flow: row;
   justify-content: center;
-  border-bottom: 3px solid grey;
+  border-bottom: 2px solid grey;
   &:last-child {
     border: none
   }
@@ -87,5 +91,6 @@ export default {
 
 .center {
   flex-grow: 1;
+  margin-left: 15px;
 }
 </style>

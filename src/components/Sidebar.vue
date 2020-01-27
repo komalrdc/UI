@@ -54,12 +54,15 @@ export default {
     position: fixed;
     background-color: white;
     margin-top: -25px;
+    z-index: 999;
 }
 .sidebar-item {
     align-self: center;
+    text-align: center;
     padding: 10px;
     font-size: 18px; 
     text-decoration: none;
+    width: 90%;
 }
 .sidebar a:hover {
   color: black;
